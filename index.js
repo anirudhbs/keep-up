@@ -1,10 +1,12 @@
 const express = require('express')
 const { Client } = require('pg')
+const cors = require('cors')
 const path = require('path')
 const app = express()
 const bodyParser = require('body-parser')
 const PORT = 8080
 
+app.use(cors())
 app.use(express.static('public'))
 app.use(bodyParser.json())
 
