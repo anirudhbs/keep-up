@@ -1,7 +1,45 @@
+body {
+  background-color: #fbfbfb;
+}
+h2 {
+  text-align: center;
+}
+
 .App {
   text-align: center;
 }
 
+ul {
+  display: block;
+  margin: 0 auto;
+}
+
 li {
+  display: block;
   list-style: none;
+  margin: 3px;
+}
+
+.ListOfStudents>h2 {
+  text-align: center;
+  display: block;
+}
+
+.ListOfStudents {
+  display: flex;
+  margin: 0 auto;
+  width: 960px;
+  /* border: 1px solid black; */
+}
+
+.ListItem {
+  display: block;
+  border: 1px solid black;
+  padding: 10px;
+  min-width: 200px;
+}
+
+.ListItem:hover {
+  cursor: pointer;
+  background-color: #eeeeee;
 }

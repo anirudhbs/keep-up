@@ -13,9 +13,13 @@ class ListItem extends Component {
     console.log('mounted ListItem')
   }
 
+  showDetails () {
+    console.log('clicked!')
+  }
+
   render () {
     return (
-      <li key={this.props.id}>
+      <li key={this.props.id} className='ListItem' onClick={this.showDetails.bind(this)}>
         {this.state.name}
       </li>
     )

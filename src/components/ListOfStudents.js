@@ -10,9 +10,8 @@ class ListOfStudents extends Component {
   }
 
   componentDidMount () {
-    const url = 'http://localhost:8080/students'
-
-    fetch(url, {
+    const url = 'http://localhost:8080'
+    fetch(url + '/students', {
       method: 'post'
     })
     .then((results) => {
@@ -20,7 +19,6 @@ class ListOfStudents extends Component {
     })
     .then((data) => {
       this.setState({ students: data })
-      console.log(this.state.students)
     })
     .catch(function (error) {
       console.log('fail', error)
@@ -30,8 +28,8 @@ class ListOfStudents extends Component {
   render () {
     return (
       <div className='ListOfStudents'>
-        <h2> Student list</h2>
         <ul>
+          <h2>Students</h2>
           {
             this.state.students.map(cur =>
               <ListItem key={cur.id} id={cur.id} name={cur.name} />
