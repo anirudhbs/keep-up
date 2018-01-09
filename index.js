@@ -1,37 +1,69 @@
+const express = require('express')
 const { Client } = require('pg')
-const connectionString = 'postgresql://postgres:postgres@localhost:5432/postgres'
+const path = require('path')
+const app = express()
+const bodyParser = require('body-parser')
+const PORT = 8080
+
+app.use(express.static('public'))
+app.use(bodyParser.json())
 
 const client = new Client({
-  connectionString: connectionString
+  user: 'postgres',
+  host: 'localhost',
+  database: 'postgres',
+  password: 'postgres',
+  port: 5432
 })
 
-client.connect()
-
-client.query('SELECT * FROM temp', (err, res) => {
-  if (err) throw err
-  console.log(res.rows)
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'))
 })
 
-const insert = 'INSERT INTO temp VALUES($1, $2) RETURNING id'
-const value1 = [6, 'michael']
-const update = 'UPDATE temp SET name = $2 WHERE id = $1'
-const value2 = [1, 'jackson']
-const deleteQuery = 'DELETE FROM temp WHERE id = $1'
-const value3 = [3]
-
-client.query(insert, value1, (err, res) => {
-  if (err) throw err
-  console.log(res.rows[0])
+app.post('/user/create', (req, res) => {
+  const queryString = 'INSERT INTO users VALUES($1, $2) RETURNING id'
+  const values = [req.body.id, req.body.name]
+  client.query(queryString, values, (err, response) => {
+    if (err) throw err
+    else {
+      res.send(response.rows[0])
+    }
+  })
 })
 
-client.query(update, value2, (err, res) => {
-  if (err) throw err
-  console.log(res.rows[0])
+app.delete('/user/delete', (req, res) => {
+  const queryString = 'DELETE FROM users WHERE id= $1 RETURNING id'
+  const values = [req.body.id]
+  client.query(queryString, values, (err, response) => {
+    if (err) throw err
+    else {
+      res.send(response.rows[0])
+    }
+  })
 })
 
-client.query(deleteQuery, value3, (err, res) => {
-  if (err) throw err
-  console.log(res.rows[0])
+app.post('/users', (req, res) => {
+  const queryString = 'SELECT * FROM users'
+  client.query(queryString, (err, response) => {
+    if (err) throw err
+    else {
+      res.send(response.rows)
+    }
+  })
 })
 
-// client.end()
+app.post('/user/:userid', (req, res) => {
+  const queryString = 'SELECT * FROM users WHERE id=$1'
+  const values = [req.params.userid]
+  client.query(queryString, values, (err, response) => {
+    if (err) throw err
+    else {
+      res.send(response.rows[0])
+    }
+  })
+})
+
+app.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`)
+  client.connect()
+})
