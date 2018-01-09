@@ -20,9 +20,19 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'))
 })
 
-app.post('/user/create', (req, res) => {
-  const queryString = 'INSERT INTO users VALUES($1, $2) RETURNING id'
-  const values = [req.body.id, req.body.name]
+app.post('/students', (req, res) => {
+  const queryString = 'SELECT * FROM students WHERE status=TRUE'
+  client.query(queryString, (err, response) => {
+    if (err) throw err
+    else {
+      res.send(response.rows)
+    }
+  })
+})
+
+app.post('/student', (req, res) => {
+  const queryString = 'INSERT INTO students VALUES($1, $2, $3) RETURNING id'
+  const values = [req.body.id, req.body.name, true]
   client.query(queryString, values, (err, response) => {
     if (err) throw err
     else {
@@ -31,8 +41,8 @@ app.post('/user/create', (req, res) => {
   })
 })
 
-app.delete('/user/delete', (req, res) => {
-  const queryString = 'DELETE FROM users WHERE id= $1 RETURNING id'
+app.delete('/student', (req, res) => {
+  const queryString = 'DELETE FROM students WHERE id= $1 RETURNING id'
   const values = [req.body.id]
   client.query(queryString, values, (err, response) => {
     if (err) throw err
@@ -42,19 +52,9 @@ app.delete('/user/delete', (req, res) => {
   })
 })
 
-app.post('/users', (req, res) => {
-  const queryString = 'SELECT * FROM users'
-  client.query(queryString, (err, response) => {
-    if (err) throw err
-    else {
-      res.send(response.rows)
-    }
-  })
-})
-
-app.post('/user/:userid', (req, res) => {
-  const queryString = 'SELECT * FROM users WHERE id=$1'
-  const values = [req.params.userid]
+app.put('/student', (req, res) => {
+  const queryString = 'UPDATE students SET name=$2 WHERE id=$1 RETURNING id'
+  const values = [req.body.id, req.body.name]
   client.query(queryString, values, (err, response) => {
     if (err) throw err
     else {
