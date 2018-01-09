@@ -4,15 +4,18 @@
   "description": "A platform to keep track of student activity",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "start-react": "react-scripts start",
+    "build-react": "react-scripts build",
+    "test-react": "react-scripts test --env=jsdom",
+    "eject-react": "react-scripts eject"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/anirudhbs/keep-up.git"
   },
-  "keywords": [
-    "tracking"
-  ],
+  "keywords": [],
   "author": "anirudhbs96@gmail.com",
   "license": "MIT",
   "bugs": {
@@ -22,6 +25,11 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "pg": "^7.4.1"
+    "pg": "^7.4.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.17"
   }
 }
