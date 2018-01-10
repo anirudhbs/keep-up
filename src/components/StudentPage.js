@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ListOfProjects from './ListOfProjects'
+import ListOfDemos from './ListOfDemos'
 
 class StudentPage extends Component {
   constructor (props) {
@@ -22,6 +23,8 @@ class StudentPage extends Component {
       <div>
         {this.props.getCurrentStudent()}
         <ListOfProjects id={this.state.currentStudentId} />
+        {/* <ListOfDemos id={this.state.currentStudentId} /> */}
+        {/* <ListOfLeaves id={this.state.currentStudentId} /> */}
       </div>
     )
   }

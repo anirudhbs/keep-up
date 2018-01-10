@@ -11,8 +11,8 @@ class ProjectItem extends Component {
 
   render () {
     return (
-      <li key={this.props.id} className='ListItem' onClick={this.showDetails.bind(this)}>
-        {this.props.repo}
+      <li key={this.props.pid} className='ListItem' onClick={this.showDetails.bind(this)}>
+        {this.props.name}
       </li>
     )
   }

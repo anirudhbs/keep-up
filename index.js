@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/students', (req, res) => {
-  const queryString = 'SELECT id, name FROM students WHERE status=TRUE'
+  const queryString = 'SELECT uid, name FROM students WHERE status=TRUE'
   client.query(queryString, (err, response) => {
     if (err) throw err
     else {
@@ -34,10 +34,13 @@ app.post('/students', (req, res) => {
 
 app.post('/:studentid/projects', (req, res) => {
   const id = req.params.studentid
-  const queryString = 'SELECT project_id, user_id, repository FROM projects WHERE user_id = $1'
+  const queryString = 'SELECT pid, uid, name, repo FROM projects WHERE uid = $1'
   const values = [id]
   client.query(queryString, values, (err, response) => {
-    if (err) throw err
+    if (err) {
+      // throw err
+      res.send([])
+    }
     else {
       res.send(response.rows)
     }

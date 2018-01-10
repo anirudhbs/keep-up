@@ -1,24 +1,24 @@
 import React, { Component } from 'react'
-import ProjectItem from './ProjectItem'
+import DemoItem from './DemoItem'
 
-class ListOfProjects extends Component {
+class ListOfDemos extends Component {
   constructor () {
     super()
     this.state = {
-      projects: []
+      demos: []
     }
   }
 
   componentDidMount () {
     const url = 'http://localhost:8080'
-    fetch(url + `/${this.props.id}/projects`, {
+    fetch(url + `/${this.props.id}/demos`, {
       method: 'post'
     })
     .then((results) => {
       return results.json()
     })
     .then((data) => {
-      this.setState({ projects: data })
+      this.setState({ demos: data })
       console.log(data)
     })
     .catch(function (error) {
@@ -28,12 +28,12 @@ class ListOfProjects extends Component {
 
   render () {
     return (
-      <div className='ListOfStudents'>
+      <div className='ListOfProjects'>
         <ul>
-          <h2>Projects</h2>
+          <h2>Demos</h2>
           {
-            this.state.projects.map(cur =>
-              <ProjectItem key={cur.pid} id={cur.pid} name={cur.name} />
+            this.state.demos.map(cur =>
+              <DemoItem key={cur.project_id} id={cur.project_id} repo={cur.repository} />
             )
           }
         </ul>
@@ -42,4 +42,4 @@ class ListOfProjects extends Component {
   }
 }
 
-export default ListOfProjects
+export default ListOfDemos

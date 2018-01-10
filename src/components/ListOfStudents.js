@@ -9,7 +9,7 @@ class ListOfStudents extends Component {
           <h2>Students</h2>
           {
             this.props.students.map(cur =>
-              <StudentItem key={cur.id} id={cur.id} name={cur.name} openStudentsPage={this.props.openStudentsPage} />
+              <StudentItem key={cur.uid} id={cur.uid} name={cur.name} openStudentsPage={this.props.openStudentsPage} />
             )
           }
         </ul>
