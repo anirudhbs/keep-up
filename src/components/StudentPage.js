@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ListOfProjects from './ListOfProjects'
 
-class IndividualUser extends Component {
+class StudentPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -27,4 +27,4 @@ class IndividualUser extends Component {
   }
 }
 
-export default IndividualUser
+export default StudentPage

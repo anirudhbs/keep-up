@@ -41,9 +41,7 @@ class Main extends Component {
       <main>
         <Switch>
           <Route exact path='/' render={(props) => <ListOfStudents students={this.state.students} openStudentsPage={this.setCurrentStudent.bind(this)} />} />
-          {/* <Route path='/student/:id' component={StudentPage} /> */}
           <Route path='/student/:id' render={(props) => <StudentPage getCurrentStudent={this.getCurrentStudent.bind(this)} />} />
-          {/* <Route path='/placeholder' component={Placeholder}/> */}
         </Switch>
       </main>
     )

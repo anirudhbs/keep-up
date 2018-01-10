@@ -2,12 +2,6 @@ import React, { Component } from 'react'
 import StudentItem from './StudentItem'
 
 class ListOfStudents extends Component {
-  constructor () {
-    super()
-    this.state = {
-    }
-  }
-
   render () {
     return (
       <div className='ListOfStudents'>
