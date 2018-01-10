@@ -40,8 +40,7 @@ app.post('/:studentid/projects', (req, res) => {
     if (err) {
       // throw err
       res.send([])
-    }
-    else {
+    } else {
       res.send(response.rows)
     }
   })
@@ -49,11 +48,13 @@ app.post('/:studentid/projects', (req, res) => {
 
 app.post('/:studentid/demos', (req, res) => {
   const id = req.params.studentid
-  const queryString = 'SELECT user_id, project_id, rating, date FROM demos WHERE user_id = $1'
+  const queryString = 'SELECT did, uid, pid, rating, date FROM demos WHERE uid = $1'
   const values = [id]
   client.query(queryString, values, (err, response) => {
-    if (err) throw err
-    else {
+    if (err) {
+      // throw err
+      res.send([])
+    } else {
       res.send(response.rows)
     }
   })
@@ -64,8 +65,10 @@ app.post('/:studentid/attendance', (req, res) => {
   const queryString = 'SELECT user_id, date_absent, reason FROM attendance WHERE user_id = $1'
   const values = [id]
   client.query(queryString, values, (err, response) => {
-    if (err) throw err
-    else {
+    if (err) {
+      // throw err
+      res.send([])
+    } else {
       res.send(response.rows)
     }
   })

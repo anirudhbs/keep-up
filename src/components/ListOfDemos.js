@@ -19,7 +19,7 @@ class ListOfDemos extends Component {
     })
     .then((data) => {
       this.setState({ demos: data })
-      console.log(data)
+      console.log('demo', data)
     })
     .catch(function (error) {
       console.log('fail', error)
@@ -28,12 +28,12 @@ class ListOfDemos extends Component {
 
   render () {
     return (
-      <div className='ListOfProjects'>
+      <div className='ListOfStudents'>
         <ul>
           <h2>Demos</h2>
           {
             this.state.demos.map(cur =>
-              <DemoItem key={cur.project_id} id={cur.project_id} repo={cur.repository} />
+              <DemoItem key={cur.did} did={cur.did} uid={cur.uid} pid={cur.pid} rating={cur.rating} />
             )
           }
         </ul>

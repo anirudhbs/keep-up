@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 
 class DemoItem extends Component {
   componentDidMount () {
+    console.log(this.props)
   }
 
   render () {
     return (
-      <li key={this.props.id} className='ListItem' onClick={this.showDetails.bind(this)}>
-        {this.props.repo}
+      <li key={this.props.did} className='ListItem'>
+        {this.props.did}, {this.props.rating}
       </li>
     )
   }

@@ -23,7 +23,7 @@ class StudentPage extends Component {
       <div>
         {this.props.getCurrentStudent()}
         <ListOfProjects id={this.state.currentStudentId} />
-        {/* <ListOfDemos id={this.state.currentStudentId} /> */}
+        <ListOfDemos id={this.state.currentStudentId} />
         {/* <ListOfLeaves id={this.state.currentStudentId} /> */}
       </div>
     )
