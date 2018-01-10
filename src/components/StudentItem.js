@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class ListItem extends Component {
+class StudentItem extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -14,7 +14,7 @@ class ListItem extends Component {
   }
 
   showDetails () {
-    console.log('clicked!')
+    this.props.studentPage(this.state.id)
   }
 
   render () {
@@ -26,4 +26,4 @@ class ListItem extends Component {
   }
 }
 
-export default ListItem
+export default StudentItem

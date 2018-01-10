@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
-import StudentItem from './StudentItem'
+import ProjectItem from './ProjectItem'
 
-class ListOfStudents extends Component {
+class ListOfProjects extends Component {
   constructor () {
     super()
     this.state = {
-      students: []
+      projects: []
     }
   }
 
   componentDidMount () {
     const url = 'http://localhost:8080'
-    fetch(url + '/students', {
+    fetch(url + `/${this.props.studentid}/students`, {
       method: 'post'
     })
     .then((results) => {
@@ -25,19 +25,14 @@ class ListOfStudents extends Component {
     })
   }
 
-  onClick (id) {
-    console.log('LoS', id)
-    this.props.history.push(`/individualUser`)
-  }
-
   render () {
     return (
-      <div className='ListOfStudents'>
+      <div className='ListOfProjects'>
         <ul>
-          <h2>Students</h2>
+          <h2>Projects</h2>
           {
-            this.state.students.map(cur =>
-              <StudentItem key={cur.id} id={cur.id} name={cur.name} studentPage={this.onClick.bind(this)} />
+            this.state.projects.map(cur =>
+              <ProjectItem key={cur.project_id} id={cur.project_id} user={cur.user_id} repo={cur.repository} />
             )
           }
         </ul>
@@ -46,4 +41,4 @@ class ListOfStudents extends Component {
   }
 }
 
-export default ListOfStudents
+export default ListOfProjects
