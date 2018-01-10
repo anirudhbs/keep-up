@@ -5,7 +5,7 @@ class ProjectItem extends Component {
     super(props)
     this.state = {
       id: this.props.id,
-      name: this.props.name
+      repo: this.props.repo
     }
   }
 
@@ -20,7 +20,7 @@ class ProjectItem extends Component {
   render () {
     return (
       <li key={this.props.id} className='ListItem' onClick={this.showDetails.bind(this)}>
-        {this.state.name}
+        {this.state.repo}
       </li>
     )
   }

@@ -11,14 +11,15 @@ class ListOfProjects extends Component {
 
   componentDidMount () {
     const url = 'http://localhost:8080'
-    fetch(url + `/${this.props.studentid}/students`, {
+    fetch(url + `/${this.props.id}/projects`, {
       method: 'post'
     })
     .then((results) => {
       return results.json()
     })
     .then((data) => {
-      this.setState({ students: data })
+      this.setState({ projects: data })
+      console.log(data) 
     })
     .catch(function (error) {
       console.log('fail', error)
@@ -32,7 +33,7 @@ class ListOfProjects extends Component {
           <h2>Projects</h2>
           {
             this.state.projects.map(cur =>
-              <ProjectItem key={cur.project_id} id={cur.project_id} user={cur.user_id} repo={cur.repository} />
+              <ProjectItem key={cur.project_id} id={cur.project_id} repo={cur.repository} />
             )
           }
         </ul>
