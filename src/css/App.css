@@ -1,16 +1,13 @@
 body {
   background-color: #fbfbfb;
 }
+
 h2 {
   text-align: center;
 }
 
-.App {
-  text-align: center;
-}
-
 ul {
-  display: block;
+  display: inline-block;
   margin: 0 auto;
 }
 
@@ -20,15 +17,18 @@ li {
   margin: 3px;
 }
 
-.ListOfStudents>h2 {
+.App {
   text-align: center;
-  display: block;
+}
+
+.Link {
+  color: #000000;
+  text-decoration: none;
 }
 
 .ListOfStudents {
   display: flex;
   margin: 0 auto;
-  width: 960px;
 }
 
 .ListItem {
@@ -43,25 +43,17 @@ li {
   background-color: #eeeeee;
 }
 
-.Link {
-  color: #000000;
-  text-decoration: none;
-}
-
 .ListOfProjects {
   display: flex;
   margin: 0 auto;
-  width: 960px;
 }
 
 .ListOfDemos {
   display: flex;
   margin: 0 auto;
-  width: 960px;
 }
 
 .ListOfLeaves {
   display: flex;
   margin: 0 auto;
-  width: 960px;
 }
