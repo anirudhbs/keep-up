@@ -74,6 +74,20 @@ app.post('/:studentid/attendance', (req, res) => {
   })
 })
 
+app.post('/project/:projectid', (req, res) => {
+  const id = req.params.projectid
+  const queryString = 'SELECT p.pid, p.uid, s.name AS "studentName", p.name, p.repo FROM projects p, students s WHERE pid = $1 AND p.uid=s.uid'
+  const values = [id]
+  client.query(queryString, values, (err, response) => {
+    if (err) {
+      res.send([])
+    } else {
+      console.log('project!')
+      res.send(response.rows[0])
+    }
+  })
+})
+
 // app.post('/student', (req, res) => {
 //   const queryString = 'INSERT INTO students VALUES($1, $2, $3) RETURNING id'
 //   const values = [req.body.id, req.body.name, true]
