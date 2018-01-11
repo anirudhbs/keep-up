@@ -8,6 +8,7 @@ class Header extends Component {
         <nav>
           <ul>
             <li><Link to='/'>Home</Link></li>
+            <li><Link to='/student/1/project/123'>Project</Link></li>
           </ul>
         </nav>
       </header>

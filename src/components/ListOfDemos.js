@@ -43,7 +43,7 @@ class ListOfDemos extends Component {
           <h2>Demos</h2>
           {
             this.state.demos.map(cur =>
-              <DemoItem key={cur.did} did={cur.did} uid={cur.uid} pid={cur.pid} rating={cur.rating} />
+              <DemoItem key={cur.did} did={cur.did} uid={cur.uid} pid={cur.pid} rating={cur.rating} date={cur.date} />
             )
           }
         </ul>

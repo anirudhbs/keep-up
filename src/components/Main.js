@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import ListOfStudents from './ListOfStudents'
 import StudentPage from './StudentPage'
+import ProjectPage from './ProjectPage'
 
 class Main extends Component {
   constructor (props) {
@@ -9,11 +10,12 @@ class Main extends Component {
     this.state = {
       students: [],
       currentStudentId: null,
-      currentStudentName: null
+      currentStudentName: null,
+      currentProjectId: null
     }
   }
 
-  componentDidMount () {
+  fetchData () {
     const url = 'http://localhost:8080'
     fetch(url + '/students', {
       method: 'post'
@@ -29,6 +31,10 @@ class Main extends Component {
     })
   }
 
+  componentDidMount () {
+    this.fetchData()
+  }
+
   setCurrentStudent (id, name) {
     this.setState({currentStudentId: id, currentStudentName: name})
   }
@@ -37,12 +43,17 @@ class Main extends Component {
     return { id: this.state.currentStudentId, name: this.state.currentStudentName }
   }
 
+  setCurrentProject (id) {
+    this.setState({ currentProjectId: id })
+  }
+
   render () {
     return (
       <main>
         <Switch>
           <Route exact path='/' render={(props) => <ListOfStudents students={this.state.students} openStudentsPage={this.setCurrentStudent.bind(this)} />} />
-          <Route path='/student/:id' render={(props) => <StudentPage getCurrentStudent={this.getCurrentStudent.bind(this)} />} />
+          <Route exact path='/student/:id' render={(props) => <StudentPage getCurrentStudent={this.getCurrentStudent.bind(this)} />} />
+          <Route exact path='/project/:pid' component={ProjectPage} />
         </Switch>
       </main>
     )

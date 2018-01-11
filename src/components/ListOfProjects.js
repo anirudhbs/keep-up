@@ -43,7 +43,7 @@ class ListOfProjects extends Component {
           <h2>Projects</h2>
           {
             this.state.projects.map(cur =>
-              <ProjectItem key={cur.pid} id={cur.pid} name={cur.name} />
+              <ProjectItem key={cur.pid} id={cur.pid} name={cur.name} repo={cur.repo} />
             )
           }
         </ul>
