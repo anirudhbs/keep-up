@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 class DemoItem extends Component {
   componentDidMount () {
-    console.log(this.props)
   }
 
   render () {

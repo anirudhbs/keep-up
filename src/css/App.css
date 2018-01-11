@@ -29,7 +29,6 @@ li {
   display: flex;
   margin: 0 auto;
   width: 960px;
-  /* border: 1px solid black; */
 }
 
 .ListItem {
@@ -42,4 +41,27 @@ li {
 .ListItem:hover {
   cursor: pointer;
   background-color: #eeeeee;
+}
+
+.Link {
+  color: #000000;
+  text-decoration: none;
+}
+
+.ListOfProjects {
+  display: flex;
+  margin: 0 auto;
+  width: 960px;
+}
+
+.ListOfDemos {
+  display: flex;
+  margin: 0 auto;
+  width: 960px;
+}
+
+.ListOfLeaves {
+  display: flex;
+  margin: 0 auto;
+  width: 960px;
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class ProjectItem extends Component {
+class LeaveItem extends Component {
   componentDidMount () {
   }
 
@@ -10,10 +10,10 @@ class ProjectItem extends Component {
   render () {
     return (
       <li key={this.props.pid} className='ListItem' onClick={this.showDetails.bind(this)}>
-        {this.props.name}
+        {this.props.date}, {this.props.reason}
       </li>
     )
   }
 }
 
-export default ProjectItem
+export default LeaveItem

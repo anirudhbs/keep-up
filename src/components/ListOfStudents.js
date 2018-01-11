@@ -4,7 +4,7 @@ import StudentItem from './StudentItem'
 class ListOfStudents extends Component {
   render () {
     return (
-      <div className='ListOfStudents'>
+      <div className='ListOfProjects'>
         <ul>
           <h2>Students</h2>
           {

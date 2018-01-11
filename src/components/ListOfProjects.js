@@ -19,7 +19,6 @@ class ListOfProjects extends Component {
     })
     .then((data) => {
       this.setState({ projects: data })
-      console.log(data)
     })
     .catch(function (error) {
       console.log('fail', error)
@@ -28,7 +27,7 @@ class ListOfProjects extends Component {
 
   render () {
     return (
-      <div className='ListOfStudents'>
+      <div className='ListOfProjects'>
         <ul>
           <h2>Projects</h2>
           {

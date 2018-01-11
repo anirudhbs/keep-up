@@ -1,24 +1,23 @@
 import React, { Component } from 'react'
-import DemoItem from './DemoItem'
-
-class ListOfDemos extends Component {
+import LeaveItem from './LeaveItem'
+class ListOfLeaves extends Component {
   constructor () {
     super()
     this.state = {
-      demos: []
+      leaves: []
     }
   }
 
   componentDidMount () {
     const url = 'http://localhost:8080'
-    fetch(url + `/${this.props.id}/demos`, {
+    fetch(url + `/${this.props.id}/attendance`, {
       method: 'post'
     })
     .then((results) => {
       return results.json()
     })
     .then((data) => {
-      this.setState({ demos: data })
+      this.setState({ leaves: data })
     })
     .catch(function (error) {
       console.log('fail', error)
@@ -27,12 +26,12 @@ class ListOfDemos extends Component {
 
   render () {
     return (
-      <div className='ListOfDemos'>
+      <div className='ListOfLeaves'>
         <ul>
-          <h2>Demos</h2>
+          <h2>Leaves</h2>
           {
-            this.state.demos.map(cur =>
-              <DemoItem key={cur.did} did={cur.did} uid={cur.uid} pid={cur.pid} rating={cur.rating} />
+            this.state.leaves.map(cur =>
+              <LeaveItem key={cur.date} date={cur.date} reason={cur.reason} />
             )
           }
         </ul>
@@ -41,4 +40,4 @@ class ListOfDemos extends Component {
   }
 }
 
-export default ListOfDemos
+export default ListOfLeaves

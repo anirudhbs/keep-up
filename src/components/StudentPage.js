@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ListOfProjects from './ListOfProjects'
 import ListOfDemos from './ListOfDemos'
+import ListOfLeaves from './ListOfLeaves'
 
 class StudentPage extends Component {
   constructor (props) {
@@ -15,7 +16,6 @@ class StudentPage extends Component {
   }
 
   showDetails () {
-    console.log('clicked!')
   }
 
   render () {
@@ -24,7 +24,7 @@ class StudentPage extends Component {
         {this.props.getCurrentStudent()}
         <ListOfProjects id={this.state.currentStudentId} />
         <ListOfDemos id={this.state.currentStudentId} />
-        {/* <ListOfLeaves id={this.state.currentStudentId} /> */}
+        <ListOfLeaves id={this.state.currentStudentId} />
       </div>
     )
   }
