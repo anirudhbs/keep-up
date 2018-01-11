@@ -62,7 +62,7 @@ app.post('/:studentid/demos', (req, res) => {
 
 app.post('/:studentid/attendance', (req, res) => {
   const id = req.params.studentid
-  const queryString = 'SELECT user_id, date_absent, reason FROM attendance WHERE user_id = $1'
+  const queryString = 'SELECT uid, date, reason FROM attendance WHERE uid = $1'
   const values = [id]
   client.query(queryString, values, (err, response) => {
     if (err) {
