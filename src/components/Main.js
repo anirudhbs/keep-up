@@ -8,7 +8,8 @@ class Main extends Component {
     super(props)
     this.state = {
       students: [],
-      currentStudent: null
+      currentStudentId: null,
+      currentStudentName: null
     }
   }
 
@@ -28,12 +29,12 @@ class Main extends Component {
     })
   }
 
-  setCurrentStudent (id) {
-    this.setState({currentStudent: id})
+  setCurrentStudent (id, name) {
+    this.setState({currentStudentId: id, currentStudentName: name})
   }
 
   getCurrentStudent () {
-    return this.state.currentStudent
+    return { id: this.state.currentStudentId, name: this.state.currentStudentName }
   }
 
   render () {

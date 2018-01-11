@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 class StudentItem extends Component {
   openStudentsPage () {
-    this.props.openStudentsPage(this.props.id)
+    this.props.openStudentsPage(this.props.id, this.props.name)
   }
 
   render () {

@@ -12,7 +12,7 @@ class StudentPage extends Component {
   }
 
   componentWillMount () {
-    this.setState({currentStudentId: this.props.getCurrentStudent()})
+    this.setState({currentStudentId: this.props.getCurrentStudent().id})
   }
 
   showDetails () {
@@ -21,7 +21,7 @@ class StudentPage extends Component {
   render () {
     return (
       <div>
-        {this.props.getCurrentStudent()}
+        <h2>{this.props.getCurrentStudent().name}</h2>
         <ListOfProjects id={this.state.currentStudentId} />
         <ListOfDemos id={this.state.currentStudentId} />
         <ListOfLeaves id={this.state.currentStudentId} />
