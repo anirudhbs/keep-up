@@ -26,6 +26,17 @@ class ListOfProjects extends Component {
   }
 
   render () {
+    if (this.state.projects.length === 0) {
+      return (
+        <div className='ListOfProjects'>
+          <ul>
+            <h2>Projects</h2>
+            Empty
+          </ul>
+        </div>
+      )
+    }
+
     return (
       <div className='ListOfProjects'>
         <ul>

@@ -26,6 +26,17 @@ class ListOfDemos extends Component {
   }
 
   render () {
+    if (this.state.demos.length === 0) {
+      return (
+        <div className='ListOfDemos'>
+          <ul>
+            <h2>Demos</h2>
+            Empty
+          </ul>
+        </div>
+      )
+    }
+
     return (
       <div className='ListOfDemos'>
         <ul>
