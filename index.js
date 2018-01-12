@@ -88,16 +88,16 @@ app.post('/project/:projectid', (req, res) => {
   })
 })
 
-// app.post('/student', (req, res) => {
-//   const queryString = 'INSERT INTO students VALUES($1, $2, $3) RETURNING id'
-//   const values = [req.body.id, req.body.name, true]
-//   client.query(queryString, values, (err, response) => {
-//     if (err) throw err
-//     else {
-//       res.send(response.rows[0])
-//     }
-//   })
-// })
+app.post('/add/student', (req, res) => {
+  const queryString = 'INSERT INTO students VALUES(DEFAULT, $1, $2)'
+  const values = [req.body.studentName, true]
+  client.query(queryString, values, (err, response) => {
+    if (err) throw err
+    else {
+      res.send({ status: 'success' })
+    }
+  })
+})
 
 // app.delete('/student', (req, res) => {
 //   const queryString = 'DELETE FROM students WHERE id= $1 RETURNING id'
