@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import StudentItem from './StudentItem'
-
 class ListOfStudents extends Component {
+
+  componentDidMount () {
+    this.props.fetchData()
+  }
   render () {
     return (
       <div className='ListOfProjects'>

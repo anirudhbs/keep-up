@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import ListOfStudents from './ListOfStudents'
 import StudentPage from './StudentPage'
 import ProjectPage from './ProjectPage'
+import AddStudent from './AddStudent'
 
 class Main extends Component {
   constructor (props) {
@@ -51,9 +52,10 @@ class Main extends Component {
     return (
       <main>
         <Switch>
-          <Route exact path='/' render={(props) => <ListOfStudents students={this.state.students} openStudentsPage={this.setCurrentStudent.bind(this)} />} />
+          <Route exact path='/' render={(props) => <ListOfStudents students={this.state.students} openStudentsPage={this.setCurrentStudent.bind(this)} fetchData={this.fetchData.bind(this)} />} />
           <Route exact path='/student/:id' render={(props) => <StudentPage getCurrentStudent={this.getCurrentStudent.bind(this)} />} />
           <Route exact path='/project/:pid' component={ProjectPage} />
+          <Route exact path='/add/student' render={(props) => <AddStudent fetchdata={this.fetchData.bind(this)} />} />
         </Switch>
       </main>
     )
