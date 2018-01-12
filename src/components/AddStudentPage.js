@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class AddStudent extends Component {
+class AddStudentPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -41,18 +41,18 @@ class AddStudent extends Component {
 
   render () {
     return (
-      <div className='AddStudent'>
+      <div className='AddStudentPage'>
         <h2>Add Student</h2>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Name:
-            <input type='text' value={this.state.studentName} onChange={this.handleChange} />
+            Name
+            <div><input type='text' value={this.state.studentName} onChange={this.handleChange} /></div>
           </label>
-          <input type='submit' value='Submit' />
+          <div><input type='submit' value='Submit' /></div>
         </form>
       </div>
     )
   }
 }
 
-export default AddStudent
+export default AddStudentPage

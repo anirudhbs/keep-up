@@ -61,13 +61,13 @@ li {
 .AddStudentButton {
   border: 1px solid black;
   margin: 3px;
-  background-color: #20b2aa;
+  background-color: #20b2cc;
   display: block;
   padding: 10px;
 }
 
 .AddStudentButton:hover {
-  color: white;
+  background-color: #20c2dc;
 }
 
 .homeButton {
@@ -75,10 +75,43 @@ li {
   line-height: 30px; 
   padding: 2px;
   margin: 3px;
-  background-color: #20b2aa;
+  background-color: #20b2cc;
   color: white;
 }
 
 .homeButton:hover {
-  color: #808080;
+  background-color: #20c2dc;
+}
+
+input[type=text] {
+  max-width: 540px;
+  padding: 12px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+
+
+input[type=submit] {
+  background-color: #20b2cc;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+}
+
+input[type=submit]:hover {
+  cursor: pointer;
+  background-color: #20c2dc;
+}
+
+.AddStudentPage {
+  display: block;
+}
+
+form {
+  display: inline-block;
+  text-align: center;
 }
