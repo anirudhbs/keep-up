@@ -82,15 +82,25 @@ app.post('/project/:projectid', (req, res) => {
     if (err) {
       res.send([])
     } else {
-      console.log('project!')
       res.send(response.rows[0])
     }
   })
 })
 
-app.post('/add/student', (req, res) => {
+app.post('/student/add', (req, res) => {
   const queryString = 'INSERT INTO students VALUES(DEFAULT, $1, $2)'
   const values = [req.body.studentName, true]
+  client.query(queryString, values, (err, response) => {
+    if (err) throw err
+    else {
+      res.send({ status: 'success' })
+    }
+  })
+})
+
+app.delete('/student/:id', (req, res) => {
+  const queryString = 'DELETE FROM students WHERE uid=$1'
+  const values = [req.params.id]
   client.query(queryString, values, (err, response) => {
     if (err) throw err
     else {
