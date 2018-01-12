@@ -11,6 +11,22 @@ class StudentPage extends Component {
     }
   }
 
+  deleteStudent () {
+    const url = 'http://localhost:8080'
+    fetch(url + `/student/${this.state.currentStudentId}`, {
+      method: 'delete'
+    })
+    .then((results) => {
+      return results.json()
+    })
+    .then((data) => {
+      console.log(data)
+    })
+    .catch(function (error) {
+      console.log('fail', error)
+    })
+  }
+
   componentWillMount () {
     this.setState({currentStudentId: this.props.getCurrentStudent().id})
   }
@@ -25,6 +41,8 @@ class StudentPage extends Component {
         <ListOfProjects id={this.state.currentStudentId} />
         <ListOfDemos id={this.state.currentStudentId} />
         <ListOfLeaves id={this.state.currentStudentId} />
+        <hr />
+        <button onClick={this.deleteStudent.bind(this)} className='deleteButton'>delete</button>
       </div>
     )
   }

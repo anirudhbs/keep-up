@@ -21,7 +21,7 @@ class AddStudentPage extends Component {
 
   addStudent () {
     const url = 'http://localhost:8080'
-    fetch(url + '/add/student', {
+    fetch(url + '/student/add', {
       method: 'post',
       headers: {
         'Content-Type': 'application/Json'

@@ -115,3 +115,15 @@ form {
   display: inline-block;
   text-align: center;
 }
+
+.deleteButton {
+  background-color: #fc5b5b;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+}
+
+.deleteButton:hover {
+  background-color: #ff0000;
+  cursor: pointer;
+}
