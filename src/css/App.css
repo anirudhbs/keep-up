@@ -57,3 +57,28 @@ li {
   display: flex;
   margin: 0 auto;
 }
+
+.AddStudentButton {
+  border: 1px solid black;
+  margin: 3px;
+  background-color: #20b2aa;
+  display: block;
+  padding: 10px;
+}
+
+.AddStudentButton:hover {
+  color: white;
+}
+
+.homeButton {
+  border-radius: 1px;
+  line-height: 30px; 
+  padding: 2px;
+  margin: 3px;
+  background-color: #20b2aa;
+  color: white;
+}
+
+.homeButton:hover {
+  color: #808080;
+}

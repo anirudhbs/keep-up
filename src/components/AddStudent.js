@@ -16,7 +16,6 @@ class AddStudent extends Component {
 
   handleSubmit (event) {
     this.addStudent()
-    // this.props.fetchData()
     event.preventDefault()
   }
 

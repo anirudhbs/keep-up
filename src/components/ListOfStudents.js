@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
 import StudentItem from './StudentItem'
-class ListOfStudents extends Component {
+import { Link } from 'react-router-dom'
 
+class ListOfStudents extends Component {
   componentDidMount () {
     this.props.fetchData()
   }
+
   render () {
     return (
-      <div className='ListOfProjects'>
+      <div className='ListOfStudents'>
         <ul>
           <h2>Students</h2>
+          <Link to='/add/student' className='Link AddStudentButton'>Add Student</Link>
           {
             this.props.students.map(cur =>
               <StudentItem key={cur.uid} id={cur.uid} name={cur.name} openStudentsPage={this.props.openStudentsPage} />
