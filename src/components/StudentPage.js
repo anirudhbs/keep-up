@@ -20,7 +20,7 @@ class StudentPage extends Component {
       return results.json()
     })
     .then((data) => {
-      console.log(data)
+      this.props.history.push('/')
     })
     .catch(function (error) {
       console.log('fail', error)
@@ -38,8 +38,11 @@ class StudentPage extends Component {
     return (
       <div>
         <h2>{this.props.getCurrentStudent().name}</h2>
+        <hr />
         <ListOfProjects id={this.state.currentStudentId} />
+        <hr />
         <ListOfDemos id={this.state.currentStudentId} />
+        <hr />
         <ListOfLeaves id={this.state.currentStudentId} />
         <hr />
         <button onClick={this.deleteStudent.bind(this)} className='deleteButton'>delete</button>

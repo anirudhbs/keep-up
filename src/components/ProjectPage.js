@@ -28,7 +28,6 @@ class ProjectPage extends Component {
     })
     .then((data) => {
       this.setState({ projectInfo: data })
-      console.log('d', data)
     })
     .catch(function (error) {
       console.log('fail', error)

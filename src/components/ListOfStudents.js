@@ -3,7 +3,7 @@ import StudentItem from './StudentItem'
 import { Link } from 'react-router-dom'
 
 class ListOfStudents extends Component {
-  componentDidMount () {
+  componentWillMount () {
     this.props.fetchData()
   }
 
