@@ -17,7 +17,7 @@ class ListOfLeaves extends Component {
       return results.json()
     })
     .then((data) => {
-      this.setState({ leaves: data })
+      this.setState({ leaves: data.data })
     })
     .catch(function (error) {
       console.log('fail', error)

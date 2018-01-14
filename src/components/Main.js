@@ -25,7 +25,7 @@ class Main extends Component {
       return results.json()
     })
     .then((data) => {
-      this.setState({ students: data })
+      this.setState({ students: data.data })
     })
     .catch(function (error) {
       console.log('fail', error)

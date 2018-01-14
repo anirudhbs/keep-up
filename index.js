@@ -1,5 +1,7 @@
 const express = require('express')
-const { Client } = require('pg')
+const {
+  Client
+} = require('pg')
 const cors = require('cors')
 const path = require('path')
 const app = express()
@@ -25,9 +27,14 @@ app.get('/', (req, res) => {
 app.post('/students', (req, res) => {
   const queryString = 'SELECT uid, name FROM students WHERE status=TRUE ORDER BY uid'
   client.query(queryString, (err, response) => {
-    if (err) throw err
-    else {
-      res.send(response.rows)
+    if (err) {
+      res.send({ status: 'fail', data: [] })
+      throw err
+    } else {
+      res.send({
+        status: 'success',
+        data: response.rows
+      })
     }
   })
 })
@@ -38,10 +45,13 @@ app.post('/:studentid/projects', (req, res) => {
   const values = [id]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      // throw err
-      res.send([])
+      res.send({ status: 'fail', data: [] })
+      throw err
     } else {
-      res.send(response.rows)
+      res.send({
+        status: 'success',
+        data: response.rows
+      })
     }
   })
 })
@@ -52,10 +62,13 @@ app.post('/:studentid/demos', (req, res) => {
   const values = [id]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      // throw err
-      res.send([])
+      res.send({ status: 'fail', data: [] })
+      throw err
     } else {
-      res.send(response.rows)
+      res.send({
+        status: 'success',
+        data: response.rows
+      })
     }
   })
 })
@@ -66,10 +79,13 @@ app.post('/:studentid/attendance', (req, res) => {
   const values = [id]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      // throw err
-      res.send([])
+      res.send({ status: 'fail', data: [] })
+      throw err
     } else {
-      res.send(response.rows)
+      res.send({
+        status: 'success',
+        data: response.rows
+      })
     }
   })
 })
@@ -80,9 +96,13 @@ app.post('/project/:projectid', (req, res) => {
   const values = [id]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      res.send([])
+      res.send({ status: 'fail', data: {} })
+      throw err
     } else {
-      res.send(response.rows[0])
+      res.send({
+        status: 'success',
+        data: response.rows[0]
+      })
     }
   })
 })
@@ -91,9 +111,13 @@ app.post('/student/add', (req, res) => {
   const queryString = 'INSERT INTO students VALUES(DEFAULT, $1, $2)'
   const values = [req.body.studentName, true]
   client.query(queryString, values, (err, response) => {
-    if (err) throw err
-    else {
-      res.send({ status: 'success' })
+    if (err) {
+      res.send({ status: 'fail' })
+      throw err
+    } else {
+      res.send({
+        status: 'success'
+      })
     }
   })
 })
@@ -102,9 +126,13 @@ app.delete('/student/:id', (req, res) => {
   const queryString = 'DELETE FROM students WHERE uid=$1'
   const values = [req.params.id]
   client.query(queryString, values, (err, response) => {
-    if (err) throw err
-    else {
-      res.send({ status: 'success' })
+    if (err) {
+      res.send({ status: 'fail' })
+      throw err
+    } else {
+      res.send({
+        status: 'success'
+      })
     }
   })
 })
@@ -113,9 +141,15 @@ app.post('/student/:id', (req, res) => {
   const queryString = 'UPDATE students SET name = $2 WHERE uid=$1'
   const values = [req.params.id, req.body.name]
   client.query(queryString, values, (err, response) => {
-    if (err) throw err
+    if (err) {
+      res.send({ status: 'fail' })
+      throw err
+    }
     else {
-      res.send({ status: 'success', name: req.body.name })
+      res.send({
+        status: 'success',
+        name: req.body.name
+      })
     }
   })
 })

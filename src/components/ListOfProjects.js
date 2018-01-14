@@ -18,7 +18,7 @@ class ListOfProjects extends Component {
       return results.json()
     })
     .then((data) => {
-      this.setState({ projects: data })
+      this.setState({ projects: data.data })
     })
     .catch(function (error) {
       console.log('fail', error)

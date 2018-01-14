@@ -18,7 +18,7 @@ class ListOfDemos extends Component {
       return results.json()
     })
     .then((data) => {
-      this.setState({ demos: data })
+      this.setState({ demos: data.data })
     })
     .catch(function (error) {
       console.log('fail', error)
