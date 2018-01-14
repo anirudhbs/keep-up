@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/students', (req, res) => {
-  const queryString = 'SELECT uid, name FROM students WHERE status=TRUE'
+  const queryString = 'SELECT uid, name FROM students WHERE status=TRUE ORDER BY uid'
   client.query(queryString, (err, response) => {
     if (err) throw err
     else {
@@ -34,7 +34,7 @@ app.post('/students', (req, res) => {
 
 app.post('/:studentid/projects', (req, res) => {
   const id = req.params.studentid
-  const queryString = 'SELECT pid, uid, name, repo FROM projects WHERE uid = $1'
+  const queryString = 'SELECT pid, uid, name, repo FROM projects WHERE uid = $1 ORDER BY pid'
   const values = [id]
   client.query(queryString, values, (err, response) => {
     if (err) {
@@ -48,7 +48,7 @@ app.post('/:studentid/projects', (req, res) => {
 
 app.post('/:studentid/demos', (req, res) => {
   const id = req.params.studentid
-  const queryString = 'SELECT did, uid, pid, rating, date FROM demos WHERE uid = $1'
+  const queryString = 'SELECT did, uid, pid, rating, date FROM demos WHERE uid = $1 ORDER BY did'
   const values = [id]
   client.query(queryString, values, (err, response) => {
     if (err) {
@@ -109,27 +109,16 @@ app.delete('/student/:id', (req, res) => {
   })
 })
 
-// app.delete('/student', (req, res) => {
-//   const queryString = 'DELETE FROM students WHERE id= $1 RETURNING id'
-//   const values = [req.body.id]
-//   client.query(queryString, values, (err, response) => {
-//     if (err) throw err
-//     else {
-//       res.send(response.rows[0])
-//     }
-//   })
-// })
-
-// app.put('/student', (req, res) => {
-//   const queryString = 'UPDATE students SET name=$2 WHERE id=$1 RETURNING id'
-//   const values = [req.body.id, req.body.name]
-//   client.query(queryString, values, (err, response) => {
-//     if (err) throw err
-//     else {
-//       res.send(response.rows[0])
-//     }
-//   })
-// })
+app.post('/student/:id', (req, res) => {
+  const queryString = 'UPDATE students SET name = $2 WHERE uid=$1'
+  const values = [req.params.id, req.body.name]
+  client.query(queryString, values, (err, response) => {
+    if (err) throw err
+    else {
+      res.send({ status: 'success', name: req.body.name })
+    }
+  })
+})
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`)
