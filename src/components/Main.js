@@ -53,9 +53,10 @@ class Main extends Component {
             openStudentsPage={this.setCurrentStudent.bind(this)} fetchData={this.fetchData.bind(this)} />} />
           <Route exact path='/student/:id' render={(props, history) =>
             <StudentPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} />} />
-          <Route exact path='/project/:pid' component={ProjectPage} />
+          {/* <Route exact path='/project/:pid' component={ProjectPage} /> */}
+          <Route exact path='/project/:pid' render={(props, history) =>
+            <ProjectPage match={props.match} history={props.history} />} />
           <Route exact path='/add/student' component={AddStudentPage} />
-          {/* <Route exact path='/add/project' component={AddProjectPage} /> */}
           <Route exact path='/add/project' render={(props, history) =>
             <AddProjectPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} />} />
         </Switch>

@@ -171,6 +171,21 @@ app.put('/project/add', (req, res) => {
   })
 })
 
+app.delete('/project/:pid', (req, res) => {
+  const queryString = 'DELETE FROM projects WHERE pid=$1'
+  const values = [req.params.pid]
+  client.query(queryString, values, (err, response) => {
+    if (err) {
+      res.send({ status: 'fail' })
+      // throw err
+    } else {
+      res.send({
+        status: 'success'
+      })
+    }
+  })
+})
+
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`)
   client.connect()
