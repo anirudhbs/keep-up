@@ -40,13 +40,20 @@ class EditStudentPage extends Component {
     })
   }
 
+  onCancel () {
+    this.props.history.push('/student/' + this.props.getCurrentStudent().id)
+  }
+
   render () {
     return (
       <div className='AddStudentPage'>
         <h2>Edit Student</h2>
         <div>Name</div>
         <input type='text' value={this.state.name} onChange={this.handleChange} />
-        <div><button onClick={this.handleSubmit}>Submit</button></div>
+        <div>
+          <button onClick={this.handleSubmit}>Submit</button>
+          <button onClick={this.onCancel.bind(this)} className='cancelButton' >Cancel</button>
+        </div>
       </div>
     )
   }

@@ -141,8 +141,19 @@ header {
   display: block;
   width: 100%;
   margin: 0 auto;
+  height: 37px;
+  padding: 3px;
 }
 
 header>nav>ul {
   display: inline-flex;
+}
+
+.cancelButton {
+  margin-left: 10px;
+  background-color: #fc5b5b;
+}
+
+.cancelButton:hover {
+  background-color: #ff0000;
 }

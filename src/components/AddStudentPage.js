@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
 
 class AddStudentPage extends Component {
   constructor (props) {
@@ -39,13 +38,20 @@ class AddStudentPage extends Component {
     })
   }
 
+  onCancel () {
+    this.props.history.push('/')
+  }
+
   render () {
     return (
       <div className='AddStudentPage'>
         <h2>Add Student</h2>
         <div>Name</div>
         <input type='text' value={this.state.studentName} onChange={this.handleChange} />
-        <div><button onClick={this.handleSubmit}>Add</button></div>
+        <div>
+          <button onClick={this.handleSubmit}>Add</button>
+          <button onClick={this.onCancel.bind(this)} className='cancelButton' >Cancel</button>
+        </div>
       </div>
     )
   }

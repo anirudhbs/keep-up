@@ -72,6 +72,10 @@ class EditProjectPage extends Component {
     })
   }
 
+  onCancel () {
+    this.props.history.push('/project/' + this.props.getCurrentProject().id)
+  }
+
   render () {
     return (
       <div className='AddProjectPage'>
@@ -80,7 +84,10 @@ class EditProjectPage extends Component {
         <input type='text' value={this.state.projectDetails.projectname} onChange={this.handleChange.bind(this)} />
         <div>Repository</div>
         <input type='text' value={this.state.projectDetails.repo} onChange={this.handleChange2.bind(this)} />
-        <div><button onClick={this.handleSubmit}>Submit</button></div>
+        <div>
+          <button onClick={this.handleSubmit}>Submit</button>
+          <button onClick={this.onCancel.bind(this)} className='cancelButton' >Cancel</button>
+        </div>
       </div>
     )
   }

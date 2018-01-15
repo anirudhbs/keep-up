@@ -29,7 +29,6 @@ app.post('/students', (req, res) => {
   client.query(queryString, (err, response) => {
     if (err) {
       res.send({ status: 'fail', data: [] })
-      // throw err
     } else {
       res.send({
         status: 'success',
@@ -46,7 +45,6 @@ app.post('/:studentid/projects', (req, res) => {
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.send({ status: 'fail', data: [] })
-      // throw err
     } else {
       res.send({
         status: 'success',
@@ -63,7 +61,6 @@ app.post('/:studentid/demos', (req, res) => {
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.send({ status: 'fail', data: [] })
-      // throw err
     } else {
       res.send({
         status: 'success',
@@ -80,7 +77,6 @@ app.post('/:studentid/attendance', (req, res) => {
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.send({ status: 'fail', data: [] })
-      // throw err
     } else {
       res.send({
         status: 'success',
@@ -97,7 +93,6 @@ app.post('/project/:projectid', (req, res) => {
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.send({ status: 'fail', data: {} })
-      // throw err
     } else {
       res.send({
         status: 'success',
@@ -128,7 +123,6 @@ app.delete('/student/:id', (req, res) => {
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.send({ status: 'fail' })
-      // throw err
     } else {
       res.send({
         status: 'success'
@@ -143,7 +137,6 @@ app.post('/edit/student/:id', (req, res) => {
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.send({ status: 'fail' })
-      // throw err
     } else {
       res.send({
         status: 'success',
@@ -176,7 +169,6 @@ app.delete('/project/:pid', (req, res) => {
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.send({ status: 'fail' })
-      // throw err
     } else {
       res.send({
         status: 'success'
@@ -191,7 +183,6 @@ app.put('/project/edit/:pid', (req, res) => {
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.send({ status: 'fail' })
-      // throw err
     } else {
       res.send({
         status: 'success',

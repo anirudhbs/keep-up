@@ -48,6 +48,10 @@ class AddProjectPage extends Component {
     })
   }
 
+  onCancel () {
+    this.props.history.push('/student/' + this.state.uid)
+  }
+
   render () {
     return (
       <div className='AddProjectPage'>
@@ -56,7 +60,10 @@ class AddProjectPage extends Component {
         <input type='text' value={this.state.name} onChange={this.handleChange} />
         <div>Repository</div>
         <input type='text' value={this.state.repo} onChange={this.handleChange2.bind(this)} />
-        <div><button onClick={this.handleSubmit}>Add</button></div>
+        <div>
+          <button onClick={this.handleSubmit}>Add</button>
+          <button onClick={this.onCancel.bind(this)} className='cancelButton' >Cancel</button>
+        </div>
       </div>
     )
   }
