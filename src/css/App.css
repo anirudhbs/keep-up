@@ -176,3 +176,23 @@ header>nav>ul {
   display: block;
   float: none;
 }
+
+select {
+  max-width: 540px;
+  padding: 6px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+
+input[type=date] {
+  max-width: 540px;
+  padding: 6px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
