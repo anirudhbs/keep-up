@@ -55,6 +55,10 @@ class ProjectPage extends Component {
     this.props.history.push('/edit/project')
   }
 
+  goBack () {
+    this.props.history.push('/student/' + this.state.projectInfo.uid)
+  }
+
   render () {
     return (
       <div>
@@ -65,6 +69,7 @@ class ProjectPage extends Component {
         <hr />
         <button onClick={this.editProject.bind(this)} className='editButton'>Edit</button>
         <button onClick={this.deleteProject.bind(this)} className='deleteButton'>Delete</button>
+        <div><button onClick={this.goBack.bind(this)} className='backButton'>Back</button></div>
       </div>
     )
   }

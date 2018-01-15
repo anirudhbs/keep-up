@@ -1,7 +1,5 @@
 const express = require('express')
-const {
-  Client
-} = require('pg')
+const { Client } = require('pg')
 const cors = require('cors')
 const path = require('path')
 const app = express()
@@ -108,7 +106,6 @@ app.post('/student/add', (req, res) => {
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.send({ status: 'fail' })
-      // throw err
     } else {
       res.send({
         status: 'success'
