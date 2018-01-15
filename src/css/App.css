@@ -75,12 +75,11 @@ li {
   line-height: 30px; 
   padding: 2px;
   margin: 3px;
-  background-color: #20b2cc;
-  color: white;
+  color: #aaaaaa;
 }
 
 .homeButton:hover {
-  background-color: #20c2dc;
+  color: #ffffff;
 }
 
 input[type=text] {
@@ -135,4 +134,15 @@ form {
 
 .editButton:hover {
   background-color: #20c2dc;
+}
+
+header {
+  background-color: #778899;
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+}
+
+header>nav>ul {
+  display: inline-flex;
 }

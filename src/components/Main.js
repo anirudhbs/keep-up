@@ -6,7 +6,7 @@ import ProjectPage from './ProjectPage'
 import AddStudentPage from './AddStudentPage'
 import AddProjectPage from './AddProjectPage'
 import EditProjectPage from './EditProjectPage'
-
+import EditStudentPage from './EditStudentPage'
 class Main extends Component {
   constructor (props) {
     super(props)
@@ -66,6 +66,8 @@ class Main extends Component {
               history={props.history} currentProjectId={this.state.currentProjectId} />} />
           <Route exact path='/edit/project' render={(props, history) =>
             <EditProjectPage getCurrentProject={this.getCurrentProject.bind(this)} history={props.history} />} />
+          <Route exact path='/edit/student:uid' render={(props, history) =>
+            <EditStudentPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} />} />
         </Switch>
       </main>
     )

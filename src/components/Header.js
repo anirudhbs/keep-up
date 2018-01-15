@@ -8,7 +8,6 @@ class Header extends Component {
         <nav>
           <ul>
             <li><Link to='/' className='Link homeButton'>Home</Link></li>
-            <li><Link to='/add/project'>temp</Link></li>
           </ul>
         </nav>
       </header>

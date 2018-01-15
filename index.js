@@ -137,7 +137,7 @@ app.delete('/student/:id', (req, res) => {
   })
 })
 
-app.post('/student/:id', (req, res) => {
+app.post('/edit/student/:id', (req, res) => {
   const queryString = 'UPDATE students SET name = $2 WHERE uid=$1'
   const values = [req.params.id, req.body.name]
   client.query(queryString, values, (err, response) => {
@@ -157,7 +157,6 @@ app.post('/student/:id', (req, res) => {
 
 app.put('/project/add', (req, res) => {
   const queryString = 'INSERT INTO projects VALUES(DEFAULT, $1, $2, $3)'
-  console.log(req.body)
   const values = [req.body.uid, req.body.name, req.body.repo]
   client.query(queryString, values, (err, response) => {
     if (err) {
@@ -189,7 +188,6 @@ app.delete('/project/:pid', (req, res) => {
 app.put('/project/edit/:pid', (req, res) => {
   const queryString = 'UPDATE projects SET projectName = $2, repo = $3  WHERE pid=$1'
   const values = [req.params.pid, req.body.projectname, req.body.repo]
-  console.log(req.body)
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.send({ status: 'fail' })

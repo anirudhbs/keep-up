@@ -31,7 +31,8 @@ class StudentPage extends Component {
     this.setState({currentStudentId: this.props.getCurrentStudent().id})
   }
 
-  showDetails () {
+  editStudent () {
+    this.props.history.push('/edit/student' + this.props.getCurrentStudent().id)
   }
 
   render () {
@@ -45,7 +46,7 @@ class StudentPage extends Component {
         <hr />
         <ListOfLeaves id={this.state.currentStudentId} />
         <hr />
-        {/* <button onClick={this.updateStudent.bind(this)} className='editButton'>Edit</button> */}
+        <button onClick={this.editStudent.bind(this)} className='editButton'>Edit</button>
         <button onClick={this.deleteStudent.bind(this)} className='deleteButton'>Delete</button>
       </div>
     )

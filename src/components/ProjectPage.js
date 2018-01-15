@@ -8,7 +8,7 @@ class ProjectPage extends Component {
         pid: null,
         uid: null,
         studentName: null,
-        name: null,
+        projectname: null,
         repo: null
       }
     }
@@ -59,7 +59,7 @@ class ProjectPage extends Component {
     return (
       <div>
         <h2>Project Page</h2>
-        <div>Name: {this.state.projectInfo.name}</div>
+        <div>Name: {this.state.projectInfo.projectname}</div>
         <div>Student Name: {this.state.projectInfo.studentName}</div>
         <div>Repository: {this.state.projectInfo.repo}</div>
         <hr />
