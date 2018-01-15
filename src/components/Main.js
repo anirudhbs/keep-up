@@ -4,6 +4,7 @@ import ListOfStudents from './ListOfStudents'
 import StudentPage from './StudentPage'
 import ProjectPage from './ProjectPage'
 import AddStudentPage from './AddStudentPage'
+import AddProjectPage from './AddProjectPage'
 
 class Main extends Component {
   constructor (props) {
@@ -50,9 +51,13 @@ class Main extends Component {
         <Switch>
           <Route exact path='/' render={(props) => <ListOfStudents students={this.state.students}
             openStudentsPage={this.setCurrentStudent.bind(this)} fetchData={this.fetchData.bind(this)} />} />
-          <Route exact path='/student/:id' render={(props, history) => <StudentPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} />} />
+          <Route exact path='/student/:id' render={(props, history) =>
+            <StudentPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} />} />
           <Route exact path='/project/:pid' component={ProjectPage} />
           <Route exact path='/add/student' component={AddStudentPage} />
+          {/* <Route exact path='/add/project' component={AddProjectPage} /> */}
+          <Route exact path='/add/project' render={(props, history) =>
+            <AddProjectPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} />} />
         </Switch>
       </main>
     )

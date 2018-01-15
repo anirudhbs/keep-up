@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ProjectItem from './ProjectItem'
+import { Link } from 'react-router-dom'
 
 class ListOfProjects extends Component {
   constructor () {
@@ -26,21 +27,11 @@ class ListOfProjects extends Component {
   }
 
   render () {
-    if (this.state.projects.length === 0) {
-      return (
-        <div className='ListOfProjects'>
-          <ul>
-            <h2>Projects</h2>
-            Empty
-          </ul>
-        </div>
-      )
-    }
-
     return (
       <div className='ListOfProjects'>
         <ul>
           <h2>Projects</h2>
+          <Link to='/add/project' className='Link AddStudentButton'>Add Project</Link>
           {
             this.state.projects.map(cur =>
               <ProjectItem key={cur.pid} id={cur.pid} name={cur.name} repo={cur.repo} />

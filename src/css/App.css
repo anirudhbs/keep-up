@@ -127,3 +127,8 @@ form {
   background-color: #ff0000;
   cursor: pointer;
 }
+
+.editButton {
+  background-color: #20c2dc;
+  margin-right: 10px;
+}

@@ -29,7 +29,7 @@ app.post('/students', (req, res) => {
   client.query(queryString, (err, response) => {
     if (err) {
       res.send({ status: 'fail', data: [] })
-      throw err
+      // throw err
     } else {
       res.send({
         status: 'success',
@@ -46,7 +46,7 @@ app.post('/:studentid/projects', (req, res) => {
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.send({ status: 'fail', data: [] })
-      throw err
+      // throw err
     } else {
       res.send({
         status: 'success',
@@ -63,7 +63,7 @@ app.post('/:studentid/demos', (req, res) => {
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.send({ status: 'fail', data: [] })
-      throw err
+      // throw err
     } else {
       res.send({
         status: 'success',
@@ -80,7 +80,7 @@ app.post('/:studentid/attendance', (req, res) => {
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.send({ status: 'fail', data: [] })
-      throw err
+      // throw err
     } else {
       res.send({
         status: 'success',
@@ -97,7 +97,7 @@ app.post('/project/:projectid', (req, res) => {
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.send({ status: 'fail', data: {} })
-      throw err
+      // throw err
     } else {
       res.send({
         status: 'success',
@@ -113,7 +113,7 @@ app.post('/student/add', (req, res) => {
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.send({ status: 'fail' })
-      throw err
+      // throw err
     } else {
       res.send({
         status: 'success'
@@ -128,7 +128,7 @@ app.delete('/student/:id', (req, res) => {
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.send({ status: 'fail' })
-      throw err
+      // throw err
     } else {
       res.send({
         status: 'success'
@@ -143,12 +143,29 @@ app.post('/student/:id', (req, res) => {
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.send({ status: 'fail' })
-      throw err
-    }
-    else {
+      // throw err
+    } else {
       res.send({
         status: 'success',
-        name: req.body.name
+        data: {
+          name: req.body.name
+        }
+      })
+    }
+  })
+})
+
+app.put('/project/add', (req, res) => {
+  const queryString = 'INSERT INTO projects VALUES(DEFAULT, $1, $2, $3)'
+  console.log(req.body)
+  const values = [req.body.uid, req.body.name, req.body.repo]
+  client.query(queryString, values, (err, response) => {
+    if (err) {
+      res.send({ status: 'fail' })
+    } else {
+      res.send({
+        status: 'success',
+        data: {}
       })
     }
   })

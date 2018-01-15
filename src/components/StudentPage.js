@@ -45,7 +45,8 @@ class StudentPage extends Component {
         <hr />
         <ListOfLeaves id={this.state.currentStudentId} />
         <hr />
-        <button onClick={this.deleteStudent.bind(this)} className='deleteButton'>delete</button>
+        {/* <button onClick={this.updateStudent.bind(this)} className='editButton'>Edit</button> */}
+        <button onClick={this.deleteStudent.bind(this)} className='deleteButton'>Delete</button>
       </div>
     )
   }

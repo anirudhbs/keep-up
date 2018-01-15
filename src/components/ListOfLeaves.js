@@ -25,17 +25,6 @@ class ListOfLeaves extends Component {
   }
 
   render () {
-    if (this.state.leaves.length === 0) {
-      return (
-        <div className='ListOfLeaves'>
-          <ul>
-            <h2>Leaves</h2>
-            Empty
-          </ul>
-        </div>
-      )
-    }
-
     return (
       <div className='ListOfLeaves'>
         <ul>
