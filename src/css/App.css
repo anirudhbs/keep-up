@@ -44,18 +44,12 @@ li {
 }
 
 .ListOfProjects {
-  display: flex;
-  margin: 0 auto;
 }
 
 .ListOfDemos {
-  display: flex;
-  margin: 0 auto;
 }
 
 .ListOfLeaves {
-  display: flex;
-  margin: 0 auto;
 }
 
 .AddStudentButton {
@@ -161,4 +155,24 @@ header>nav>ul {
 .backButton {
   margin-top: 10px;
   margin-right: 10px; 
+}
+
+.pageColumn {
+  vertical-align: top;
+  width: 100%;
+  display: inline-block;
+}
+
+@media all and (min-width: 720px) {
+  .pageColumn {
+    vertical-align: top;
+    width: 33%;
+    display: inline-block;
+  }
+}
+
+.buttons {
+  width: 100%;
+  display: block;
+  float: none;
 }

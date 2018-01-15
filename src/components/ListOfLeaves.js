@@ -26,7 +26,7 @@ class ListOfLeaves extends Component {
 
   render () {
     return (
-      <div className='ListOfLeaves'>
+      <div className='pageColumn'>
         <ul>
           <h2>Leaves</h2>
           {

@@ -28,7 +28,7 @@ class ListOfDemos extends Component {
 
   render () {
     return (
-      <div className='ListOfDemos'>
+      <div className='pageColumn'>
         <ul>
           <h2>Demos</h2>
           <Link to='/add/demo' className='Link AddStudentButton'>Add Demo</Link>

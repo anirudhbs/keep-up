@@ -40,14 +40,16 @@ class StudentPage extends Component {
       <div>
         <h2>{this.props.getCurrentStudent().name}</h2>
         <hr />
-        <ListOfProjects id={this.state.currentStudentId} />
+        <div>
+          <ListOfProjects id={this.state.currentStudentId} className='pageColumn' />
+          <ListOfDemos id={this.state.currentStudentId} className='pageColumn' />
+          <ListOfLeaves id={this.state.currentStudentId} className='pageColumn' />
+        </div>
         <hr />
-        <ListOfDemos id={this.state.currentStudentId} />
-        <hr />
-        <ListOfLeaves id={this.state.currentStudentId} />
-        <hr />
-        <button onClick={this.editStudent.bind(this)} className='editButton'>Edit</button>
-        <button onClick={this.deleteStudent.bind(this)} className='deleteButton'>Delete</button>
+        <div className='buttons'>
+          <button onClick={this.editStudent.bind(this)} className='editButton'>Edit</button>
+          <button onClick={this.deleteStudent.bind(this)} className='deleteButton'>Delete</button>
+        </div>
       </div>
     )
   }

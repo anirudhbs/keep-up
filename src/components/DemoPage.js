@@ -63,8 +63,7 @@ class DemoPage extends Component {
           <button onClick={this.goBack.bind(this)} className='backButton'>Back</button>
           <button onClick={this.deleteDemo.bind(this)} className='deleteButton'>Delete</button>
         </div>
-        {/* <button onClick={this.editProject.bind(this)} className='editButton'>Edit</button>
-        <div><button onClick={this.goBack.bind(this)} className='backButton'>Back</button></div> */}
+        {/* <button onClick={this.editProject.bind(this)} className='editButton'>Edit</button> */}
       </div>
     )
   }

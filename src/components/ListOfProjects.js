@@ -28,7 +28,7 @@ class ListOfProjects extends Component {
 
   render () {
     return (
-      <div className='ListOfProjects'>
+      <div className='pageColumn'>
         <ul>
           <h2>Projects</h2>
           <Link to='/add/project' className='Link AddStudentButton'>Add Project</Link>
