@@ -5,6 +5,7 @@ import StudentPage from './StudentPage'
 import ProjectPage from './ProjectPage'
 import AddStudentPage from './AddStudentPage'
 import AddProjectPage from './AddProjectPage'
+import EditProjectPage from './EditProjectPage'
 
 class Main extends Component {
   constructor (props) {
@@ -45,6 +46,10 @@ class Main extends Component {
     this.setState({ currentProjectId: id })
   }
 
+  getCurrentProject () {
+    return {id: this.state.currentProjectId}
+  }
+
   render () {
     return (
       <main>
@@ -53,12 +58,14 @@ class Main extends Component {
             openStudentsPage={this.setCurrentStudent.bind(this)} fetchData={this.fetchData.bind(this)} />} />
           <Route exact path='/student/:id' render={(props, history) =>
             <StudentPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} />} />
-          {/* <Route exact path='/project/:pid' component={ProjectPage} /> */}
           <Route exact path='/project/:pid' render={(props, history) =>
-            <ProjectPage match={props.match} history={props.history} />} />
+            <ProjectPage match={props.match} history={props.history} setCurrentProject={this.setCurrentProject.bind(this)} />} />
           <Route exact path='/add/student' component={AddStudentPage} />
           <Route exact path='/add/project' render={(props, history) =>
-            <AddProjectPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} />} />
+            <AddProjectPage getCurrentStudent={this.getCurrentStudent.bind(this)}
+              history={props.history} currentProjectId={this.state.currentProjectId} />} />
+          <Route exact path='/edit/project' render={(props, history) =>
+            <EditProjectPage getCurrentProject={this.getCurrentProject.bind(this)} history={props.history} />} />
         </Switch>
       </main>
     )

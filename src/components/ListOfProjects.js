@@ -34,7 +34,7 @@ class ListOfProjects extends Component {
           <Link to='/add/project' className='Link AddStudentButton'>Add Project</Link>
           {
             this.state.projects.map(cur =>
-              <ProjectItem key={cur.pid} id={cur.pid} name={cur.name} repo={cur.repo} />
+              <ProjectItem key={cur.pid} id={cur.pid} name={cur.projectname} repo={cur.repo} />
             )
           }
         </ul>

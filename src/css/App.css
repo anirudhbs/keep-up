@@ -129,6 +129,10 @@ form {
 }
 
 .editButton {
-  background-color: #20c2dc;
+  background-color: #20b2cc;
   margin-right: 10px;
+}
+
+.editButton:hover {
+  background-color: #20c2dc;
 }

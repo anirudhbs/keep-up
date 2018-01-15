@@ -41,7 +41,7 @@ app.post('/students', (req, res) => {
 
 app.post('/:studentid/projects', (req, res) => {
   const id = req.params.studentid
-  const queryString = 'SELECT pid, uid, name, repo FROM projects WHERE uid = $1 ORDER BY pid'
+  const queryString = 'SELECT pid, uid, projectName, repo FROM projects WHERE uid = $1 ORDER BY pid'
   const values = [id]
   client.query(queryString, values, (err, response) => {
     if (err) {
@@ -92,7 +92,7 @@ app.post('/:studentid/attendance', (req, res) => {
 
 app.post('/project/:projectid', (req, res) => {
   const id = req.params.projectid
-  const queryString = 'SELECT p.pid, p.uid, s.name AS "studentName", p.name, p.repo FROM projects p, students s WHERE pid = $1 AND p.uid=s.uid'
+  const queryString = 'SELECT p.pid, p.uid, s.name AS "studentName", p.projectName, p.repo FROM projects p, students s WHERE pid = $1 AND p.uid=s.uid'
   const values = [id]
   client.query(queryString, values, (err, response) => {
     if (err) {
@@ -181,6 +181,40 @@ app.delete('/project/:pid', (req, res) => {
     } else {
       res.send({
         status: 'success'
+      })
+    }
+  })
+})
+
+app.put('/project/edit/:pid', (req, res) => {
+  const queryString = 'UPDATE projects SET projectName = $2, repo = $3  WHERE pid=$1'
+  const values = [req.params.pid, req.body.projectname, req.body.repo]
+  console.log(req.body)
+  client.query(queryString, values, (err, response) => {
+    if (err) {
+      res.send({ status: 'fail' })
+      // throw err
+    } else {
+      res.send({
+        status: 'success',
+        data: {
+          name: req.body.name
+        }
+      })
+    }
+  })
+})
+
+app.get('/project/:pid', (req, res) => {
+  const queryString = 'SELECT * FROM projects WHERE pid = $1'
+  const values = [req.params.pid]
+  client.query(queryString, values, (err, response) => {
+    if (err) {
+      res.send({ status: 'fail' })
+    } else {
+      res.send({
+        status: 'success',
+        data: response.rows[0]
       })
     }
   })

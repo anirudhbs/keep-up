@@ -16,7 +16,6 @@ class ProjectPage extends Component {
 
   componentWillMount () {
     this.fetchProjectInfo()
-    console.log(this.state.projectInfo.pid, '-----')
   }
 
   fetchProjectInfo () {
@@ -29,6 +28,7 @@ class ProjectPage extends Component {
     })
     .then((data) => {
       this.setState({ projectInfo: data.data })
+      this.props.setCurrentProject(this.props.match.params.pid)
     })
     .catch(function (error) {
       console.log('fail', error)
@@ -44,7 +44,6 @@ class ProjectPage extends Component {
       return results.json()
     })
     .then((data) => {
-      console.log('don haci')
       this.props.history.push('/student/' + this.state.projectInfo.uid)
     })
     .catch(function (error) {
@@ -52,16 +51,20 @@ class ProjectPage extends Component {
     })
   }
 
+  editProject () {
+    this.props.history.push('/edit/project')
+  }
+
   render () {
     return (
       <div>
         <h2>Project Page</h2>
-        <div>{this.state.projectInfo.name}</div>
-        <div>{this.state.projectInfo.studentName}</div>
-        <div>{this.state.projectInfo.repo}</div>
+        <div>Name: {this.state.projectInfo.name}</div>
+        <div>Student Name: {this.state.projectInfo.studentName}</div>
+        <div>Repository: {this.state.projectInfo.repo}</div>
         <hr />
+        <button onClick={this.editProject.bind(this)} className='editButton'>Edit</button>
         <button onClick={this.deleteProject.bind(this)} className='deleteButton'>Delete</button>
-
       </div>
     )
   }
