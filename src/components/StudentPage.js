@@ -7,7 +7,8 @@ class StudentPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      currentStudentId: null
+      currentStudentId: null,
+      urlId: this.props.location.pathname.split('/')[2]
     }
   }
 
@@ -41,9 +42,9 @@ class StudentPage extends Component {
         <h2>{this.props.getCurrentStudent().name}</h2>
         <hr />
         <div>
-          <ListOfProjects id={this.state.currentStudentId} className='pageColumn' />
-          <ListOfDemos id={this.state.currentStudentId} className='pageColumn' />
-          <ListOfLeaves id={this.state.currentStudentId} className='pageColumn' />
+          <ListOfProjects id={this.state.urlId} className='pageColumn' />
+          <ListOfDemos id={this.state.urlId} className='pageColumn' />
+          <ListOfLeaves id={this.state.urlId} className='pageColumn' />
         </div>
         <hr />
         <div className='buttons'>

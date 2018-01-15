@@ -46,10 +46,6 @@ class DemoPage extends Component {
     this.props.history.push('/student/' + this.state.demoInfo.uid)
   }
 
-  deleteDemo () {
-    
-  }
-
   render () {
     return (
       <div>
@@ -63,7 +59,6 @@ class DemoPage extends Component {
           <button onClick={this.goBack.bind(this)} className='backButton'>Back</button>
           <button onClick={this.deleteDemo.bind(this)} className='deleteButton'>Delete</button>
         </div>
-        {/* <button onClick={this.editProject.bind(this)} className='editButton'>Edit</button> */}
       </div>
     )
   }

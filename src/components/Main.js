@@ -68,8 +68,8 @@ class Main extends Component {
         <Switch>
           <Route exact path='/' render={(props) => <ListOfStudents students={this.state.students}
             openStudentsPage={this.setCurrentStudent.bind(this)} fetchData={this.fetchData.bind(this)} />} />
-          <Route exact path='/student/:id' render={(props, history) =>
-            <StudentPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} />} />
+          <Route exact path='/student/:id' render={(props, history, location) =>
+            <StudentPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} location={props.location} />} />
           <Route exact path='/project/:pid' render={(props, history) =>
             <ProjectPage match={props.match} history={props.history} setCurrentProject={this.setCurrentProject.bind(this)} />} />
           <Route exact path='/add/student' component={AddStudentPage} />

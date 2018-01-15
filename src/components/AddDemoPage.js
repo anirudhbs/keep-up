@@ -40,7 +40,8 @@ class AddDemoPage extends Component {
       return results.json()
     })
     .then((data) => {
-      console.log(data)
+      console.log(this.props)
+      this.props.history.push('/student/' + this.state.uid)
     })
     .catch(function (error) {
       console.log('fail', error)
@@ -88,7 +89,14 @@ class AddDemoPage extends Component {
         <div>Date</div>
         <input type='date' value={this.state.date} onChange={this.handleChangeDate.bind(this)} />
         <div>Rating</div>
-        <input type='text' value={this.state.rating} onChange={this.handleChange} />
+        <select value={this.state.rating} onChange={this.handleChange}>
+          {
+            [0, 1, 2, 3, 4, 5].map((cur) =>
+            <option key={cur} value={cur}>{cur}</option>
+          )
+          }
+        </select>
+        {/* <input type='text' value={this.state.rating} onChange={this.handleChange} /> */}
         <div>Project</div>
         <div>
           <select value={this.state.pid} onChange={this.handleChangeProject.bind(this)}>
