@@ -26,6 +26,7 @@ app.post('/students', (req, res) => {
   const queryString = 'SELECT uid, name FROM students WHERE status=TRUE ORDER BY uid'
   client.query(queryString, (err, response) => {
     if (err) {
+      console.log('err')
       res.send({ status: 'fail', data: [] })
     } else {
       res.send({
@@ -202,6 +203,48 @@ app.get('/project/:pid', (req, res) => {
         status: 'success',
         data: response.rows[0]
       })
+    }
+  })
+})
+
+app.get('/demo/:did', (req, res) => {
+  const queryString = 'SELECT d.did, d.uid, s.name, d.pid, p.projectname, d.date, d.rating from demos d, students s, projects p WHERE d.did=$1 AND d.pid = p.pid AND d.uid = s.uid'
+  const values = [req.params.did]
+  client.query(queryString, values, (err, response) => {
+    if (err) {
+      res.send({ status: 'fail' })
+    } else {
+      res.send({
+        status: 'success',
+        data: response.rows[0]
+      })
+    }
+  })
+})
+
+app.get('/:studentid/demos', (req, res) => {
+  const queryString = 'SELECT pid, projectname FROM projects WHERE uid = $1'
+  const values = [req.params.studentid]
+  client.query(queryString, values, (err, response) => {
+    if (err) {
+      res.send({ status: 'fail' })
+    } else {
+      res.send({
+        status: 'success',
+        data: response.rows
+      })
+    }
+  })
+})
+
+app.put('/add/demo', (req, res) => {
+  const queryString = 'INSERT INTO demos VALUES(DEFAULT, $1, $2, $3, $4)'
+  const values = [req.body.uid, req.body.pid, req.body.rating, req.body.date]
+  client.query(queryString, values, (err, response) => {
+    if (err) {
+      res.send({ status: 'fail' })
+    } else {
+      res.send({ status: 'success' })
     }
   })
 })

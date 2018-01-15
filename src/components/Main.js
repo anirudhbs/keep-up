@@ -7,6 +7,9 @@ import AddStudentPage from './AddStudentPage'
 import AddProjectPage from './AddProjectPage'
 import EditProjectPage from './EditProjectPage'
 import EditStudentPage from './EditStudentPage'
+import DemoPage from './DemoPage'
+import AddDemoPage from './AddDemoPage'
+
 class Main extends Component {
   constructor (props) {
     super(props)
@@ -14,7 +17,8 @@ class Main extends Component {
       students: [],
       currentStudentId: null,
       currentStudentName: null,
-      currentProjectId: null
+      currentProjectId: null,
+      currentDemoId: null
     }
   }
 
@@ -50,6 +54,14 @@ class Main extends Component {
     return {id: this.state.currentProjectId}
   }
 
+  setCurrentDemo (id) {
+    this.setState({ currentDemoId: id })
+  }
+
+  getCurrentDemo () {
+    return { id: this.state.currentDemoId }
+  }
+
   render () {
     return (
       <main>
@@ -68,6 +80,10 @@ class Main extends Component {
             <EditProjectPage getCurrentProject={this.getCurrentProject.bind(this)} history={props.history} />} />
           <Route exact path='/edit/student/:uid' render={(props, history) =>
             <EditStudentPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} />} />
+          <Route exact path='/demo/:did' render={(props, history) =>
+            <DemoPage setCurrentDemo={this.setCurrentDemo.bind(this)} match={props.match} history={props.history} />} />
+          <Route exact path='/add/demo' render={(props, history) =>
+            <AddDemoPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} />} />
         </Switch>
       </main>
     )

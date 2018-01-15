@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import DemoItem from './DemoItem'
+import { Link } from 'react-router-dom'
 
 class ListOfDemos extends Component {
   constructor () {
@@ -30,6 +31,7 @@ class ListOfDemos extends Component {
       <div className='ListOfDemos'>
         <ul>
           <h2>Demos</h2>
+          <Link to='/add/demo' className='Link AddStudentButton'>Add Demo</Link>
           {
             this.state.demos.map(cur =>
               <DemoItem key={cur.did} did={cur.did} uid={cur.uid} pid={cur.pid} rating={cur.rating} date={cur.date} />
