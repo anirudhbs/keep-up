@@ -11,10 +11,8 @@ const client = new Client({
 client.connect()
 
 db.getAllStudents = (req, res) => {
-  console.log('getallstudents')
   const queryString = 'SELECT uid, name FROM students WHERE status=TRUE ORDER BY uid'
   client.query(queryString, (err, response) => {
-    console.log('git')
     if (err) {
       res.send({ status: 'fail', data: [] })
     } else {
@@ -210,7 +208,7 @@ db.getStudentProjectsForDemo = (req, res) => {
   const values = [req.params.sid]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      res.send({ status: 'fail' })
+      res.send({ status: 'fail', data: [] })
     } else {
       res.send({
         status: 'success',

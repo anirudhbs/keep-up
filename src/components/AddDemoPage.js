@@ -90,11 +90,10 @@ class AddDemoPage extends Component {
         <select value={this.state.rating} onChange={this.handleChange}>
           {
             [0, 1, 2, 3, 4, 5].map((cur) =>
-            <option key={cur} value={cur}>{cur}</option>
+              <option key={cur} value={cur}>{cur}</option>
           )
           }
         </select>
-        {/* <input type='text' value={this.state.rating} onChange={this.handleChange} /> */}
         <div>Project</div>
         <div>
           <select value={this.state.pid} onChange={this.handleChangeProject.bind(this)}>
