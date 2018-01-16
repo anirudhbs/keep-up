@@ -31,7 +31,6 @@ class DemoPage extends Component {
     .then((data) => {
       this.setState({ demoInfo: data.data })
       this.props.setCurrentDemo(this.props.match.params.did)
-      console.log(typeof data.data.date)
     })
     .catch(function (error) {
       console.log('fail', error)
@@ -44,6 +43,26 @@ class DemoPage extends Component {
 
   goBack () {
     this.props.history.push('/student/' + this.state.demoInfo.uid)
+  }
+
+  deleteDemo () {
+    // pending
+    const url = 'http://localhost:8080'
+    fetch(url + '/demo/' + this.state.demoInfo.did, {
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/Json'
+      }
+    })
+    .then((results) => {
+      return results.json()
+    })
+    .then((data) => {
+      this.goBack()
+    })
+    .catch(function (error) {
+      console.log('fail', error)
+    })
   }
 
   render () {

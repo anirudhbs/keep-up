@@ -23,7 +23,6 @@ class AddDemoPage extends Component {
   }
 
   handleSubmit (event) {
-    console.log(this.state)
     this.addDemo()
   }
 
@@ -40,7 +39,6 @@ class AddDemoPage extends Component {
       return results.json()
     })
     .then((data) => {
-      console.log(this.props)
       this.props.history.push('/student/' + this.state.uid)
     })
     .catch(function (error) {

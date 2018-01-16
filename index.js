@@ -249,6 +249,18 @@ app.put('/add/demo', (req, res) => {
   })
 })
 
+app.delete('/demo/:did', (req, res) => {
+  const queryString = 'DELETE FROM demos WHERE did = $1'
+  const values = [req.params.did]
+  client.query(queryString, values, (err, response) => {
+    if (err) {
+      res.send({ status: 'fail' })
+    } else {
+      res.send({ status: 'success', data: { id: req.params.did } })
+    }
+  })
+})
+
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`)
   client.connect()
