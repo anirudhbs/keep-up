@@ -6,7 +6,7 @@ class DemoItem extends Component {
     return (
       <Link to={'/demo/' + this.props.did} className='Link'>
         <li key={this.props.did} className='ListItem'>
-          {this.props.date.slice(0, 10)}
+          {new Date(this.props.date).toDateString()}
         </li>
       </Link>
     )

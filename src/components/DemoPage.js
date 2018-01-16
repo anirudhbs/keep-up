@@ -66,7 +66,7 @@ class DemoPage extends Component {
         <h2>Demo Page</h2>
         <div>Project name: {this.state.demoInfo.projectname}</div>
         <div>Student Name: {this.state.demoInfo.name}</div>
-        <div>Date: {String(this.state.demoInfo.date).slice(0, 10)}</div>
+        <div>Date: {new Date(this.state.demoInfo.date).toDateString()}</div>
         <div>Rating: {this.state.demoInfo.rating}</div>
         <hr />
         <div>

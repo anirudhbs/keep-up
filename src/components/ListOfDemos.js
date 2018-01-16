@@ -34,7 +34,7 @@ class ListOfDemos extends Component {
           <Link to='/demos/add' className='Link AddStudentButton'>Add Demo</Link>
           {
             this.state.demos.map(cur =>
-              <DemoItem key={cur.did} did={cur.did} uid={cur.uid} pid={cur.pid} rating={cur.rating} date={cur.date} />
+              <DemoItem key={cur.did} did={cur.did} date={cur.date} />
             )
           }
         </ul>

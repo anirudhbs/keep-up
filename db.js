@@ -1,5 +1,6 @@
 const db = {}
 const { Client } = require('pg')
+
 const client = new Client({
   user: 'postgres',
   host: 'localhost',
@@ -14,9 +15,9 @@ db.getAllStudents = (req, res) => {
   const queryString = 'SELECT uid, name FROM students WHERE status=TRUE ORDER BY uid'
   client.query(queryString, (err, response) => {
     if (err) {
-      res.send({ status: 'fail', data: [] })
+      res.json({ status: 'fail', data: [] })
     } else {
-      res.send({
+      res.json({
         status: 'success',
         data: response.rows
       })
@@ -26,13 +27,13 @@ db.getAllStudents = (req, res) => {
 
 db.getStudentProjects = (req, res) => {
   const id = req.params.sid
-  const queryString = 'SELECT pid, uid, projectName, repo FROM projects WHERE uid = $1 ORDER BY pid'
+  const queryString = 'SELECT pid, projectName FROM projects WHERE uid = $1 ORDER BY pid'
   const values = [id]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      res.send({ status: 'fail', data: [] })
+      res.json({ status: 'fail', data: [] })
     } else {
-      res.send({
+      res.json({
         status: 'success',
         data: response.rows
       })
@@ -42,13 +43,13 @@ db.getStudentProjects = (req, res) => {
 
 db.getStudentDemos = (req, res) => {
   const id = req.params.sid
-  const queryString = 'SELECT did, uid, pid, rating, date FROM demos WHERE uid = $1 ORDER BY did'
+  const queryString = 'SELECT did, date FROM demos WHERE uid = $1 ORDER BY did'
   const values = [id]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      res.send({ status: 'fail', data: [] })
+      res.json({ status: 'fail', data: [] })
     } else {
-      res.send({
+      res.json({
         status: 'success',
         data: response.rows
       })
@@ -62,9 +63,9 @@ db.getStudentAttendance = (req, res) => {
   const values = [id]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      res.send({ status: 'fail', data: [] })
+      res.json({ status: 'fail', data: [] })
     } else {
-      res.send({
+      res.json({
         status: 'success',
         data: response.rows
       })
@@ -78,9 +79,9 @@ db.getProjectDetails = (req, res) => {
   const values = [id]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      res.send({ status: 'fail', data: {} })
+      res.json({ status: 'fail', data: {} })
     } else {
-      res.send({
+      res.json({
         status: 'success',
         data: response.rows[0]
       })
@@ -93,11 +94,9 @@ db.addStudent = (req, res) => {
   const values = [req.body.studentName, true]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      res.send({ status: 'fail' })
+      res.json({ status: 'fail' })
     } else {
-      res.send({
-        status: 'success'
-      })
+      res.json({ status: 'success' })
     }
   })
 }
@@ -107,11 +106,9 @@ db.deleteStudent = (req, res) => {
   const values = [req.params.id]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      res.send({ status: 'fail' })
+      res.json({ status: 'fail' })
     } else {
-      res.send({
-        status: 'success'
-      })
+      res.json({ status: 'success' })
     }
   })
 }
@@ -121,9 +118,9 @@ db.editStudent = (req, res) => {
   const values = [req.params.id, req.body.name]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      res.send({ status: 'fail' })
+      res.json({ status: 'fail' })
     } else {
-      res.send({
+      res.json({
         status: 'success',
         data: {
           name: req.body.name
@@ -138,9 +135,9 @@ db.addProject = (req, res) => {
   const values = [req.body.uid, req.body.name, req.body.repo]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      res.send({ status: 'fail' })
+      res.json({ status: 'fail' })
     } else {
-      res.send({
+      res.json({
         status: 'success',
         data: {}
       })
@@ -153,9 +150,9 @@ db.deleteProject = (req, res) => {
   const values = [req.params.pid]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      res.send({ status: 'fail' })
+      res.json({ status: 'fail' })
     } else {
-      res.send({
+      res.json({
         status: 'success'
       })
     }
@@ -167,9 +164,9 @@ db.editProject = (req, res) => {
   const values = [req.params.pid, req.body.projectname, req.body.repo]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      res.send({ status: 'fail' })
+      res.json({ status: 'fail' })
     } else {
-      res.send({
+      res.json({
         status: 'success',
         data: {
           name: req.body.name
@@ -184,9 +181,9 @@ db.deleteDemo = (req, res) => {
   const values = [req.params.did]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      res.send({ status: 'fail' })
+      res.json({ status: 'fail' })
     } else {
-      res.send({ status: 'success', data: { id: req.params.did } })
+      res.json({ status: 'success', data: { id: req.params.did } })
     }
   })
 }
@@ -196,9 +193,9 @@ db.addDemo = (req, res) => {
   const values = [req.body.uid, req.body.pid, req.body.rating, req.body.date]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      res.send({ status: 'fail' })
+      res.json({ status: 'fail' })
     } else {
-      res.send({ status: 'success' })
+      res.json({ status: 'success' })
     }
   })
 }
@@ -208,9 +205,9 @@ db.getStudentProjectsForDemo = (req, res) => {
   const values = [req.params.sid]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      res.send({ status: 'fail', data: [] })
+      res.json({ status: 'fail', data: [] })
     } else {
-      res.send({
+      res.json({
         status: 'success',
         data: response.rows
       })
@@ -223,9 +220,9 @@ db.getStudentProjectsForDemo = (req, res) => {
 //   const values = [req.params.pid]
 //   client.query(queryString, values, (err, response) => {
 //     if (err) {
-//       res.send({ status: 'fail' })
+//       res.json({ status: 'fail' })
 //     } else {
-//       res.send({
+//       res.json({
 //         status: 'success',
 //         data: response.rows[0]
 //       })
@@ -238,9 +235,9 @@ db.getDemoDetails = (req, res) => {
   const values = [req.params.did]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      res.send({ status: 'fail' })
+      res.json({ status: 'fail' })
     } else {
-      res.send({
+      res.json({
         status: 'success',
         data: response.rows[0]
       })
@@ -248,4 +245,18 @@ db.getDemoDetails = (req, res) => {
   })
 }
 
+db.getStudentName = (req, res) => {
+  const queryString = 'SELECT name FROM students WHERE uid = $1'
+  const values = [req.params.sid]
+  client.query(queryString, values, (err, response) => {
+    if (err) {
+      res.json({ status: 'fail' })
+    } else {
+      res.json({
+        status: 'success',
+        data: response.rows[0]
+      })
+    }
+  })
+}
 module.exports = db

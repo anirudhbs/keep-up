@@ -8,8 +8,25 @@ class StudentPage extends Component {
     super(props)
     this.state = {
       currentStudentId: null,
+      currentStudentName: '',
       urlId: this.props.location.pathname.split('/')[2]
     }
+  }
+
+  getStudentName () {
+    const url = 'http://localhost:8080'
+    fetch(url + `/studentname/${this.state.urlId}`, {
+      method: 'get'
+    })
+    .then((results) => {
+      return results.json()
+    })
+    .then((data) => {
+      this.setState({ currentStudentName: data.data.name })
+    })
+    .catch(function (error) {
+      console.log('fail', error)
+    })
   }
 
   deleteStudent () {
@@ -30,6 +47,7 @@ class StudentPage extends Component {
 
   componentWillMount () {
     this.setState({currentStudentId: this.props.getCurrentStudent().id})
+    this.getStudentName()
   }
 
   editStudent () {
@@ -39,7 +57,7 @@ class StudentPage extends Component {
   render () {
     return (
       <div>
-        <h2>{this.props.getCurrentStudent().name}</h2>
+        <h2>{this.state.currentStudentName}</h2>
         <hr />
         <div>
           <ListOfProjects id={this.state.urlId} className='pageColumn' />
