@@ -7,7 +7,6 @@ class StudentPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      currentStudentId: null,
       currentStudentName: '',
       urlId: this.props.location.pathname.split('/')[2]
     }
@@ -31,7 +30,7 @@ class StudentPage extends Component {
 
   deleteStudent () {
     const url = 'http://localhost:8080'
-    fetch(url + `/student/${this.state.currentStudentId}`, {
+    fetch(url + `/student/${this.state.urlId}`, {
       method: 'delete'
     })
     .then((results) => {
@@ -46,7 +45,6 @@ class StudentPage extends Component {
   }
 
   componentWillMount () {
-    this.setState({currentStudentId: this.props.getCurrentStudent().id})
     this.getStudentName()
   }
 

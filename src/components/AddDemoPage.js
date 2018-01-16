@@ -7,7 +7,7 @@ class AddDemoPage extends Component {
       uid: this.props.getCurrentStudent().id,
       date: this.getTodayDate(),
       rating: '',
-      pid: 0,
+      pid: 1,
       projectList: []
     }
     this.handleChange = this.handleChange.bind(this)
@@ -28,12 +28,19 @@ class AddDemoPage extends Component {
 
   addDemo () {
     const url = 'http://localhost:8080'
+
+    const body = {}
+    body.uid = this.state.uid
+    body.pid = this.state.pid
+    body.rating = this.state.uid
+    body.date = this.state.date
+
     fetch(url + '/demo/add', {
       method: 'put',
       headers: {
         'Content-Type': 'application/Json'
       },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify(body)
     })
     .then((results) => {
       return results.json()
@@ -97,6 +104,7 @@ class AddDemoPage extends Component {
         <div>Project</div>
         <div>
           <select value={this.state.pid} onChange={this.handleChangeProject.bind(this)}>
+            <option disabled>----</option>
             {
               this.state.projectList.map((cur) =>
                 <option key={cur.pid} value={cur.pid}>{cur.projectname}</option>

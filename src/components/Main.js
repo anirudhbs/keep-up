@@ -73,8 +73,7 @@ class Main extends Component {
             <EditStudentPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} />} />
 
           <Route path='/student/:sid' render={(props, history, location) =>
-            <StudentPage getCurrentStudent={this.getCurrentStudent.bind(this)}
-              history={props.history} location={props.location} />} />
+            <StudentPage history={props.history} location={props.location} />} />
           <Route exact path='/project/:pid' render={(props, history) =>
             <ProjectPage match={props.match} history={props.history} setCurrentProject={this.setCurrentProject.bind(this)} />} />
           <Route exact path='/demo/:did' render={(props, history) =>

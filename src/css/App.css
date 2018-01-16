@@ -43,21 +43,12 @@ li {
   background-color: #eeeeee;
 }
 
-.ListOfProjects {
-}
-
-.ListOfDemos {
-}
-
-.ListOfLeaves {
-}
-
 .AddStudentButton {
-  border: 1px solid black;
   margin: 3px;
   background-color: #20b2cc;
   display: block;
   padding: 10px;
+  color: white;
 }
 
 .AddStudentButton:hover {
@@ -65,15 +56,14 @@ li {
 }
 
 .homeButton {
-  border-radius: 1px;
   line-height: 30px; 
   padding: 2px;
   margin: 3px;
-  color: #aaaaaa;
+  color: #ffffff;
 }
 
 .homeButton:hover {
-  color: #ffffff;
+  color: #eeeeee;
 }
 
 input[type=text] {
@@ -131,7 +121,7 @@ form {
 }
 
 header {
-  background-color: #778899;
+  background-color: #999999;
   display: block;
   width: 100%;
   margin: 0 auto;

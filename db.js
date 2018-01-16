@@ -43,7 +43,7 @@ db.getStudentProjects = (req, res) => {
 
 db.getStudentDemos = (req, res) => {
   const id = req.params.sid
-  const queryString = 'SELECT did, date FROM demos WHERE uid = $1 ORDER BY did'
+  const queryString = 'SELECT did, date FROM demos WHERE uid = $1 ORDER BY date DESC'
   const values = [id]
   client.query(queryString, values, (err, response) => {
     if (err) {
@@ -193,7 +193,7 @@ db.addDemo = (req, res) => {
   const values = [req.body.uid, req.body.pid, req.body.rating, req.body.date]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      res.json({ status: 'fail' })
+      res.json({ status: 'fail', data: err })
     } else {
       res.json({ status: 'success' })
     }
