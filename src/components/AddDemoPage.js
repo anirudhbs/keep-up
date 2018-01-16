@@ -28,7 +28,7 @@ class AddDemoPage extends Component {
 
   addDemo () {
     const url = 'http://localhost:8080'
-    fetch(url + '/add/demo', {
+    fetch(url + '/demo/add', {
       method: 'put',
       headers: {
         'Content-Type': 'application/Json'
@@ -48,7 +48,7 @@ class AddDemoPage extends Component {
 
   getProjectList () {
     const url = 'http://localhost:8080'
-    fetch(url + '/' + this.props.getCurrentStudent().id + '/demos', {
+    fetch(url + '/demolist/' + this.props.getCurrentStudent().id, {
       method: 'get'
     })
     .then((results) => {

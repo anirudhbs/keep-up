@@ -52,8 +52,8 @@ class EditProjectPage extends Component {
 
   editProject () {
     const url = 'http://localhost:8080'
-    fetch(url + '/project/edit/' + this.state.projectDetails.pid, {
-      method: 'put',
+    fetch(url + '/project/' + this.state.projectDetails.pid, {
+      method: 'post',
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': '*',

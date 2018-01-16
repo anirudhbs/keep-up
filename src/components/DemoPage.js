@@ -46,7 +46,6 @@ class DemoPage extends Component {
   }
 
   deleteDemo () {
-    // pending
     const url = 'http://localhost:8080'
     fetch(url + '/demo/' + this.state.demoInfo.did, {
       method: 'delete',

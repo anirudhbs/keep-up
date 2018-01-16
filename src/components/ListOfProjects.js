@@ -12,8 +12,8 @@ class ListOfProjects extends Component {
 
   componentDidMount () {
     const url = 'http://localhost:8080'
-    fetch(url + `/${this.props.id}/projects`, {
-      method: 'post'
+    fetch(url + `/projects/${this.props.id}`, {
+      method: 'get'
     })
     .then((results) => {
       return results.json()

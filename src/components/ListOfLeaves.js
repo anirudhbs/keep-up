@@ -10,8 +10,8 @@ class ListOfLeaves extends Component {
 
   componentDidMount () {
     const url = 'http://localhost:8080'
-    fetch(url + `/${this.props.id}/attendance`, {
-      method: 'post'
+    fetch(url + `/attendance/${this.props.id}`, {
+      method: 'get'
     })
     .then((results) => {
       return results.json()

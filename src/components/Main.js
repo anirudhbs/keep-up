@@ -25,7 +25,7 @@ class Main extends Component {
   fetchData () {
     const url = 'http://localhost:8080'
     fetch(url + '/students', {
-      method: 'post'
+      method: 'get'
     })
     .then((results) => {
       return results.json()

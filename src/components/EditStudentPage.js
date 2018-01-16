@@ -21,7 +21,7 @@ class EditStudentPage extends Component {
 
   editStudent () {
     const url = 'http://localhost:8080'
-    fetch(url + '/edit/student/' + this.props.getCurrentStudent().id, {
+    fetch(url + '/student/' + this.props.getCurrentStudent().id, {
       method: 'post',
       headers: {
         'Content-Type': 'application/Json'
