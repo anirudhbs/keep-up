@@ -37,10 +37,6 @@ class DemoPage extends Component {
     })
   }
 
-  editProject () {
-    this.props.history.push('/edit/project')
-  }
-
   goBack () {
     this.props.history.push('/student/' + this.state.demoInfo.uid)
   }

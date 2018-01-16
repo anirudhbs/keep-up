@@ -31,7 +31,7 @@ class ListOfDemos extends Component {
       <div className='pageColumn'>
         <ul>
           <h2>Demos</h2>
-          <Link to='/add/demo' className='Link AddStudentButton'>Add Demo</Link>
+          <Link to='/demos/add' className='Link AddStudentButton'>Add Demo</Link>
           {
             this.state.demos.map(cur =>
               <DemoItem key={cur.did} did={cur.did} uid={cur.uid} pid={cur.pid} rating={cur.rating} date={cur.date} />

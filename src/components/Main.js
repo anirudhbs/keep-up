@@ -68,21 +68,25 @@ class Main extends Component {
         <Switch>
           <Route exact path='/' render={(props) => <ListOfStudents students={this.state.students}
             openStudentsPage={this.setCurrentStudent.bind(this)} fetchData={this.fetchData.bind(this)} />} />
-          <Route exact path='/student/:id' render={(props, history, location) =>
-            <StudentPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} location={props.location} />} />
+          <Route exact path='/students/add' component={AddStudentPage} />
+          <Route exact path='/student/edit' render={(props, history) =>
+            <EditStudentPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} />} />
+
+          <Route path='/student/:sid' render={(props, history, location) =>
+            <StudentPage getCurrentStudent={this.getCurrentStudent.bind(this)}
+              history={props.history} location={props.location} />} />
           <Route exact path='/project/:pid' render={(props, history) =>
             <ProjectPage match={props.match} history={props.history} setCurrentProject={this.setCurrentProject.bind(this)} />} />
-          <Route exact path='/add/student' component={AddStudentPage} />
-          <Route exact path='/add/project' render={(props, history) =>
-            <AddProjectPage getCurrentStudent={this.getCurrentStudent.bind(this)}
-              history={props.history} currentProjectId={this.state.currentProjectId} />} />
-          <Route exact path='/edit/project' render={(props, history) =>
-            <EditProjectPage getCurrentProject={this.getCurrentProject.bind(this)} history={props.history} />} />
-          <Route exact path='/edit/student/:uid' render={(props, history) =>
-            <EditStudentPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} />} />
           <Route exact path='/demo/:did' render={(props, history) =>
             <DemoPage setCurrentDemo={this.setCurrentDemo.bind(this)} match={props.match} history={props.history} />} />
-          <Route exact path='/add/demo' render={(props, history) =>
+
+          <Route exact path='/projects/add' render={(props, history) =>
+            <AddProjectPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history}
+              currentProjectId={this.state.currentProjectId} />} />
+          <Route exact path='/edit/project' render={(props, history) =>
+            <EditProjectPage getCurrentProject={this.getCurrentProject.bind(this)} history={props.history} />} />
+
+          <Route exact path='/demos/add' render={(props, history) =>
             <AddDemoPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} />} />
         </Switch>
       </main>

@@ -12,7 +12,7 @@ class ListOfStudents extends Component {
       <div className='ListOfStudents'>
         <ul>
           <h2>Students</h2>
-          <Link to='/add/student' className='Link AddStudentButton'>Add Student</Link>
+          <Link to='/students/add' className='Link AddStudentButton'>Add Student</Link>
           {
             this.props.students.map(cur =>
               <StudentItem key={cur.uid} id={cur.uid} name={cur.name} openStudentsPage={this.props.openStudentsPage} />

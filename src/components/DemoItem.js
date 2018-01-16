@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 class DemoItem extends Component {
-  componentDidMount () {
-  }
-
   render () {
     return (
       <Link to={'/demo/' + this.props.did} className='Link'>

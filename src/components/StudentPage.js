@@ -33,7 +33,7 @@ class StudentPage extends Component {
   }
 
   editStudent () {
-    this.props.history.push('/edit/student/' + this.props.getCurrentStudent().id)
+    this.props.history.push('/student/edit')
   }
 
   render () {
