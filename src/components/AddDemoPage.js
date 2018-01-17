@@ -7,8 +7,8 @@ class AddDemoPage extends Component {
       uid: this.props.getCurrentStudent().id,
       date: this.getTodayDate(),
       rating: '',
-      pid: 1,
-      projectList: []
+      pid: 0,
+      projectList: [{pid: 0, name: ''}]
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -62,7 +62,8 @@ class AddDemoPage extends Component {
       return results.json()
     })
     .then((data) => {
-      this.setState({ projectList: data.data })
+      const list = this.state.projectList
+      this.setState({ projectList: list.concat(data.data) })
     })
     .catch(function (error) {
       console.log('fail', error)
@@ -104,7 +105,6 @@ class AddDemoPage extends Component {
         <div>Project</div>
         <div>
           <select value={this.state.pid} onChange={this.handleChangeProject.bind(this)}>
-            <option disabled>----</option>
             {
               this.state.projectList.map((cur) =>
                 <option key={cur.pid} value={cur.pid}>{cur.projectname}</option>
