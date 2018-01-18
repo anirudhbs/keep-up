@@ -56,6 +56,7 @@ li {
 }
 
 .homeButton {
+  float: none;
   line-height: 30px; 
   padding: 2px;
   margin: 3px;
@@ -184,4 +185,22 @@ input[type=date] {
   box-sizing: border-box;
   margin-top: 6px;
   margin-bottom: 12px;
+}
+
+.login {
+  /* float: right; */
+  background-color: #999999;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin: 0px;
+  border-radius: 4px;
+}
+
+.login:hover {
+  background-color: #aaaaaa;
+}
+
+.login-list{
+  display: flex;
 }

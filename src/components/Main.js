@@ -32,11 +32,9 @@ class Main extends Component {
         Authorization: `Bearer ${getAccessToken()}`
       }
     })
-    .then((results) => {
-      return results.json()
-    })
+    .then((results) => results.json())
     .then((data) => {
-      this.setState({ students: data.data })
+      if (data.status === 'success') this.setState({ students: data.data })
     })
     .catch(function (error) {
       console.log('fail', error)
@@ -71,7 +69,7 @@ class Main extends Component {
     return (
       <main>
         <Switch>
-          <Route exact path='/' render={(props) => <ListOfStudents students={this.state.students}
+          <Route exact path='/students' render={(props) => <ListOfStudents students={this.state.students}
             openStudentsPage={this.setCurrentStudent.bind(this)} fetchData={this.fetchData.bind(this)} />} />
           <Route path='/callback' component={Callback} />
           <Route exact path='/students/add' component={AddStudentPage} />

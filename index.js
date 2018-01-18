@@ -7,6 +7,7 @@ const router = require('./routes')
 const db = require('./db')
 const jwt = require('express-jwt')
 const jwks = require('jwks-rsa')
+const jwtAuthz = require('express-jwt-authz')
 
 app.use(cors())
 app.use(express.static('public'))
@@ -21,12 +22,13 @@ const authCheck = jwt({
     jwksRequestsPerMinute: 5,
     jwksUri: 'https://keep-up.auth0.com/.well-known/jwks.json'
   }),
-  audience: 'http://learning-auth0.com',
+  audience: 'http://learning-auth0.com', // or 'http://keep-up-react.com'
   issuer: 'https://keep-up.auth0.com/',
   algorithms: ['RS256']
 })
+const checkScopes = jwtAuthz([ 'everything' ])
 
-app.get('/students', authCheck, db.getAllStudents)
+app.get('/students', authCheck, checkScopes, db.getAllStudents)
 
 app.put('/student/add', db.addStudent)
 app.delete('/student/:id', db.deleteStudent)

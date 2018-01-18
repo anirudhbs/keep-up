@@ -31,7 +31,7 @@ class AddStudentPage extends Component {
       return results.json()
     })
     .then((data) => {
-      this.props.history.push('/')
+      this.props.history.push('/students')
     })
     .catch(function (error) {
       console.log('fail', error)
@@ -39,7 +39,7 @@ class AddStudentPage extends Component {
   }
 
   onCancel () {
-    this.props.history.push('/')
+    this.props.history.push('/students')
   }
 
   render () {
