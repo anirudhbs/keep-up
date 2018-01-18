@@ -59,6 +59,7 @@ function getParameterByName (name) {
 
 export function setAccessToken () {
   let accessToken = getParameterByName('access_token')
+  localStorage.setItem('scopes', JSON.stringify(SCOPE))
   localStorage.setItem(ACCESS_TOKEN_KEY, accessToken)
 }
 
@@ -95,4 +96,9 @@ export function getProfile (cb) {
     }
     cb(err, profile)
   })
+}
+
+export function userHasScopes (scopes) {
+  const grantedScopes = JSON.parse(localStorage.getItem('scopes')).split(' ')
+  return scopes.every(scope => grantedScopes.includes(scope))
 }
