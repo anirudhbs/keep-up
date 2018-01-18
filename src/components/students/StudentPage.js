@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import ListOfProjects from './ListOfProjects'
-import ListOfDemos from './ListOfDemos'
-import ListOfLeaves from './ListOfLeaves'
+import ListOfProjects from '../projects/ListOfProjects'
+import ListOfDemos from '../demos/ListOfDemos'
+import ListOfLeaves from '../leaves/ListOfLeaves'
 
 class StudentPage extends Component {
   constructor (props) {

@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
-import ListOfStudents from './ListOfStudents'
-import StudentPage from './StudentPage'
-import ProjectPage from './ProjectPage'
-import AddStudentPage from './AddStudentPage'
-import AddProjectPage from './AddProjectPage'
-import EditProjectPage from './EditProjectPage'
-import EditStudentPage from './EditStudentPage'
-import DemoPage from './DemoPage'
-import AddDemoPage from './AddDemoPage'
+import ListOfStudents from './students/ListOfStudents'
+import StudentPage from './students/StudentPage'
+import ProjectPage from './projects/ProjectPage'
+import AddStudentPage from './students/AddStudentPage'
+import AddProjectPage from './projects/AddProjectPage'
+import EditProjectPage from './projects/EditProjectPage'
+import EditStudentPage from './students/EditStudentPage'
+import DemoPage from './demos/DemoPage'
+import AddDemoPage from './demos/AddDemoPage'
 
 class Main extends Component {
   constructor (props) {
