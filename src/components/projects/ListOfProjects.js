@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ProjectItem from './ProjectItem'
 import { Link } from 'react-router-dom'
+import { getAccessToken } from '../../AuthService'
 
 class ListOfProjects extends Component {
   constructor () {
@@ -13,7 +14,10 @@ class ListOfProjects extends Component {
   componentDidMount () {
     const url = 'http://localhost:8080'
     fetch(url + `/projects/${this.props.id}`, {
-      method: 'get'
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`
+      }
     })
     .then((results) => {
       return results.json()

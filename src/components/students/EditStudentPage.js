@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { getAccessToken } from '../../AuthService'
 
 class EditStudentPage extends Component {
   constructor (props) {
@@ -23,7 +24,8 @@ class EditStudentPage extends Component {
     fetch(url + '/student/' + this.props.getCurrentStudent().id, {
       method: 'post',
       headers: {
-        'Content-Type': 'application/Json'
+        'Content-Type': 'application/Json',
+        Authorization: `Bearer ${getAccessToken()}`
       },
       body: JSON.stringify(this.state)
     })

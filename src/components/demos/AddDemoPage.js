@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { getAccessToken } from '../../AuthService'
 
 class AddDemoPage extends Component {
   constructor (props) {
@@ -39,7 +40,8 @@ class AddDemoPage extends Component {
     fetch(url + '/demo/add', {
       method: 'put',
       headers: {
-        'Content-Type': 'application/Json'
+        'Content-Type': 'application/Json',
+        Authorization: `Bearer ${getAccessToken()}`
       },
       body: JSON.stringify(body)
     })
@@ -57,7 +59,10 @@ class AddDemoPage extends Component {
   getProjectList () {
     const url = 'http://localhost:8080'
     fetch(url + '/demolist/' + this.props.getCurrentStudent().id, {
-      method: 'get'
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`
+      }
     })
     .then((results) => {
       return results.json()

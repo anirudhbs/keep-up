@@ -2,11 +2,12 @@ import decode from 'jwt-decode'
 import auth0 from 'auth0-js'
 const ID_TOKEN_KEY = 'id_token'
 const ACCESS_TOKEN_KEY = 'access_token'
+const SCOPES_KEY = 'scopes'
 
 const CLIENT_ID = 'v3pHvXDgLQF4JuL3uT47bXcOsuZDxgKE'
 const CLIENT_DOMAIN = 'keep-up.auth0.com'
 const REDIRECT = 'http://localhost:3000/callback'
-const SCOPE = 'openid everything'
+let SCOPE = 'openid restricted'
 const AUDIENCE = 'http://learning-auth0.com'
 
 const auth = new auth0.WebAuth({
@@ -28,6 +29,7 @@ export function login () {
 export function logout () {
   clearIdToken()
   clearAccessToken()
+  clearScopeToken()
 }
 
 export function requireAuth (nextState, replace) {
@@ -52,6 +54,10 @@ function clearAccessToken () {
   localStorage.removeItem(ACCESS_TOKEN_KEY)
 }
 
+function clearScopeToken () {
+  localStorage.removeItem(SCOPES_KEY)
+}
+
 function getParameterByName (name) {
   let match = RegExp('[#&]' + name + '=([^&]*)').exec(window.location.hash)
   return match && decodeURIComponent(match[1].replace(/\+/g, ' '))
@@ -59,7 +65,7 @@ function getParameterByName (name) {
 
 export function setAccessToken () {
   let accessToken = getParameterByName('access_token')
-  localStorage.setItem('scopes', JSON.stringify(SCOPE))
+  localStorage.setItem(SCOPES_KEY, JSON.stringify(SCOPE))
   localStorage.setItem(ACCESS_TOKEN_KEY, accessToken)
 }
 
@@ -99,6 +105,6 @@ export function getProfile (cb) {
 }
 
 export function userHasScopes (scopes) {
-  const grantedScopes = JSON.parse(localStorage.getItem('scopes')).split(' ')
+  const grantedScopes = JSON.parse(localStorage.getItem(SCOPES_KEY)).split(' ')
   return scopes.every(scope => grantedScopes.includes(scope))
 }

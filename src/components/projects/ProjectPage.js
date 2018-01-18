@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { getAccessToken } from '../../AuthService'
 
 class ProjectPage extends Component {
   constructor (props) {
@@ -21,7 +22,10 @@ class ProjectPage extends Component {
   fetchProjectInfo () {
     const url = 'http://localhost:8080'
     fetch(url + '/project/' + this.props.match.params.pid, {
-      method: 'get'
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`
+      }
     })
     .then((results) => {
       return results.json()
@@ -38,7 +42,10 @@ class ProjectPage extends Component {
   deleteProject () {
     const url = 'http://localhost:8080'
     fetch(url + '/project/' + this.props.match.params.pid, {
-      method: 'delete'
+      method: 'delete',
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`
+      }
     })
     .then((results) => {
       return results.json()

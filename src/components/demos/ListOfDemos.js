@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import DemoItem from './DemoItem'
 import { Link } from 'react-router-dom'
+import { getAccessToken } from '../../AuthService'
 
 class ListOfDemos extends Component {
   constructor () {
@@ -13,7 +14,10 @@ class ListOfDemos extends Component {
   componentDidMount () {
     const url = 'http://localhost:8080'
     fetch(url + `/demos/${this.props.id}`, {
-      method: 'get'
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`
+      }
     })
     .then((results) => {
       return results.json()

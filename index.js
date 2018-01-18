@@ -26,29 +26,29 @@ const authCheck = jwt({
   issuer: 'https://keep-up.auth0.com/',
   algorithms: ['RS256']
 })
-const checkScopes = jwtAuthz([ 'everything' ])
+const checkScopes = jwtAuthz([ 'openid' ])
 
 app.get('/students', authCheck, checkScopes, db.getAllStudents)
 
-app.put('/student/add', db.addStudent)
-app.delete('/student/:id', db.deleteStudent)
-app.post('/student/:id', db.editStudent)
-app.get('/studentname/:sid', db.getStudentName)
+app.put('/student/add', authCheck, checkScopes, db.addStudent)
+app.delete('/student/:id', authCheck, checkScopes, db.deleteStudent)
+app.post('/student/:id', authCheck, checkScopes, db.editStudent)
+app.get('/studentname/:sid', authCheck, checkScopes, db.getStudentName)
 
-app.get('/projects/:sid', db.getStudentProjects)
-app.get('/demos/:sid', db.getStudentDemos)
-app.get('/attendance/:sid', db.getStudentAttendance)
+app.get('/projects/:sid', authCheck, checkScopes, db.getStudentProjects)
+app.get('/demos/:sid', authCheck, checkScopes, db.getStudentDemos)
+app.get('/attendance/:sid', authCheck, checkScopes, db.getStudentAttendance)
 
-app.put('/project/add', db.addProject)
-app.get('/project/:projectid', db.getProjectDetails)
-app.delete('/project/:pid', db.deleteProject)
-app.post('/project/:pid', db.editProject)
+app.put('/project/add', authCheck, checkScopes, db.addProject)
+app.get('/project/:projectid', authCheck, checkScopes, db.getProjectDetails)
+app.delete('/project/:pid', authCheck, checkScopes, db.deleteProject)
+app.post('/project/:pid', authCheck, checkScopes, db.editProject)
 
-app.put('/demo/add', db.addDemo)
-app.get('/demo/:did', db.getDemoDetails)
-app.delete('/demo/:did', db.deleteDemo)
+app.put('/demo/add', authCheck, checkScopes, db.addDemo)
+app.get('/demo/:did', authCheck, checkScopes, db.getDemoDetails)
+app.delete('/demo/:did', authCheck, checkScopes, db.deleteDemo)
 
-app.get('/demolist/:sid', db.getStudentProjectsForDemo)
+app.get('/demolist/:sid', authCheck, checkScopes, db.getStudentProjectsForDemo)
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`)

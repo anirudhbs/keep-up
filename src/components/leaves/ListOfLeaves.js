@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import LeaveItem from './LeaveItem'
+import { getAccessToken } from '../../AuthService'
+
 class ListOfLeaves extends Component {
   constructor () {
     super()
@@ -11,7 +13,10 @@ class ListOfLeaves extends Component {
   componentDidMount () {
     const url = 'http://localhost:8080'
     fetch(url + `/attendance/${this.props.id}`, {
-      method: 'get'
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`
+      }
     })
     .then((results) => {
       return results.json()

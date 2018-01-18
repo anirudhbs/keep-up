@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { getAccessToken } from '../../AuthService'
 
 class EditProjectPage extends Component {
   constructor (props) {
@@ -21,7 +22,10 @@ class EditProjectPage extends Component {
   fetchProjectDetails () {
     const url = 'http://localhost:8080'
     fetch(url + '/project/' + this.props.getCurrentProject().id, {
-      method: 'get'
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`
+      }
     })
     .then((results) => {
       return results.json()
@@ -55,9 +59,10 @@ class EditProjectPage extends Component {
     fetch(url + '/project/' + this.state.projectDetails.pid, {
       method: 'post',
       headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': '*',
-        'Content-Type': 'application/Json'
+        // 'Access-Control-Allow-Origin': '*',
+        // 'Access-Control-Allow-Methods': '*',
+        'Content-Type': 'application/Json',
+        Authorization: `Bearer ${getAccessToken()}`
       },
       body: JSON.stringify(this.state.projectDetails)
     })

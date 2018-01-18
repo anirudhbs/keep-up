@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ListOfProjects from '../projects/ListOfProjects'
 import ListOfDemos from '../demos/ListOfDemos'
 import ListOfLeaves from '../leaves/ListOfLeaves'
+import { getAccessToken } from '../../AuthService'
 
 class StudentPage extends Component {
   constructor (props) {
@@ -15,7 +16,10 @@ class StudentPage extends Component {
   getStudentName () {
     const url = 'http://localhost:8080'
     fetch(url + `/studentname/${this.state.urlId}`, {
-      method: 'get'
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`
+      }
     })
     .then((results) => {
       return results.json()
@@ -31,7 +35,10 @@ class StudentPage extends Component {
   deleteStudent () {
     const url = 'http://localhost:8080'
     fetch(url + `/student/${this.state.urlId}`, {
-      method: 'delete'
+      method: 'delete',
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`
+      }
     })
     .then((results) => results.json())
     .then((data) => {

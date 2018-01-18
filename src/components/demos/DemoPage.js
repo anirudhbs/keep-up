@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { getAccessToken } from '../../AuthService'
 
 class DemoPage extends Component {
   constructor (props) {
@@ -23,11 +24,12 @@ class DemoPage extends Component {
   fetchDemoInfo () {
     const url = 'http://localhost:8080'
     fetch(url + '/demo/' + this.props.match.params.did, {
-      method: 'get'
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`
+      }
     })
-    .then((results) => {
-      return results.json()
-    })
+    .then((results) => results.json())
     .then((data) => {
       this.setState({ demoInfo: data.data })
       this.props.setCurrentDemo(this.props.match.params.did)
@@ -46,7 +48,8 @@ class DemoPage extends Component {
     fetch(url + '/demo/' + this.state.demoInfo.did, {
       method: 'delete',
       headers: {
-        'Content-Type': 'application/Json'
+        'Content-Type': 'application/Json',
+        Authorization: `Bearer ${getAccessToken()}`
       }
     })
     .then((results) => {
