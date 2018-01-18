@@ -39,11 +39,9 @@ class AddProjectPage extends Component {
       },
       body: JSON.stringify(this.state)
     })
-    .then((results) => {
-      return results.json()
-    })
+    .then((results) => results.json())
     .then((data) => {
-      this.props.history.push(`/student/${this.state.uid}`)
+      this.onCancel()
     })
     .catch(function (error) {
       console.log('fail', error)

@@ -29,9 +29,7 @@ class EditStudentPage extends Component {
       },
       body: JSON.stringify(this.state)
     })
-    .then((results) => {
-      return results.json()
-    })
+    .then((results) => results.json())
     .then((data) => {
       console.log(data)
       this.props.history.push('/student/' + this.props.getCurrentStudent().id)

@@ -29,9 +29,7 @@ class AddStudentPage extends Component {
       },
       body: JSON.stringify(this.state)
     })
-    .then((results) => {
-      return results.json()
-    })
+    .then((results) => results.json())
     .then((data) => {
       this.props.history.push('/students')
     })

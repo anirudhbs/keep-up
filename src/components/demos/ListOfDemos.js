@@ -11,7 +11,7 @@ class ListOfDemos extends Component {
     }
   }
 
-  componentDidMount () {
+  getDemos () {
     const url = 'http://localhost:8080'
     fetch(url + `/demos/${this.props.id}`, {
       method: 'get',
@@ -19,15 +19,17 @@ class ListOfDemos extends Component {
         Authorization: `Bearer ${getAccessToken()}`
       }
     })
-    .then((results) => {
-      return results.json()
-    })
+    .then((results) => results.json())
     .then((data) => {
       this.setState({ demos: data.data })
     })
     .catch(function (error) {
       console.log('fail', error)
     })
+  }
+
+  componentDidMount () {
+    this.getDemos()
   }
 
   render () {

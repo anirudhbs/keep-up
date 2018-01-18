@@ -5,13 +5,7 @@ class ProjectPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      projectInfo: {
-        pid: null,
-        uid: null,
-        studentName: null,
-        projectname: null,
-        repo: null
-      }
+      projectInfo: {}
     }
   }
 
@@ -27,9 +21,7 @@ class ProjectPage extends Component {
         Authorization: `Bearer ${getAccessToken()}`
       }
     })
-    .then((results) => {
-      return results.json()
-    })
+    .then((results) => results.json())
     .then((data) => {
       this.setState({ projectInfo: data.data })
       this.props.setCurrentProject(this.props.match.params.pid)
@@ -47,11 +39,9 @@ class ProjectPage extends Component {
         Authorization: `Bearer ${getAccessToken()}`
       }
     })
-    .then((results) => {
-      return results.json()
-    })
+    .then((results) => results.json())
     .then((data) => {
-      this.props.history.push('/student/' + this.state.projectInfo.uid)
+      this.goBack()
     })
     .catch(function (error) {
       console.log('fail', error)

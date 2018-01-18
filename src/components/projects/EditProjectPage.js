@@ -27,9 +27,7 @@ class EditProjectPage extends Component {
         Authorization: `Bearer ${getAccessToken()}`
       }
     })
-    .then((results) => {
-      return results.json()
-    })
+    .then((results) => results.json())
     .then((data) => {
       this.setState({ projectDetails: data.data })
     })
@@ -59,8 +57,6 @@ class EditProjectPage extends Component {
     fetch(url + '/project/' + this.state.projectDetails.pid, {
       method: 'post',
       headers: {
-        // 'Access-Control-Allow-Origin': '*',
-        // 'Access-Control-Allow-Methods': '*',
         'Content-Type': 'application/Json',
         Authorization: `Bearer ${getAccessToken()}`
       },

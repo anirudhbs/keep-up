@@ -5,15 +5,7 @@ class DemoPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      demoInfo: {
-        did: null,
-        uid: null,
-        name: null,
-        pid: null,
-        projectname: null,
-        date: null,
-        rating: null
-      }
+      demoInfo: {}
     }
   }
 

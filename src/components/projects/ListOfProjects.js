@@ -11,7 +11,7 @@ class ListOfProjects extends Component {
     }
   }
 
-  componentDidMount () {
+  getProjects () {
     const url = 'http://localhost:8080'
     fetch(url + `/projects/${this.props.id}`, {
       method: 'get',
@@ -19,15 +19,17 @@ class ListOfProjects extends Component {
         Authorization: `Bearer ${getAccessToken()}`
       }
     })
-    .then((results) => {
-      return results.json()
-    })
+    .then((results) => results.json())
     .then((data) => {
       this.setState({ projects: data.data })
     })
     .catch(function (error) {
       console.log('fail', error)
     })
+  }
+
+  componentDidMount () {
+    this.getProjects()
   }
 
   render () {

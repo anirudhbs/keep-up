@@ -24,7 +24,6 @@ class AddDemoPage extends Component {
   }
 
   handleSubmit (event) {
-    console.log(this.state)
     this.addDemo()
   }
 
@@ -45,9 +44,7 @@ class AddDemoPage extends Component {
       },
       body: JSON.stringify(body)
     })
-    .then((results) => {
-      return results.json()
-    })
+    .then((results) => results.json())
     .then((data) => {
       this.props.history.push('/student/' + this.state.uid)
     })
@@ -64,9 +61,7 @@ class AddDemoPage extends Component {
         Authorization: `Bearer ${getAccessToken()}`
       }
     })
-    .then((results) => {
-      return results.json()
-    })
+    .then((results) => results.json())
     .then((data) => {
       const list = this.state.projectList
       this.setState({ projectList: list.concat(data.data) })
@@ -82,7 +77,6 @@ class AddDemoPage extends Component {
 
   handleChangeDate (event) {
     this.setState({date: event.target.value})
-
   }
 
   getTodayDate () {

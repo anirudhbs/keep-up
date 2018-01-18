@@ -21,9 +21,7 @@ class StudentPage extends Component {
         Authorization: `Bearer ${getAccessToken()}`
       }
     })
-    .then((results) => {
-      return results.json()
-    })
+    .then((results) => results.json())
     .then((data) => {
       this.setState({ currentStudentName: data.data.name })
     })

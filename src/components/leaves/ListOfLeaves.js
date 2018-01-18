@@ -10,7 +10,7 @@ class ListOfLeaves extends Component {
     }
   }
 
-  componentDidMount () {
+  getLeaves () {
     const url = 'http://localhost:8080'
     fetch(url + `/attendance/${this.props.id}`, {
       method: 'get',
@@ -18,15 +18,17 @@ class ListOfLeaves extends Component {
         Authorization: `Bearer ${getAccessToken()}`
       }
     })
-    .then((results) => {
-      return results.json()
-    })
+    .then((results) => results.json())
     .then((data) => {
       this.setState({ leaves: data.data })
     })
     .catch(function (error) {
       console.log('fail', error)
     })
+  }
+
+  componentDidMount () {
+    this.getLeaves()
   }
 
   render () {
