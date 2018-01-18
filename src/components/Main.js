@@ -9,6 +9,8 @@ import EditProjectPage from './projects/EditProjectPage'
 import EditStudentPage from './students/EditStudentPage'
 import DemoPage from './demos/DemoPage'
 import AddDemoPage from './demos/AddDemoPage'
+import { getAccessToken } from '../AuthService'
+import Callback from './Callback'
 
 class Main extends Component {
   constructor (props) {
@@ -25,7 +27,10 @@ class Main extends Component {
   fetchData () {
     const url = 'http://localhost:8080'
     fetch(url + '/students', {
-      method: 'get'
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`
+      }
     })
     .then((results) => {
       return results.json()
@@ -68,6 +73,7 @@ class Main extends Component {
         <Switch>
           <Route exact path='/' render={(props) => <ListOfStudents students={this.state.students}
             openStudentsPage={this.setCurrentStudent.bind(this)} fetchData={this.fetchData.bind(this)} />} />
+          <Route path='/callback' component={Callback} />
           <Route exact path='/students/add' component={AddStudentPage} />
           <Route exact path='/student/edit' render={(props, history) =>
             <EditStudentPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} />} />

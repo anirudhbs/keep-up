@@ -5,13 +5,28 @@ const bodyParser = require('body-parser')
 const PORT = 8080
 const router = require('./routes')
 const db = require('./db')
+const jwt = require('express-jwt')
+const jwks = require('jwks-rsa')
 
 app.use(cors())
 app.use(express.static('public'))
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/', router)
 
-app.get('/students', db.getAllStudents)
+const authCheck = jwt({
+  secret: jwks.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: 'https://keep-up.auth0.com/.well-known/jwks.json'
+  }),
+  audience: 'http://learning-auth0.com',
+  issuer: 'https://keep-up.auth0.com/',
+  algorithms: ['RS256']
+})
+
+app.get('/students', authCheck, db.getAllStudents)
 
 app.put('/student/add', db.addStudent)
 app.delete('/student/:id', db.deleteStudent)
