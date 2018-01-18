@@ -6,13 +6,15 @@ const ACCESS_TOKEN_KEY = 'access_token'
 const CLIENT_ID = 'v3pHvXDgLQF4JuL3uT47bXcOsuZDxgKE'
 const CLIENT_DOMAIN = 'keep-up.auth0.com'
 const REDIRECT = 'http://localhost:3000/callback'
-const SCOPE = 'everything'
+const SCOPE = 'openid everything'
 const AUDIENCE = 'http://learning-auth0.com'
 
 const auth = new auth0.WebAuth({
   clientID: CLIENT_ID,
   domain: CLIENT_DOMAIN
 })
+
+export let userProfile
 
 export function login () {
   auth.authorize({
@@ -83,4 +85,14 @@ function getTokenExpirationDate (encodedToken) {
 function isTokenExpired (token) {
   const expirationDate = getTokenExpirationDate(token)
   return expirationDate < new Date()
+}
+
+export function getProfile (cb) {
+  let accessToken = getAccessToken()
+  auth.client.userInfo(accessToken, (err, profile) => {
+    if (profile) {
+      userProfile = profile
+    }
+    cb(err, profile)
+  })
 }

@@ -33,14 +33,13 @@ class StudentPage extends Component {
     fetch(url + `/student/${this.state.urlId}`, {
       method: 'delete'
     })
-    .then((results) => {
-      return results.json()
-    })
+    .then((results) => results.json())
     .then((data) => {
-      this.props.history.push('//students')
+      this.props.history.push('/students')
     })
     .catch(function (error) {
       console.log('fail', error)
+      this.props.history.push('/students')
     })
   }
 

@@ -23,6 +23,7 @@ class AddDemoPage extends Component {
   }
 
   handleSubmit (event) {
+    console.log(this.state)
     this.addDemo()
   }
 
@@ -32,7 +33,7 @@ class AddDemoPage extends Component {
     const body = {}
     body.uid = this.state.uid
     body.pid = this.state.pid
-    body.rating = this.state.uid
+    body.rating = this.state.rating
     body.date = this.state.date
 
     fetch(url + '/demo/add', {
@@ -97,7 +98,7 @@ class AddDemoPage extends Component {
         <div>Rating</div>
         <select value={this.state.rating} onChange={this.handleChange}>
           {
-            [0, 1, 2, 3, 4, 5].map((cur) =>
+            [null, 1, 2, 3, 4, 5].map((cur) =>
               <option key={cur} value={cur}>{cur}</option>
           )
           }

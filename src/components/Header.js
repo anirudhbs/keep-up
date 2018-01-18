@@ -22,6 +22,7 @@ class Header extends Component {
         <nav>
           <ul className='login-list'>
             <li><Link to='/students' className='Link homeButton'>Home</Link></li>
+            <li><Link to='/profile' className='Link homeButton'>Profile</Link></li>
             <li><Link to='/'><button className='login' onClick={() => logout()}>Log out</button></Link></li>
           </ul>
         </nav>
