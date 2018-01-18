@@ -75,7 +75,7 @@ db.getStudentAttendance = (req, res) => {
 }
 
 db.getProjectDetails = (req, res) => {
-  const id = req.params.projectid
+  const id = req.params.pid
   const queryString = 'SELECT p.pid, p.uid, s.name AS "studentName", p.projectName, p.repo FROM projects p, students s WHERE pid = $1 AND p.uid=s.uid'
   const values = [id]
   client.query(queryString, values, (err, response) => {
@@ -104,7 +104,7 @@ db.addStudent = (req, res) => {
 
 db.deleteStudent = (req, res) => {
   const queryString = 'DELETE FROM students WHERE uid=$1'
-  const values = [req.params.id]
+  const values = [req.params.sid]
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.json({ status: 'fail' })
@@ -116,7 +116,7 @@ db.deleteStudent = (req, res) => {
 
 db.editStudent = (req, res) => {
   const queryString = 'UPDATE students SET name = $2 WHERE uid=$1'
-  const values = [req.params.id, req.body.name]
+  const values = [req.params.sid, req.body.name]
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.json({ status: 'fail' })
