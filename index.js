@@ -49,7 +49,6 @@ app.get('/demo/:did', db.getDemoDetails)
 app.delete('/demo/:did', db.deleteDemo)
 
 app.get('/demolist/:sid', db.getStudentProjectsForDemo)
-// app.get('/project/:pid', db.getProjectDetails2)
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`)

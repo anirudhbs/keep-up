@@ -1,12 +1,13 @@
 const db = {}
 const { Client } = require('pg')
+const { postgres } = require('./config')
 
 const client = new Client({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'postgres',
-  password: 'postgres',
-  port: 5432
+  user: postgres.USER,
+  host: postgres.HOST,
+  database: postgres.DATABASE,
+  password: postgres.PASSWORD,
+  port: postgres.PORT
 })
 
 client.connect()
@@ -214,21 +215,6 @@ db.getStudentProjectsForDemo = (req, res) => {
     }
   })
 }
-
-// db.getProjectDetails2 = (req, res) => {
-//   const queryString = 'SELECT * FROM projects WHERE pid = $1'
-//   const values = [req.params.pid]
-//   client.query(queryString, values, (err, response) => {
-//     if (err) {
-//       res.json({ status: 'fail' })
-//     } else {
-//       res.json({
-//         status: 'success',
-//         data: response.rows[0]
-//       })
-//     }
-//   })
-// }
 
 db.getDemoDetails = (req, res) => {
   const queryString = 'SELECT d.did, d.uid, s.name, d.pid, p.projectname, d.date, d.rating from demos d, students s, projects p WHERE d.did=$1 AND d.pid = p.pid AND d.uid = s.uid'
