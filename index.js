@@ -40,6 +40,12 @@ app.all('/*', authCheck, (req, res, next) => {
   next()
 })
 
+app.put('/student/add', (req, res, next) => {
+  const { sub } = req.user || null
+  if (sub === 'auth0|5a5f2e183eca610bd65c1f42') next()
+  else res.status(403).json({ status: 'error', data: null })
+})
+
 app.get('/students', db.getAllStudents)
 
 app.put('/student/add', db.addStudent)

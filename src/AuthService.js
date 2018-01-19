@@ -3,6 +3,7 @@ import auth0 from 'auth0-js'
 const ID_TOKEN_KEY = 'id_token'
 const ACCESS_TOKEN_KEY = 'access_token'
 const SCOPES_KEY = 'scopes'
+const ID_KEY = 'auth0_token'
 
 const CLIENT_ID = 'v3pHvXDgLQF4JuL3uT47bXcOsuZDxgKE'
 const CLIENT_DOMAIN = 'keep-up.auth0.com'
@@ -30,6 +31,7 @@ export function logout () {
   clearIdToken()
   clearAccessToken()
   clearScopeToken()
+  clearAuthToken()
 }
 
 export function requireAuth (nextState, replace) {
@@ -44,6 +46,10 @@ export function getIdToken () {
 
 export function getAccessToken () {
   return localStorage.getItem(ACCESS_TOKEN_KEY)
+}
+
+function clearAuthToken () {
+  localStorage.removeItem(ID_KEY)
 }
 
 function clearIdToken () {
@@ -94,14 +100,29 @@ function isTokenExpired (token) {
   return expirationDate < new Date()
 }
 
+// export function getProfile (cb) {
+//   let accessToken = getAccessToken()
+//   auth.client.userInfo(accessToken, (err, profile) => {
+//     if (profile) {
+//       userProfile = profile
+//       localStorage.setItem(ID_KEY, profile.sub)
+//     }
+//     cb(err, profile)
+//   })
+// }
+
 export function getProfile (cb) {
   let accessToken = getAccessToken()
   auth.client.userInfo(accessToken, (err, profile) => {
     if (profile) {
-      userProfile = profile
+      localStorage.setItem(ID_KEY, profile.sub)
     }
-    cb(err, profile)
   })
+}
+
+export function isAdmin () {
+  const id = localStorage.getItem(ID_KEY)
+  return id === 'auth0|5a5f2e183eca610bd65c1f42'
 }
 
 export function userHasScopes (scopes) {
