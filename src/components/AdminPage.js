@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { userProfile, getProfile } from '../AuthService'
+// import { userProfile, getProfile } from '../AuthService'
 import { Link } from 'react-router-dom'
 
 class AdminPage extends Component {

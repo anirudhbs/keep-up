@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import StudentItem from './StudentItem'
 import { Link } from 'react-router-dom'
-import { isLoggedIn, getProfile, isAdmin } from '../../AuthService'
+import { isAdmin } from '../../AuthService'
 
 class ListOfStudents extends Component {
   componentWillMount () {
     this.props.fetchData()
-    getProfile()
+    // getProfile()
   }
 
   render () {
+    console.log(isAdmin())
     return (
       <div className='ListOfStudents'>
         <ul>
