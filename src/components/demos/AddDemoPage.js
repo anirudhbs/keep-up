@@ -29,12 +29,12 @@ class AddDemoPage extends Component {
 
   addDemo () {
     const url = 'http://localhost:8080'
-
-    const body = {}
-    body.uid = this.state.uid
-    body.pid = this.state.pid
-    body.rating = this.state.rating
-    body.date = this.state.date
+    const body = {
+      uid: this.state.uid,
+      pid: this.state.pid,
+      rating: this.state.rating,
+      date: this.state.date
+    }
     fetch(url + '/demo/add', {
       method: 'put',
       headers: {
@@ -88,7 +88,7 @@ class AddDemoPage extends Component {
 
   render () {
     return (
-      <div className='AddStudentPage'>
+      <div>
         <h2>Add Demo</h2>
         <div>Date</div>
         <input type='date' value={this.state.date} onChange={this.handleChangeDate.bind(this)} />

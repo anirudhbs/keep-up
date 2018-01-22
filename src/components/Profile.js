@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { isAdmin } from '../AuthService'
 
 class Profile extends Component {
   constructor () {
@@ -13,10 +15,14 @@ class Profile extends Component {
   }
 
   render () {
-    const { profile } = this.state
     return (
       <div>
-        <pre>{profile}</pre>
+        {
+          isAdmin() && (
+          <div className='profile'>
+            <Link to='/students/add' className='Link AddStudentButton'>Add Student</Link>
+          </div>)
+        }
       </div>
     )
   }

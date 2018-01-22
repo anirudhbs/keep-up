@@ -1,13 +1,12 @@
 const express = require('express')
-const cors = require('cors')
 const app = express()
-const bodyParser = require('body-parser')
-const PORT = 8080
-const router = require('./routes')
-const db = require('./db')
+const cors = require('cors')
 const jwt = require('express-jwt')
 const jwks = require('jwks-rsa')
-// const jwtAuthz = require('express-jwt-authz')
+const bodyParser = require('body-parser')
+const router = require('./routes')
+const db = require('./db')
+const PORT = 8080
 
 app.use(cors())
 app.use(express.static('public'))
@@ -26,7 +25,6 @@ const authCheck = jwt({
   issuer: 'https://keep-up.auth0.com/',
   algorithms: ['RS256']
 })
-// const checkScopes = jwtAuthz(['openid'])
 
 // app.all('/*', authCheck, (req, res, next) => {
 //   // console.log(req.user.sub) // auth0|5a5f2e183eca610bd65c1f42

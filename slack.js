@@ -1,5 +1,5 @@
 const fetch = require('node-fetch')
-const {token} = require('./config')
+const { token } = require('./config')
 
 const { Client } = require('pg')
 const { postgres } = require('./config')

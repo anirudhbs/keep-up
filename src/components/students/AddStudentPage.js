@@ -44,7 +44,7 @@ class AddStudentPage extends Component {
 
   render () {
     return (
-      <div className='AddStudentPage'>
+      <div>
         <h2>Add Student</h2>
         <div>Name</div>
         <input type='text' value={this.state.studentName} onChange={this.handleChange} />

@@ -22,11 +22,6 @@ li {
   text-decoration: none;
 }
 
-.ListOfStudents {
-  display: flex;
-  margin: 0 auto;
-}
-
 .ListItem {
   display: block;
   border: 1px solid black;
@@ -40,6 +35,7 @@ li {
 }
 
 .AddStudentButton {
+  width: 200px;
   margin: 3px;
   background-color: #20b2cc;
   display: block;
@@ -87,10 +83,6 @@ button:hover {
   background-color: #20c2dc;
 }
 
-.AddStudentPage {
-  display: block;
-}
-
 form {
   display: inline-block;
   text-align: center;
@@ -100,7 +92,6 @@ form {
   background-color: #fc5b5b;
   border: none;
   padding: 12px 20px;
-  border-radius: 4px;
 }
 
 .deleteButton:hover {
@@ -183,7 +174,6 @@ input[type=date] {
 }
 
 .login {
-  /* float: right; */
   background-color: #999999;
   color: white;
   border: none;
@@ -198,4 +188,12 @@ input[type=date] {
 
 .login-list{
   display: flex;
+}
+
+.profile {
+  display: inline-block;
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  align-content: center;
 }

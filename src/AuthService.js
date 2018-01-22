@@ -100,17 +100,6 @@ function isTokenExpired (token) {
   return expirationDate < new Date()
 }
 
-// export function getProfile (cb) {
-//   let accessToken = getAccessToken()
-//   auth.client.userInfo(accessToken, (err, profile) => {
-//     if (profile) {
-//       userProfile = profile
-//       localStorage.setItem(ID_KEY, profile.sub)
-//     }
-//     cb(err, profile)
-//   })
-// }
-
 export function getProfile (cb) {
   let accessToken = getAccessToken()
   auth.client.userInfo(accessToken, (err, profile) => {

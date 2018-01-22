@@ -11,22 +11,6 @@ class ListOfLeaves extends Component {
   }
 
   getLeaves () {
-    const url = 'http://localhost:8080'
-    fetch(url + `/attendance/${this.props.id}`, {
-      headers: {
-        Authorization: `Bearer ${getAccessToken()}`
-      }
-    })
-    .then((results) => results.json())
-    .then((data) => {
-      this.setState({ leaves: data.data })
-    })
-    .catch(function (error) {
-      console.log('fail', error)
-    })
-  }
-
-  getNewLeaves () {
   const url = 'http://localhost:8080'
   fetch(url + `/leaves/${this.props.getCurrentStudent().slack}`, {
     headers: {
@@ -35,7 +19,6 @@ class ListOfLeaves extends Component {
   })
   .then((results) => results.json())
   .then((data) => {
-    console.log(data)
     this.setState({ leaves: data.data })
   })
   .catch(function (error) {
@@ -44,7 +27,7 @@ class ListOfLeaves extends Component {
   }
 
   componentDidMount () {
-    this.getNewLeaves()
+    this.getLeaves()
   }
 
   render () {
