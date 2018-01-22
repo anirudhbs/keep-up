@@ -13,7 +13,6 @@ class ListOfLeaves extends Component {
   getLeaves () {
     const url = 'http://localhost:8080'
     fetch(url + `/attendance/${this.props.id}`, {
-      method: 'get',
       headers: {
         Authorization: `Bearer ${getAccessToken()}`
       }

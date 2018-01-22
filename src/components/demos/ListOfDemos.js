@@ -14,7 +14,6 @@ class ListOfDemos extends Component {
   getDemos () {
     const url = 'http://localhost:8080'
     fetch(url + `/demos/${this.props.id}`, {
-      method: 'get',
       headers: {
         Authorization: `Bearer ${getAccessToken()}`
       }

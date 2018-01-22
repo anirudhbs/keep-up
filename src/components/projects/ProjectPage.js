@@ -16,7 +16,6 @@ class ProjectPage extends Component {
   fetchProjectInfo () {
     const url = 'http://localhost:8080'
     fetch(url + '/project/' + this.props.match.params.pid, {
-      method: 'get',
       headers: {
         Authorization: `Bearer ${getAccessToken()}`
       }

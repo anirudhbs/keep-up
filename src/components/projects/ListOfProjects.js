@@ -14,7 +14,6 @@ class ListOfProjects extends Component {
   getProjects () {
     const url = 'http://localhost:8080'
     fetch(url + `/projects/${this.props.id}`, {
-      method: 'get',
       headers: {
         Authorization: `Bearer ${getAccessToken()}`
       }

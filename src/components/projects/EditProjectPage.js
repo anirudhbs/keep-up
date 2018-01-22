@@ -22,7 +22,6 @@ class EditProjectPage extends Component {
   fetchProjectDetails () {
     const url = 'http://localhost:8080'
     fetch(url + '/project/' + this.props.getCurrentProject().id, {
-      method: 'get',
       headers: {
         Authorization: `Bearer ${getAccessToken()}`
       }

@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import StudentItem from './StudentItem'
 import { Link } from 'react-router-dom'
-import { isAdmin } from '../../AuthService'
+import { isAdmin, getProfile } from '../../AuthService'
 
 class ListOfStudents extends Component {
   componentWillMount () {
     this.props.fetchData()
-    // getProfile()
+    getProfile()
   }
 
   render () {
-    console.log(isAdmin())
     return (
       <div className='ListOfStudents'>
         <ul>
@@ -18,7 +17,7 @@ class ListOfStudents extends Component {
           {isAdmin() && (<Link to='/students/add' className='Link AddStudentButton'>Add Student</Link>)}
           {
             this.props.students.map(cur =>
-              <StudentItem key={cur.uid} id={cur.uid} name={cur.name} openStudentsPage={this.props.openStudentsPage} />
+              <StudentItem key={cur.uid} id={cur.uid} name={cur.name} />
             )
           }
         </ul>

@@ -16,7 +16,6 @@ class StudentPage extends Component {
   getStudentName () {
     const url = 'http://localhost:8080'
     fetch(url + `/studentname/${this.state.urlId}`, {
-      method: 'get',
       headers: {
         Authorization: `Bearer ${getAccessToken()}`
       }

@@ -29,7 +29,6 @@ class Main extends Component {
   fetchData () {
     const url = 'http://localhost:8080'
     fetch(url + '/students', {
-      method: 'get',
       headers: {
         Authorization: `Bearer ${getAccessToken()}`
       }
@@ -41,14 +40,6 @@ class Main extends Component {
     .catch(function (error) {
       console.log('fail', error)
     })
-  }
-
-  setCurrentStudent (id, name) {
-    this.setState({currentStudentId: id, currentStudentName: name})
-  }
-
-  getCurrentStudent () {
-    return { id: this.state.currentStudentId, name: this.state.currentStudentName }
   }
 
   setCurrentProject (id) {
@@ -72,7 +63,7 @@ class Main extends Component {
       <main>
         <Switch>
           <Route exact path='/students' render={(props) => <ListOfStudents students={this.state.students}
-            openStudentsPage={this.setCurrentStudent.bind(this)} fetchData={this.fetchData.bind(this)} />} />
+            fetchData={this.fetchData.bind(this)} />} />
           <Route path='/callback' component={Callback} />
           <Route path='/admin' component={AdminPage} />
           <Route exact path='/profile' component={Profile} />

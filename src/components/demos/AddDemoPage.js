@@ -56,7 +56,6 @@ class AddDemoPage extends Component {
   getProjectList () {
     const url = 'http://localhost:8080'
     fetch(url + '/demolist/' + this.props.getCurrentStudent().id, {
-      method: 'get',
       headers: {
         Authorization: `Bearer ${getAccessToken()}`
       }
