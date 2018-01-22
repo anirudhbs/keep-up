@@ -13,7 +13,7 @@ const client = new Client({
 client.connect()
 
 db.getAllStudents = (req, res) => {
-  const queryString = 'SELECT uid, name FROM students WHERE status=TRUE ORDER BY uid'
+  const queryString = 'SELECT uid, name, slackid FROM students WHERE status=TRUE ORDER BY uid'
   client.query(queryString, (err, response) => {
     if (err) {
       res.json({ status: 'fail', data: [] })
@@ -245,4 +245,20 @@ db.getStudentName = (req, res) => {
     }
   })
 }
+
+db.getLeaves = (req, res) => {
+  const queryString = 'SELECT lid, slackid, date, reason FROM leaves WHERE slackid = $1'
+  const values = [req.params.sid]
+  client.query(queryString, values, (err, response) => {
+    if (err) {
+      res.json({ status: 'fail' })
+    } else {
+      res.json({
+        status: 'success',
+        data: response.rows
+      })
+    }
+  })
+}
+
 module.exports = db

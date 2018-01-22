@@ -15,25 +15,15 @@ const client = new Client({
 client.connect()
 
 function getUsers (cb) {
-  fetch(`https://slack.com/api/users.list?token=${token}`)
+  fetch(`https://slack.com/api/channels.info?token=${token}&channel=C048L0JR2`)
   .then((res) => res.text())
   .then((body) => {
-    const members = JSON.parse(body).members
-    const userList = members.map((cur) => ({ id: cur.id, name: cur.real_name }))
-    cb(userList)
+    const members = JSON.parse(body).channel.members
+    cb(members)
   })
 }
 
-getUsers((data) => {
-  console.log(data)
-  addToDB(data)
-})
-
-// checkWhoMessaged((data) => {
-//   console.log(data)
-// })
-
-function addToDB (arr) {
+function addStudentsToDB (arr) {
   arr.map((cur) => {
     const queryString = 'INSERT INTO students VALUES(DEFAULT, $1, $2, $3, $4)'
     const values = [cur.name, true, cur.id, cur.name]
@@ -48,15 +38,35 @@ function addToDB (arr) {
 }
 
 function checkWhoMessaged (cb) {
-  fetch(`https://slack.com/api/channels.history?token=${token}&channel=C048L0JR2&count=30`)
+  const oldest = getOldestDate()
+  fetch(`https://slack.com/api/channels.history?token=${token}&channel=C048L0JR2&oldest=${oldest}`)
   .then((res) => res.text())
   .then((body) => {
     const messages = JSON.parse(body).messages
-    const activeUsers = messages.map((cur) => cur.user)
+    const activeUsers = messages.map((cur) => ({ user: cur.user, date: cur.ts }))
     cb(activeUsers)
   })
 }
 
+function getOldestDate () {
+  const t = new Date
+  const str = t.toISOString().slice(0, 10)
+  return new Date(str) / 1000
+}
+
 checkWhoMessaged((data) => {
-  console.log(data)
+  const list = data.filter((cur) => cur.user !== undefined).map((cur) => cur.user)
+  getUsers((data) => {
+    data.map((cur) => {
+      if (!list.includes(cur)) {
+        const date = new Date().toLocaleDateString()
+        const queryString = 'INSERT INTO leaves VALUES(DEFAULT, $1, $2, $3)'
+        const values = [cur, date, 'placeholder']
+        client.query(queryString, values, (err, res) => {
+          if (err) console.log('error!')
+          else console.log('success')
+        })
+      }
+    })
+  })
 })
