@@ -35,11 +35,10 @@ class AddDemoPage extends Component {
     body.pid = this.state.pid
     body.rating = this.state.rating
     body.date = this.state.date
-
     fetch(url + '/demo/add', {
       method: 'put',
       headers: {
-        'Content-Type': 'application/Json',
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${getAccessToken()}`
       },
       body: JSON.stringify(body)

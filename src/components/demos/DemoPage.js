@@ -24,7 +24,7 @@ class DemoPage extends Component {
     .then((results) => results.json())
     .then((data) => {
       this.setState({ demoInfo: data.data })
-      this.props.setCurrentDemo(this.props.match.params.did)
+      // this.props.setCurrentDemo(this.props.match.params.did)
     })
     .catch(function (error) {
       console.log('fail', error)
@@ -40,7 +40,6 @@ class DemoPage extends Component {
     fetch(url + '/demo/' + this.state.demoInfo.did, {
       method: 'delete',
       headers: {
-        'Content-Type': 'application/Json',
         Authorization: `Bearer ${getAccessToken()}`
       }
     })

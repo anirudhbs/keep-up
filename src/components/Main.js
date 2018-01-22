@@ -42,6 +42,14 @@ class Main extends Component {
     })
   }
 
+  setCurrentStudent (id, name, slack) {
+    this.setState({currentStudentId: id, currentStudentName: name, currentStudentSlack: slack})
+  }
+
+  getCurrentStudent () {
+    return { id: this.state.currentStudentId, name: this.state.currentStudentName, slack: this.state.currentStudentSlack }
+  }
+
   setCurrentProject (id) {
     this.setState({ currentProjectId: id })
   }
@@ -50,20 +58,12 @@ class Main extends Component {
     return {id: this.state.currentProjectId}
   }
 
-  setCurrentDemo (id) {
-    this.setState({ currentDemoId: id })
-  }
-
-  getCurrentDemo () {
-    return { id: this.state.currentDemoId }
-  }
-
   render () {
     return (
       <main>
         <Switch>
           <Route exact path='/students' render={(props) => <ListOfStudents students={this.state.students}
-            fetchData={this.fetchData.bind(this)} />} />
+            openStudentsPage={this.setCurrentStudent.bind(this)} fetchData={this.fetchData.bind(this)} />} />
           <Route path='/callback' component={Callback} />
           <Route path='/admin' component={AdminPage} />
           <Route exact path='/profile' component={Profile} />
@@ -72,11 +72,11 @@ class Main extends Component {
             <EditStudentPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} />} />
 
           <Route path='/student/:sid' render={(props, history, location) =>
-            <StudentPage history={props.history} location={props.location} />} />
+            <StudentPage history={props.history} location={props.location} getCurrentStudent={this.getCurrentStudent.bind(this)} />} />
           <Route exact path='/project/:pid' render={(props, history) =>
             <ProjectPage match={props.match} history={props.history} setCurrentProject={this.setCurrentProject.bind(this)} />} />
           <Route exact path='/demo/:did' render={(props, history) =>
-            <DemoPage setCurrentDemo={this.setCurrentDemo.bind(this)} match={props.match} history={props.history} />} />
+            <DemoPage match={props.match} history={props.history} />} />
 
           <Route exact path='/projects/add' render={(props, history) =>
             <AddProjectPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history}

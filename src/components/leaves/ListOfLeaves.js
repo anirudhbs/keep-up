@@ -26,8 +26,25 @@ class ListOfLeaves extends Component {
     })
   }
 
+  getNewLeaves () {
+  const url = 'http://localhost:8080'
+  fetch(url + `/leaves/${this.props.getCurrentStudent().slack}`, {
+    headers: {
+      Authorization: `Bearer ${getAccessToken()}`
+    }
+  })
+  .then((results) => results.json())
+  .then((data) => {
+    console.log(data)
+    this.setState({ leaves: data.data })
+  })
+  .catch(function (error) {
+    console.log('fail', error)
+  })
+  }
+
   componentDidMount () {
-    this.getLeaves()
+    this.getNewLeaves()
   }
 
   render () {
@@ -37,7 +54,7 @@ class ListOfLeaves extends Component {
           <h2>Leaves</h2>
           {
             this.state.leaves.map(cur =>
-              <LeaveItem key={cur.date} date={cur.date} reason={cur.reason} />
+              <LeaveItem key={cur.lid} date={cur.date} />
             )
           }
         </ul>

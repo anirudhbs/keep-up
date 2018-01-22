@@ -17,7 +17,7 @@ class ListOfStudents extends Component {
           {isAdmin() && (<Link to='/students/add' className='Link AddStudentButton'>Add Student</Link>)}
           {
             this.props.students.map(cur =>
-              <StudentItem key={cur.uid} id={cur.uid} name={cur.name} />
+              <StudentItem key={cur.uid} id={cur.uid} name={cur.name} slackid={cur.slackid} openStudentsPage={this.props.openStudentsPage} />
             )
           }
         </ul>

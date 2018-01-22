@@ -63,7 +63,7 @@ class StudentPage extends Component {
         <div>
           <ListOfProjects id={this.state.urlId} className='pageColumn' />
           <ListOfDemos id={this.state.urlId} className='pageColumn' />
-          <ListOfLeaves id={this.state.urlId} className='pageColumn' />
+          <ListOfLeaves id={this.state.urlId} getCurrentStudent={this.props.getCurrentStudent} className='pageColumn' />
         </div>
         <hr />
         <div className='buttons'>
