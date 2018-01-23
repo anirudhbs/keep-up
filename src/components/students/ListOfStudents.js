@@ -10,9 +10,9 @@ class ListOfStudents extends Component {
 
   render () {
     return (
-      <div>
-        <ul>
-          <h2>Students</h2>
+      <div className='listOfStudents'>
+        <h2>Students</h2>
+        <ul className='listOfStudents'>
           {
             this.props.students.map(cur =>
               <StudentItem key={cur.uid} id={cur.uid} name={cur.name} slackid={cur.slackid} openStudentsPage={this.props.openStudentsPage} />

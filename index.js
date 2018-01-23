@@ -26,10 +26,10 @@ const authCheck = jwt({
   algorithms: ['RS256']
 })
 
-// app.all('/*', authCheck, (req, res, next) => {
-//   // console.log(req.user.sub) // auth0|5a5f2e183eca610bd65c1f42
-//   next()
-// })
+app.all('/*', authCheck, (req, res, next) => {
+  // console.log(req.user.sub) // auth0|5a5f2e183eca610bd65c1f42
+  next()
+})
 
 app.put('/student/add', (req, res, next) => {
   const { sub } = req.user || null
@@ -46,7 +46,7 @@ app.get('/studentname/:sid', db.getStudentName)
 
 app.get('/projects/:sid', db.getStudentProjects)
 app.get('/demos/:sid', db.getStudentDemos)
-app.get('/attendance/:sid', db.getStudentAttendance)
+app.get('/leaves/:sid', db.getLeaves)
 
 app.put('/project/add', db.addProject)
 app.get('/project/:pid', db.getProjectDetails)
@@ -58,7 +58,6 @@ app.get('/demo/:did', db.getDemoDetails)
 app.delete('/demo/:did', db.deleteDemo)
 
 app.get('/demolist/:sid', db.getStudentProjectsForDemo)
-app.get('/leaves/:sid', db.getLeaves)
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`)

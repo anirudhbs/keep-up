@@ -58,22 +58,6 @@ db.getStudentDemos = (req, res) => {
   })
 }
 
-db.getStudentAttendance = (req, res) => {
-  const id = req.params.sid
-  const queryString = 'SELECT uid, date, reason FROM attendance WHERE uid = $1'
-  const values = [id]
-  client.query(queryString, values, (err, response) => {
-    if (err) {
-      res.json({ status: 'fail', data: [] })
-    } else {
-      res.json({
-        status: 'success',
-        data: response.rows
-      })
-    }
-  })
-}
-
 db.getProjectDetails = (req, res) => {
   const id = req.params.pid
   const queryString = 'SELECT p.pid, p.uid, s.name AS "studentName", p.projectName, p.repo FROM projects p, students s WHERE pid = $1 AND p.uid=s.uid'
@@ -247,7 +231,7 @@ db.getStudentName = (req, res) => {
 }
 
 db.getLeaves = (req, res) => {
-  const queryString = 'SELECT lid, slackid, date, reason FROM leaves WHERE slackid = $1'
+  const queryString = 'SELECT lid, slackid, date, reason FROM leaves WHERE slackid = $1 ORDER BY date DESC'
   const values = [req.params.sid]
   client.query(queryString, values, (err, response) => {
     if (err) {
