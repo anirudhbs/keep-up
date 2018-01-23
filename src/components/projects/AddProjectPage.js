@@ -26,7 +26,11 @@ class AddProjectPage extends Component {
   }
 
   handleSubmit (event) {
-    this.addProject()
+    if (this.state.name === '' || this.state.repo === '') {
+      console.log('invalid fields')
+    } else {
+      this.addProject()
+    }
   }
 
   addProject () {

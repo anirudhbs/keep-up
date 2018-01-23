@@ -24,7 +24,11 @@ class AddDemoPage extends Component {
   }
 
   handleSubmit (event) {
-    this.addDemo()
+    if (this.state.rating === '' || this.state.pid === 0) {
+      console.log('invalid fields')
+    } else {
+      this.addDemo()
+    }
   }
 
   addDemo () {
