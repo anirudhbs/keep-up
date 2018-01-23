@@ -56,7 +56,6 @@ class EditStudentPage extends Component {
     })
     .then((results) => results.json())
     .then((data) => {
-      console.log(data)
       this.setState({info: data.data})
     })
     .catch(function (error) {
@@ -68,7 +67,7 @@ class EditStudentPage extends Component {
     this.props.history.push('/student/' + this.state.info.uid)
   }
 
-  handleChangeStatus (event ) {
+  handleChangeStatus (event) {
     const state = this.state
     state.info.status = event.target.value
     this.setState({state})
@@ -88,6 +87,8 @@ class EditStudentPage extends Component {
             <option value={false}>false</option>
           </select>
         </div>
+        <div>Slack ID</div>
+        <div><input type='text' value={info.slackid} /></div>
         <div>
           <button onClick={this.handleSubmit}>Submit</button>
           <button onClick={this.onCancel.bind(this)} className='cancelButton' >Cancel</button>

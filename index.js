@@ -42,7 +42,6 @@ app.get('/students', db.getAllStudents)
 app.put('/student/add', db.addStudent)
 app.delete('/student/:sid', db.deleteStudent)
 app.post('/student/:sid', db.editStudent)
-app.get('/studentname/:sid', db.getStudentName)
 app.get('/student/:sid', db.getStudentDetails)
 
 app.get('/projects/:sid', db.getStudentProjects)

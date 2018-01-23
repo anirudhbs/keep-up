@@ -12,7 +12,7 @@ class ListOfStudents extends Component {
     return (
       <div className='listOfStudents'>
         <h2>Students</h2>
-        <ul className='listOfStudents'>
+        <ul>
           {
             this.props.students.map(cur =>
               <StudentItem key={cur.uid} id={cur.uid} name={cur.name} slackid={cur.slackid} openStudentsPage={this.props.openStudentsPage} />

@@ -8,21 +8,21 @@ class StudentPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      currentStudentName: '',
+      data: {},
       urlId: this.props.location.pathname.split('/')[2]
     }
   }
 
-  getStudentName () {
+  getStudentDetails () {
     const url = 'http://localhost:8080'
-    fetch(url + `/studentname/${this.state.urlId}`, {
+    fetch(url + `/student/${this.state.urlId}`, {
       headers: {
         Authorization: `Bearer ${getAccessToken()}`
       }
     })
     .then((results) => results.json())
     .then((data) => {
-      this.setState({ currentStudentName: data.data.name })
+      this.setState({ data: data.data })
     })
     .catch(function (error) {
       console.log('fail', error)
@@ -48,7 +48,7 @@ class StudentPage extends Component {
   }
 
   componentWillMount () {
-    this.getStudentName()
+    this.getStudentDetails()
   }
 
   editStudent () {
@@ -58,12 +58,12 @@ class StudentPage extends Component {
   render () {
     return (
       <div>
-        <h2>{this.state.currentStudentName}</h2>
+        <h2>{this.state.data.name}</h2>
         <hr />
         <div>
           <ListOfProjects id={this.state.urlId} className='pageColumn' />
           <ListOfDemos id={this.state.urlId} className='pageColumn' />
-          <ListOfLeaves id={this.state.urlId} getCurrentStudent={this.props.getCurrentStudent} className='pageColumn' />
+          <ListOfLeaves getCurrentStudent={this.props.getCurrentStudent} className='pageColumn' />
         </div>
         <hr />
         <div className='buttons'>

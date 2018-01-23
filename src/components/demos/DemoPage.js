@@ -16,7 +16,6 @@ class DemoPage extends Component {
   fetchDemoInfo () {
     const url = 'http://localhost:8080'
     fetch(url + '/demo/' + this.props.match.params.did, {
-      method: 'get',
       headers: {
         Authorization: `Bearer ${getAccessToken()}`
       }

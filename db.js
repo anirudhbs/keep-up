@@ -60,7 +60,7 @@ db.getStudentDemos = (req, res) => {
 
 db.getProjectDetails = (req, res) => {
   const id = req.params.pid
-  const queryString = 'SELECT p.pid, p.uid, s.name AS "studentName",p.projectName, p.repo' +
+  const queryString = 'SELECT p.pid, p.uid, s.name AS "studentName",p.projectName, p.repo ' +
     'FROM projects p, students s WHERE pid = $1 AND p.uid=s.uid'
   const values = [id]
   client.query(queryString, values, (err, response) => {
@@ -202,27 +202,12 @@ db.getStudentProjectsForDemo = (req, res) => {
 }
 
 db.getDemoDetails = (req, res) => {
-  const queryString = 'SELECT d.did, d.uid, s.name, d.pid, p.projectname, d.date, d.rating' +
+  const queryString = 'SELECT d.did, d.uid, s.name, d.pid, p.projectname, d.date, d.rating ' +
     'FROM demos d, students s, projects p WHERE d.did=$1 AND d.pid = p.pid AND d.uid = s.uid'
   const values = [req.params.did]
   client.query(queryString, values, (err, response) => {
     if (err) {
-      res.json({ status: 'fail' })
-    } else {
-      res.json({
-        status: 'success',
-        data: response.rows[0]
-      })
-    }
-  })
-}
-
-db.getStudentName = (req, res) => {
-  const queryString = 'SELECT name FROM students WHERE uid = $1'
-  const values = [req.params.sid]
-  client.query(queryString, values, (err, response) => {
-    if (err) {
-      res.json({ status: 'fail' })
+      res.json({ status: 'fail' , data: err})
     } else {
       res.json({
         status: 'success',
