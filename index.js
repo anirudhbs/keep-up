@@ -37,7 +37,8 @@ app.put('/student/add', (req, res, next) => {
   else res.status(403).json({ status: 'error', data: null })
 })
 
-app.get('/students', db.getAllStudents)
+app.get('/students', db.getStudents)
+app.get('/students/all', db.getAllStudents)
 
 app.put('/student/add', db.addStudent)
 app.delete('/student/:sid', db.deleteStudent)

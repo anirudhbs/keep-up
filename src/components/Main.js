@@ -12,6 +12,7 @@ import AddDemoPage from './demos/AddDemoPage'
 import { getAccessToken } from '../AuthService'
 import Callback from './Callback'
 import Profile from './Profile'
+import AllStudents from './students/AllStudents'
 
 class Main extends Component {
   constructor (props) {
@@ -66,6 +67,9 @@ class Main extends Component {
           <Route path='/callback' component={Callback} />
           <Route exact path='/profile' component={Profile} />
           <Route exact path='/students/add' component={AddStudentPage} />
+          <Route exact path='/students/all' render={(props, history) =>
+            <AllStudents openStudentsPage={this.setCurrentStudent.bind(this)}
+              getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} />} />
           <Route exact path='/student/edit' render={(props, history) =>
             <EditStudentPage getCurrentStudent={this.getCurrentStudent.bind(this)} history={props.history} />} />
           <Route path='/student/:sid' render={(props, history, location) =>

@@ -12,8 +12,22 @@ const client = new Client({
 
 client.connect()
 
-db.getAllStudents = (req, res) => {
+db.getStudents = (req, res) => {
   const queryString = 'SELECT uid, name, slackid FROM students WHERE status=TRUE ORDER BY uid'
+  client.query(queryString, (err, response) => {
+    if (err) {
+      res.json({ status: 'fail', data: [] })
+    } else {
+      res.json({
+        status: 'success',
+        data: response.rows
+      })
+    }
+  })
+}
+
+db.getAllStudents = (req, res) => {
+  const queryString = 'SELECT uid, name, slackid, status FROM students WHERE status=FALSE ORDER BY uid'
   client.query(queryString, (err, response) => {
     if (err) {
       res.json({ status: 'fail', data: [] })

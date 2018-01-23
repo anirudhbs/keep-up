@@ -87,8 +87,8 @@ class EditStudentPage extends Component {
             <option value={false}>false</option>
           </select>
         </div>
-        <div>Slack ID</div>
-        <div><input type='text' value={info.slackid} /></div>
+        {/* <div>Slack ID</div>
+        <div><input type='text' value={info.slackid} /></div> */}
         <div>
           <button onClick={this.handleSubmit}>Submit</button>
           <button onClick={this.onCancel.bind(this)} className='cancelButton' >Cancel</button>
