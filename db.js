@@ -60,7 +60,8 @@ db.getStudentDemos = (req, res) => {
 
 db.getProjectDetails = (req, res) => {
   const id = req.params.pid
-  const queryString = 'SELECT p.pid, p.uid, s.name AS "studentName", p.projectName, p.repo FROM projects p, students s WHERE pid = $1 AND p.uid=s.uid'
+  const queryString = 'SELECT p.pid, p.uid, s.name AS "studentName",p.projectName, p.repo' +
+    'FROM projects p, students s WHERE pid = $1 AND p.uid=s.uid'
   const values = [id]
   client.query(queryString, values, (err, response) => {
     if (err) {
@@ -99,8 +100,8 @@ db.deleteStudent = (req, res) => {
 }
 
 db.editStudent = (req, res) => {
-  const queryString = 'UPDATE students SET name = $2 WHERE uid=$1'
-  const values = [req.params.sid, req.body.name]
+  const queryString = 'UPDATE students SET name = $2, status = $3 WHERE uid=$1'
+  const values = [req.params.sid, req.body.name, req.body.status]
   client.query(queryString, values, (err, response) => {
     if (err) {
       res.json({ status: 'fail' })
@@ -201,7 +202,8 @@ db.getStudentProjectsForDemo = (req, res) => {
 }
 
 db.getDemoDetails = (req, res) => {
-  const queryString = 'SELECT d.did, d.uid, s.name, d.pid, p.projectname, d.date, d.rating from demos d, students s, projects p WHERE d.did=$1 AND d.pid = p.pid AND d.uid = s.uid'
+  const queryString = 'SELECT d.did, d.uid, s.name, d.pid, p.projectname, d.date, d.rating' +
+    'FROM demos d, students s, projects p WHERE d.did=$1 AND d.pid = p.pid AND d.uid = s.uid'
   const values = [req.params.did]
   client.query(queryString, values, (err, response) => {
     if (err) {
@@ -240,6 +242,21 @@ db.getLeaves = (req, res) => {
       res.json({
         status: 'success',
         data: response.rows
+      })
+    }
+  })
+}
+
+db.getStudentDetails = (req, res) => {
+  const queryString = 'SELECT uid, name, status, slackid FROM students WHERE uid = $1'
+  const values = [req.params.sid]
+  client.query(queryString, values, (err, response) => {
+    if (err) {
+      res.json({ status: 'fail' })
+    } else {
+      res.json({
+        status: 'success',
+        data: response.rows[0]
       })
     }
   })

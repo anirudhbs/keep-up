@@ -148,6 +148,11 @@ header>nav>ul {
     width: 33%;
     display: inline-block;
   }
+
+  .listOfStudents>ul {
+    grid-template-columns: repeat(3, [col-start] 1fr);
+    text-align: left;
+  }
 }
 
 .buttons {
@@ -214,15 +219,9 @@ input[type=date] {
   grid-gap: 5px;
 }
 
-@media all and (min-width: 480px) {
+@media all and (min-width: 480px) and (max-width: 720px) {
   .listOfStudents>ul {
     grid-template-columns: repeat(2, [col-start] 1fr);
     text-align: left;
-  }
-}
-
-@media all and (min-width: 720px) {
-  .listOfStudents>ul {
-    grid-template-columns: repeat(3, [col-start] 1fr);
   }
 }

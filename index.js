@@ -26,10 +26,10 @@ const authCheck = jwt({
   algorithms: ['RS256']
 })
 
-app.all('/*', authCheck, (req, res, next) => {
-  // console.log(req.user.sub) // auth0|5a5f2e183eca610bd65c1f42
-  next()
-})
+// app.all('/*', authCheck, (req, res, next) => {
+//   // console.log(req.user.sub) // auth0|5a5f2e183eca610bd65c1f42
+//   next()
+// })
 
 app.put('/student/add', (req, res, next) => {
   const { sub } = req.user || null
@@ -43,6 +43,7 @@ app.put('/student/add', db.addStudent)
 app.delete('/student/:sid', db.deleteStudent)
 app.post('/student/:sid', db.editStudent)
 app.get('/studentname/:sid', db.getStudentName)
+app.get('/student/:sid', db.getStudentDetails)
 
 app.get('/projects/:sid', db.getStudentProjects)
 app.get('/demos/:sid', db.getStudentDemos)
