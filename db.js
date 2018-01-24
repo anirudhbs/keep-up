@@ -26,7 +26,7 @@ db.getStudents = (req, res) => {
   })
 }
 
-db.getAllStudents = (req, res) => {
+db.getInactiveStudents = (req, res) => {
   const queryString = 'SELECT uid, name, slackid, status FROM students WHERE status=FALSE ORDER BY uid'
   client.query(queryString, (err, response) => {
     if (err) {

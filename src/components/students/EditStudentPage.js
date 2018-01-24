@@ -83,8 +83,8 @@ class EditStudentPage extends Component {
         <div>Status</div>
         <div>
           <select value={info.status} onChange={this.handleChangeStatus.bind(this)}>
-            <option value={true}>true</option>
-            <option value={false}>false</option>
+            <option value={true}>Active</option>
+            <option value={false}>Inactive</option>
           </select>
         </div>
         {/* <div>Slack ID</div>

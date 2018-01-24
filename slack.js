@@ -14,26 +14,12 @@ const client = new Client({
 
 client.connect()
 
-function getUsers (cb) {
+function getUsersInChannel (cb) {
   fetch(`https://slack.com/api/channels.info?token=${token}&channel=C048L0JR2`)
   .then((res) => res.text())
   .then((body) => {
     const members = JSON.parse(body).channel.members
     cb(members)
-  })
-}
-
-function addStudentsToDB (arr) {
-  arr.map((cur) => {
-    const queryString = 'INSERT INTO students VALUES(DEFAULT, $1, $2, $3, $4)'
-    const values = [cur.name, true, cur.id, cur.name]
-    client.query(queryString, values, (err, response) => {
-      if (err) {
-        console.log('fail')
-      } else {
-        console.log('success')
-      }
-    })
   })
 }
 
@@ -54,19 +40,42 @@ function getOldestDate () {
   return new Date(str) / 1000
 }
 
-checkWhoMessaged((data) => {
-  const list = data.filter((cur) => cur.user !== undefined).map((cur) => cur.user)
-  getUsers((data) => {
-    data.map((cur) => {
-      if (!list.includes(cur)) {
-        const date = new Date().toLocaleDateString()
-        const queryString = 'INSERT INTO leaves VALUES(DEFAULT, $1, $2, $3)'
-        const values = [cur, date, 'placeholder']
-        client.query(queryString, values, (err, res) => {
-          if (err) console.log('error!')
-          else console.log('success')
+function getActiveStudents () {
+  const queryString = 'SELECT slackid FROM students WHERE status = true'
+  client.query(queryString, (err, res) => {
+    if (err) console.log(err)
+    else {
+      const activeStudents = res.rows.map((cur) => cur.slackid)
+      checkWhoMessaged((data) => {
+        const list = data.filter((cur) => cur.user !== undefined).map((cur) => cur.user)
+        activeStudents.map((cur) => {
+          if (!list.includes(cur)) {
+            const date = new Date().toLocaleDateString()
+            const queryString = 'INSERT INTO leaves VALUES(DEFAULT, $1, $2, $3)'
+            const values = [cur, date, 'placeholder']
+            client.query(queryString, values, (err, res) => {
+              if (err) console.log(err)
+              else console.log('success')
+            })
+          }
         })
-      }
-    })
+      })
+    }
   })
-})
+}
+
+// getUsersInChannel((arr) => {
+//   arr.map((cur) => {
+//     const queryString = 'INSERT INTO students VALUES(DEFAULT, $1, $2, $3, $4)'
+//     const values = [cur.name, false, cur.id, cur.name]
+//     client.query(queryString, values, (err, response) => {
+//       if (err) {
+//         console.log('fail')
+//       } else {
+//         console.log('success')
+//       }
+//     })
+//   })
+// })
+
+getActiveStudents()
