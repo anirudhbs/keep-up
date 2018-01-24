@@ -17,6 +17,10 @@ li {
   margin: 3px;
 }
 
+hr {
+  margin-top: 30px;
+}
+
 .App {
   text-align: center;
 }
@@ -28,6 +32,7 @@ li {
 
 .ListItem {
   padding: 10px;
+  width: 200px;
 }
 
 .ListItem:hover {
@@ -153,6 +158,10 @@ header>nav>ul {
     grid-template-columns: repeat(3, [col-start] 1fr);
     text-align: left;
   }
+
+  .studentPageLists {
+    grid-template-columns: repeat(3, [col-start] 1fr);
+  }
 }
 
 .buttons {
@@ -224,4 +233,24 @@ input[type=date] {
     grid-template-columns: repeat(2, [col-start] 1fr);
     text-align: left;
   }
+
+  .studentPageLists {
+    grid-template-columns: repeat(2, [col-start] 1fr);
+  }
+}
+
+.demoPage {
+  line-height: 30px;
+}
+
+.studentPageLists {
+  align-content: center;
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 80px;
+}
+
+.leaveItem {
+  width: 200px;
 }

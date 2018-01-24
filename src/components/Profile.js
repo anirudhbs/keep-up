@@ -20,7 +20,7 @@ class Profile extends Component {
         {
           isAdmin() && (
           <div className='profile'>
-            <Link to='/students/all' className='Link AddStudentButton'>Inactive Students</Link>
+            <Link to='/students/inactive' className='Link AddStudentButton'>Inactive Students</Link>
           </div>)
         }
       </div>

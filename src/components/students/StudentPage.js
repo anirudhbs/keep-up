@@ -60,7 +60,7 @@ class StudentPage extends Component {
       <div>
         <h2>{this.state.data.name}</h2>
         <hr />
-        <div>
+        <div className='studentPageLists'>
           <ListOfProjects id={this.state.urlId} className='pageColumn' />
           <ListOfDemos id={this.state.urlId} className='pageColumn' />
           <ListOfLeaves getCurrentStudent={this.props.getCurrentStudent} className='pageColumn' />

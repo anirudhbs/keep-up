@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-class AllStudentsItem extends Component {
+class InactiveStudentsItem extends Component {
   openStudentsPage () {
     this.props.openStudentsPage(this.props.id, this.props.name, this.props.slackid)
   }
@@ -17,4 +17,4 @@ class AllStudentsItem extends Component {
   }
 }
 
-export default AllStudentsItem
+export default InactiveStudentsItem

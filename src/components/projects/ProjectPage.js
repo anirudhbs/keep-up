@@ -57,7 +57,7 @@ class ProjectPage extends Component {
 
   render () {
     return (
-      <div>
+      <div className='demoPage' >
         <h2>Project Page</h2>
         <div>Name: {this.state.projectInfo.projectname}</div>
         <div>Student Name: {this.state.projectInfo.studentName}</div>

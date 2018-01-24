@@ -35,7 +35,7 @@ function checkWhoMessaged (cb) {
 }
 
 function getOldestDate () {
-  const t = new Date
+  const t = new Date()
   const str = t.toISOString().slice(0, 10)
   return new Date(str) / 1000
 }
@@ -63,19 +63,21 @@ function getActiveStudents () {
     }
   })
 }
+function addStudents () {
+  getUsersInChannel((arr) => {
+    arr.map((cur) => {
+      const queryString = 'INSERT INTO students VALUES(DEFAULT, $1, $2, $3, $4)'
+      const values = [cur.name, false, cur.id, cur.name]
+      client.query(queryString, values, (err, response) => {
+        if (err) {
+          console.log('fail')
+        } else {
+          console.log('success')
+        }
+      })
+    })
+  })
+}
 
-// getUsersInChannel((arr) => {
-//   arr.map((cur) => {
-//     const queryString = 'INSERT INTO students VALUES(DEFAULT, $1, $2, $3, $4)'
-//     const values = [cur.name, false, cur.id, cur.name]
-//     client.query(queryString, values, (err, response) => {
-//       if (err) {
-//         console.log('fail')
-//       } else {
-//         console.log('success')
-//       }
-//     })
-//   })
-// })
-
-getActiveStudents()
+// addStudents()
+// getActiveStudents()

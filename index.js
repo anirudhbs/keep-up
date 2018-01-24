@@ -38,7 +38,7 @@ app.put('/student/add', (req, res, next) => {
 })
 
 app.get('/students', db.getStudents)
-app.get('/students/all', db.getInactiveStudents)
+app.get('/students/inactive', db.getInactiveStudents)
 
 app.put('/student/add', db.addStudent)
 app.delete('/student/:sid', db.deleteStudent)

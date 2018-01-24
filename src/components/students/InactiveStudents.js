@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { getAccessToken } from '../../AuthService'
-import AllStudentsItem from './AllStudentsItem'
+import InactiveStudentsItem from './InactiveStudentsItem'
 
-class AllStudents extends Component {
+class InactiveStudents extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -11,12 +11,12 @@ class AllStudents extends Component {
   }
 
   componentWillMount () {
-    this.getAllStudents()
+    this.getInactiveStudents()
   }
 
-  getAllStudents () {
+  getInactiveStudents () {
     const url = 'http://localhost:8080'
-    fetch(url + '/students/all', {
+    fetch(url + '/students/inactive', {
       headers: {
         Authorization: `Bearer ${getAccessToken()}`
       }
@@ -31,13 +31,12 @@ class AllStudents extends Component {
   }
 
   render () {
-    console.log(this.state.students)
     return (
       <div className='listOfStudents'>
         <ul>
           {
             this.state.students.map((cur) =>
-              <AllStudentsItem key={cur.uid} name={cur.name} id={cur.uid} openStudentsPage={this.props.openStudentsPage} />
+              <InactiveStudentsItem key={cur.uid} name={cur.name} id={cur.uid} openStudentsPage={this.props.openStudentsPage} />
             )
           }
         </ul>
@@ -46,4 +45,4 @@ class AllStudents extends Component {
   }
 }
 
-export default AllStudents
+export default InactiveStudents

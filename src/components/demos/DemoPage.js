@@ -55,7 +55,7 @@ class DemoPage extends Component {
 
   render () {
     return (
-      <div>
+      <div className='demoPage'>
         <h2>Demo Page</h2>
         <div>Project name: {this.state.demoInfo.projectname}</div>
         <div>Student Name: {this.state.demoInfo.name}</div>
