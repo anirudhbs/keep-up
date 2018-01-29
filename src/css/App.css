@@ -254,3 +254,12 @@ input[type=date] {
 .leaveItem {
   width: 200px;
 }
+
+.home {
+  font-size: 20pt;
+  font-weight: 900;
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+}

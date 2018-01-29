@@ -13,6 +13,7 @@ import { getAccessToken } from '../AuthService'
 import Callback from './Callback'
 import Profile from './Profile'
 import InactiveStudents from './students/InactiveStudents'
+import Home from './Home'
 
 class Main extends Component {
   constructor (props) {
@@ -62,6 +63,7 @@ class Main extends Component {
     return (
       <main>
         <Switch>
+          <Route exact path='/' component={Home}/>
           <Route exact path='/students' render={(props) => <ListOfStudents students={this.state.students}
             openStudentsPage={this.setCurrentStudent.bind(this)} fetchData={this.fetchData.bind(this)} />} />
           <Route path='/callback' component={Callback} />
