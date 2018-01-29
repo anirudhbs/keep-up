@@ -14,15 +14,6 @@ const client = new Client({
 
 client.connect()
 
-function getUsersInChannel (cb) {
-  fetch(`https://slack.com/api/channels.info?token=${token}&channel=C048L0JR2`)
-  .then((res) => res.text())
-  .then((body) => {
-    const members = JSON.parse(body).channel.members
-    cb(members)
-  })
-}
-
 function checkWhoMessaged (cb) {
   const oldest = getOldestDate()
   fetch(`https://slack.com/api/channels.history?token=${token}&channel=C048L0JR2&oldest=${oldest}`)
@@ -63,21 +54,5 @@ function getActiveStudents () {
     }
   })
 }
-function addStudents () {
-  getUsersInChannel((arr) => {
-    arr.map((cur) => {
-      const queryString = 'INSERT INTO students VALUES(DEFAULT, $1, $2, $3, $4)'
-      const values = [cur.name, false, cur.id, cur.name]
-      client.query(queryString, values, (err, response) => {
-        if (err) {
-          console.log('fail')
-        } else {
-          console.log('success')
-        }
-      })
-    })
-  })
-}
 
-// addStudents()
-// getActiveStudents()
+getActiveStudents()
