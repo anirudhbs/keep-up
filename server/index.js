@@ -4,7 +4,8 @@ const cors = require("cors")
 const jwt = require("express-jwt")
 const jwks = require("jwks-rsa")
 const bodyParser = require("body-parser")
-const db = require("./db")
+
+const router = require("./routes")
 const PORT = 8080
 
 const authCheck = jwt({
@@ -24,40 +25,20 @@ app.use(express.static("public"))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.all("/*", authCheck, (req, res, next) => {
-  // req.user.sub = auth0|5a5f2e183eca610bd65c1f42
-  console.log("---------\n", req.user)
-  next()
-})
+// app.all("/*", authCheck, (req, res, next) => {
+//   // req.user.sub = auth0|5a5f2e183eca610bd65c1f42
+//   console.log("---------\n", req.user)
+//   next()
+// })
 
 app.put("/student/add", (req, res, next) => {
-  const { sub } = req.user
-  if (sub === "auth0|5a5f2e183eca610bd65c1f42") next()
-  else res.status(403).json({ status: "error", data: null })
+  next()
+  // const { sub } = req.user
+  // if (sub === "auth0|5a5f2e183eca610bd65c1f42") next()
+  // else res.status(403).json({ status: "error", data: null })
 })
 
-app.get("/students", db.getStudents)
-app.get("/students/inactive", db.getInactiveStudents)
-
-app.put("/student/add", db.addStudent)
-app.delete("/student/:sid", db.deleteStudent)
-app.post("/student/:sid", db.editStudent)
-app.get("/student/:sid", db.getStudentDetails)
-
-app.get("/projects/:sid", db.getStudentProjects)
-app.get("/demos/:sid", db.getStudentDemos)
-app.get("/leaves/:sid", db.getLeaves)
-
-app.put("/project/add", db.addProject)
-app.get("/project/:pid", db.getProjectDetails)
-app.delete("/project/:pid", db.deleteProject)
-app.post("/project/:pid", db.editProject)
-
-app.put("/demo/add", db.addDemo)
-app.get("/demo/:did", db.getDemoDetails)
-app.delete("/demo/:did", db.deleteDemo)
-
-app.get("/demolist/:sid", db.getStudentProjectsForDemo)
+app.use("/", router)
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`)
