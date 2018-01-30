@@ -1,14 +1,14 @@
-import { Component } from 'react'
-import { setIdToken, setAccessToken } from '../AuthService'
+import { Component } from "react"
+import { setIdToken, setAccessToken } from "../AuthService"
 
 class Callback extends Component {
-  componentDidMount () {
+  componentDidMount() {
     setAccessToken()
     setIdToken()
-    window.location.href = '/students'
+    window.location.href = "/students"
   }
 
-  render () {
+  render() {
     return null
   }
 }

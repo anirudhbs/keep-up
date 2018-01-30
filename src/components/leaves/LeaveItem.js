@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
 
 class LeaveItem extends Component {
-  render () {
+  render() {
     return (
-      <li key={this.props.pid} className='ListItem'>
+      <li key={this.props.pid} className="ListItem">
         {new Date(this.props.date).toDateString()}
       </li>
     )

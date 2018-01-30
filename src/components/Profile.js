@@ -1,28 +1,29 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { isAdmin } from '../AuthService'
+import React, { Component } from "react"
+import { Link } from "react-router-dom"
+import { isAdmin } from "../AuthService"
 
 class Profile extends Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
-      profile: ''
+      profile: ""
     }
   }
 
-  componentWillMount () {
-    this.setState({ profile: localStorage.getItem('auth0_token') })
+  componentWillMount() {
+    this.setState({ profile: localStorage.getItem("auth0_token") })
   }
 
-  render () {
+  render() {
     return (
       <div>
-        {
-          isAdmin() && (
-          <div className='profile'>
-            <Link to='/students/inactive' className='Link AddStudentButton'>Inactive Students</Link>
-          </div>)
-        }
+        {isAdmin() && (
+          <div className="profile">
+            <Link to="/students/inactive" className="Link AddStudentButton">
+              Inactive Students
+            </Link>
+          </div>
+        )}
       </div>
     )
   }

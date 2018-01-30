@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import '../css/App.css'
-import Main from './Main'
-import Header from './Header'
+import React, { Component } from "react"
+import "../css/App.css"
+import Main from "./Main"
+import Header from "./Header"
 
 class App extends Component {
-  render () {
+  render() {
     return (
-      <div className='App'>
+      <div className="App">
         <Header />
         <Main />
       </div>

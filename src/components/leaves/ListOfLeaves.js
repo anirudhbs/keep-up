@@ -1,45 +1,43 @@
-import React, { Component } from 'react'
-import LeaveItem from './LeaveItem'
-import { getAccessToken } from '../../AuthService'
+import React, { Component } from "react"
+import LeaveItem from "./LeaveItem"
+import { getAccessToken } from "../../AuthService"
 
 class ListOfLeaves extends Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
       leaves: []
     }
   }
 
-  getLeaves () {
-  const url = 'http://localhost:8080'
-  fetch(url + `/leaves/${this.props.getCurrentStudent().slack}`, {
-    headers: {
-      Authorization: `Bearer ${getAccessToken()}`
-    }
-  })
-  .then((results) => results.json())
-  .then((data) => {
-    this.setState({ leaves: data.data })
-  })
-  .catch(function (error) {
-    console.log('fail', error)
-  })
+  getLeaves() {
+    const url = "http://localhost:8080"
+    fetch(url + `/leaves/${this.props.getCurrentStudent().slack}`, {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`
+      }
+    })
+      .then(results => results.json())
+      .then(data => {
+        this.setState({ leaves: data.data })
+      })
+      .catch(function(error) {
+        console.log("fail", error)
+      })
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.getLeaves()
   }
 
-  render () {
+  render() {
     return (
-      <div className='pageColumn'>
+      <div className="pageColumn">
         <ul>
           <h2>Leaves</h2>
-          {
-            this.state.leaves.map(cur =>
-              <LeaveItem key={cur.lid} date={cur.date} />
-            )
-          }
+          {this.state.leaves.map(cur => (
+            <LeaveItem key={cur.lid} date={cur.date} />
+          ))}
         </ul>
       </div>
     )
