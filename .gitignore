@@ -1,5 +1,5 @@
 node_modules/
 build/
-temp.js
+package-lock.json
 .todo
 config.js
