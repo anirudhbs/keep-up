@@ -31,7 +31,8 @@ class DemoPage extends Component {
   }
 
   goBack() {
-    this.props.history.push("/student/" + this.state.demoInfo.uid)
+    const uid = this.props.history.location.pathname.split("/")[2]
+    this.props.history.push("/students/" + uid)
   }
 
   deleteDemo() {

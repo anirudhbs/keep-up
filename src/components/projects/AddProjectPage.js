@@ -14,7 +14,8 @@ class AddProjectPage extends Component {
   }
 
   componentWillMount() {
-    this.setState({ uid: this.props.getCurrentStudent().id })
+    const uid = this.props.history.location.pathname.split("/")[2]
+    this.setState({ uid })
   }
 
   handleChange(event) {

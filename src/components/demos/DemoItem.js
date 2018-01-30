@@ -3,10 +3,11 @@ import { Link } from "react-router-dom"
 
 class DemoItem extends Component {
   render() {
+    const { did, sid, date } = this.props
     return (
-      <Link to={"/demo/" + this.props.did} className="Link">
-        <li key={this.props.did} className="ListItem">
-          {new Date(this.props.date).toDateString()}
+      <Link to={`/students/${sid}/demos/${did}`} className="Link">
+        <li key={did} className="ListItem">
+          {new Date(date).toDateString()}
         </li>
       </Link>
     )

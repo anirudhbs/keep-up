@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+
 import ListOfProjects from "../projects/ListOfProjects"
 import ListOfDemos from "../demos/ListOfDemos"
 import ListOfLeaves from "../leaves/ListOfLeaves"
@@ -9,13 +10,14 @@ class StudentPage extends Component {
     super(props)
     this.state = {
       data: {},
-      urlId: this.props.location.pathname.split("/")[2]
+      studentId: this.props.location.pathname.split("/")[2]
     }
   }
 
   getStudentDetails() {
+    const { studentId } = this.state
     const url = "http://localhost:8080"
-    fetch(url + `/student/${this.state.urlId}`, {
+    fetch(url + `/student/${studentId}`, {
       headers: {
         Authorization: `Bearer ${getAccessToken()}`
       }
@@ -30,8 +32,9 @@ class StudentPage extends Component {
   }
 
   deleteStudent() {
+    const { studentId } = this.state
     const url = "http://localhost:8080"
-    fetch(url + `/student/${this.state.urlId}`, {
+    fetch(url + `/student/${studentId}`, {
       method: "delete",
       headers: {
         Authorization: `Bearer ${getAccessToken()}`
@@ -52,17 +55,19 @@ class StudentPage extends Component {
   }
 
   editStudent() {
-    this.props.history.push("/student/edit")
+    const { studentId } = this.state
+    this.props.history.push(`/students/${studentId}/edit`)
   }
 
   render() {
+    const { studentId } = this.state
     return (
       <div>
         <h2>{this.state.data.name}</h2>
         <hr />
         <div className="studentPageLists">
-          <ListOfProjects id={this.state.urlId} className="pageColumn" />
-          <ListOfDemos id={this.state.urlId} className="pageColumn" />
+          <ListOfProjects id={studentId} className="pageColumn" />
+          <ListOfDemos id={studentId} className="pageColumn" />
           <ListOfLeaves
             getCurrentStudent={this.props.getCurrentStudent}
             className="pageColumn"

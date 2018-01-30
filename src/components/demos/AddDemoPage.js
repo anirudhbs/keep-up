@@ -33,8 +33,9 @@ class AddDemoPage extends Component {
 
   addDemo() {
     const url = "http://localhost:8080"
+    const uid = this.props.history.location.pathname.split("/")[2]
     const body = {
-      uid: this.state.uid,
+      uid,
       pid: this.state.pid,
       rating: this.state.rating,
       date: this.state.date
@@ -49,7 +50,7 @@ class AddDemoPage extends Component {
     })
       .then(results => results.json())
       .then(data => {
-        this.props.history.push("/student/" + this.state.uid)
+        this.props.history.push(`/students/${uid}`)
       })
       .catch(function(error) {
         console.log("fail", error)
@@ -58,7 +59,8 @@ class AddDemoPage extends Component {
 
   getProjectList() {
     const url = "http://localhost:8080"
-    fetch(url + "/demolist/" + this.props.getCurrentStudent().id, {
+    const id = this.props.history.location.pathname.split("/")[2]
+    fetch(url + "/demolist/" + id, {
       headers: {
         Authorization: `Bearer ${getAccessToken()}`
       }
@@ -91,6 +93,7 @@ class AddDemoPage extends Component {
   }
 
   render() {
+    console.log("x", this.props)
     return (
       <div>
         <h2>Add Demo</h2>

@@ -32,15 +32,22 @@ class ListOfProjects extends Component {
   }
 
   render() {
+    const { id } = this.props
+    const link = `/students/${id}/projects/add`
     return (
       <div className="pageColumn">
         <ul>
           <h2>Projects</h2>
-          <Link to="/projects/add" className="Link AddStudentButton">
+          <Link to={link} className="Link AddStudentButton">
             Add Project
           </Link>
           {this.state.projects.map(cur => (
-            <ProjectItem key={cur.pid} id={cur.pid} name={cur.projectname} />
+            <ProjectItem
+              sid={id}
+              key={cur.pid}
+              id={cur.pid}
+              name={cur.projectname}
+            />
           ))}
         </ul>
       </div>

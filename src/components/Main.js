@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { Switch, Route } from "react-router-dom"
+
 import ListOfStudents from "./students/ListOfStudents"
 import StudentPage from "./students/StudentPage"
 import ProjectPage from "./projects/ProjectPage"
@@ -99,7 +100,7 @@ class Main extends Component {
           />
           <Route
             exact
-            path="/student/edit"
+            path="/students/:sid/edit"
             render={(props, history) => (
               <EditStudentPage
                 getCurrentStudent={this.getCurrentStudent.bind(this)}
@@ -108,7 +109,8 @@ class Main extends Component {
             )}
           />
           <Route
-            path="/student/:sid"
+            exact
+            path="/students/:sid"
             render={(props, history, location) => (
               <StudentPage
                 history={props.history}
@@ -119,7 +121,7 @@ class Main extends Component {
           />
           <Route
             exact
-            path="/project/:pid"
+            path="/students/:sid/projects/:pid"
             render={(props, history) => (
               <ProjectPage
                 match={props.match}
@@ -130,17 +132,9 @@ class Main extends Component {
           />
           <Route
             exact
-            path="/demo/:did"
-            render={(props, history) => (
-              <DemoPage match={props.match} history={props.history} />
-            )}
-          />
-          <Route
-            exact
-            path="/projects/add"
+            path="/students/:sid/projects/add"
             render={(props, history) => (
               <AddProjectPage
-                getCurrentStudent={this.getCurrentStudent.bind(this)}
                 history={props.history}
                 currentProjectId={this.state.currentProjectId}
               />
@@ -148,20 +142,26 @@ class Main extends Component {
           />
           <Route
             exact
-            path="/edit/project"
+            path="/students/:sid/demos/add"
             render={(props, history) => (
-              <EditProjectPage
-                getCurrentProject={this.getCurrentProject.bind(this)}
+              <AddDemoPage
+                getCurrentStudent={this.getCurrentStudent.bind(this)}
                 history={props.history}
               />
             )}
           />
           <Route
-            exact
-            path="/demos/add"
+            path="/students/:sid/demos/:did"
             render={(props, history) => (
-              <AddDemoPage
-                getCurrentStudent={this.getCurrentStudent.bind(this)}
+              <DemoPage match={props.match} history={props.history} />
+            )}
+          />
+          <Route
+            exact
+            path="/students/:sid/projects/:pid/edit"
+            render={(props, history) => (
+              <EditProjectPage
+                getCurrentProject={this.getCurrentProject.bind(this)}
                 history={props.history}
               />
             )}

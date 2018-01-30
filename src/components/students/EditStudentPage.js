@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+
 import { getAccessToken } from "../../AuthService"
 
 class EditStudentPage extends Component {
@@ -40,7 +41,7 @@ class EditStudentPage extends Component {
     })
       .then(results => results.json())
       .then(data => {
-        this.props.history.push("/student/" + this.state.info.uid)
+        this.props.history.push("/students/" + this.state.info.uid)
       })
       .catch(function(error) {
         console.log("fail", error)
@@ -49,13 +50,15 @@ class EditStudentPage extends Component {
 
   getStudentDetails() {
     const url = "http://localhost:8080"
-    fetch(url + "/student/" + this.props.getCurrentStudent().id, {
+    const id = this.props.history.location.pathname.split("/")[2]
+    fetch(url + "/student/" + id, {
       headers: {
         Authorization: `Bearer ${getAccessToken()}`
       }
     })
       .then(results => results.json())
       .then(data => {
+        console.log()
         this.setState({ info: data.data })
       })
       .catch(function(error) {
@@ -64,7 +67,7 @@ class EditStudentPage extends Component {
   }
 
   onCancel() {
-    this.props.history.push("/student/" + this.state.info.uid)
+    this.props.history.push("/students/" + this.state.info.uid)
   }
 
   handleChangeStatus(event) {

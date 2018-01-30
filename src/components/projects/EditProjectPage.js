@@ -21,7 +21,8 @@ class EditProjectPage extends Component {
 
   fetchProjectDetails() {
     const url = "http://localhost:8080"
-    fetch(url + "/project/" + this.props.getCurrentProject().id, {
+    const pid = this.props.history.location.pathname.split("/")[4]
+    fetch(url + "/project/" + pid, {
       headers: {
         Authorization: `Bearer ${getAccessToken()}`
       }
@@ -53,7 +54,8 @@ class EditProjectPage extends Component {
 
   editProject() {
     const url = "http://localhost:8080"
-    fetch(url + "/project/" + this.state.projectDetails.pid, {
+    const pid = this.props.history.location.pathname.split("/")[4]
+    fetch(url + "/project/" + pid, {
       method: "post",
       headers: {
         "Content-Type": "application/Json",
@@ -65,7 +67,8 @@ class EditProjectPage extends Component {
         return results.json()
       })
       .then(data => {
-        this.props.history.push(`/student/${this.state.projectDetails.uid}`)
+        const uid = this.props.history.location.pathname.split("/")[2]
+        this.props.history.push(`/students/${uid}`)
       })
       .catch(function(error) {
         console.log("fail", error)
@@ -73,10 +76,13 @@ class EditProjectPage extends Component {
   }
 
   onCancel() {
-    this.props.history.push("/project/" + this.props.getCurrentProject().id)
+    const sid = this.props.history.location.pathname.split("/")[2]
+    const pid = this.props.history.location.pathname.split("/")[4]
+    this.props.history.push(`/students/${sid}/projects/${pid}`)
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className="AddProjectPage">
         <h2>Edit Project</h2>

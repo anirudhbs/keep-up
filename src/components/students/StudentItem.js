@@ -11,8 +11,9 @@ class StudentItem extends Component {
   }
 
   render() {
+    const { id } = this.props
     return (
-      <Link to={"/student/" + this.props.id} className="Link">
+      <Link to={"/students/" + id} className="Link">
         <li className="ListItem" onClick={this.openStudentsPage.bind(this)}>
           {this.props.name}
         </li>

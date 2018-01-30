@@ -12,8 +12,9 @@ class ListOfDemos extends Component {
   }
 
   getDemos() {
+    const { id } = this.props
     const url = "http://localhost:8080"
-    fetch(url + `/demos/${this.props.id}`, {
+    fetch(url + `/demos/${id}`, {
       headers: {
         Authorization: `Bearer ${getAccessToken()}`
       }
@@ -32,15 +33,19 @@ class ListOfDemos extends Component {
   }
 
   render() {
+    const { id } = this.props
     return (
       <div className="pageColumn">
         <ul>
           <h2>Demos</h2>
-          <Link to="/demos/add" className="Link AddStudentButton">
+          <Link
+            to={`/students/${id}/demos/add`}
+            className="Link AddStudentButton"
+          >
             Add Demo
           </Link>
           {this.state.demos.map(cur => (
-            <DemoItem key={cur.did} did={cur.did} date={cur.date} />
+            <DemoItem key={cur.did} sid={id} did={cur.did} date={cur.date} />
           ))}
         </ul>
       </div>

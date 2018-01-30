@@ -48,11 +48,13 @@ class ProjectPage extends Component {
   }
 
   editProject() {
-    this.props.history.push("/edit/project")
+    const { sid, pid } = this.props.match.params
+    this.props.history.push(`/students/${sid}/projects/${pid}/edit`)
   }
 
   goBack() {
-    this.props.history.push("/student/" + this.state.projectInfo.uid)
+    const { sid } = this.props.match.params
+    this.props.history.push(`/students/${sid}`)
   }
 
   render() {
