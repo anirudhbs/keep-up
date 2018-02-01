@@ -1,8 +1,7 @@
 const fetch = require("node-fetch")
-const { token } = require("./config")
-
 const { Client } = require("pg")
-const { postgres } = require("./config")
+
+const { postgres, token } = require("../config")
 
 const client = new Client({
   user: postgres.USER,
@@ -49,11 +48,15 @@ function getActiveStudents() {
         activeStudents.map(cur => {
           if (!list.includes(cur)) {
             const date = new Date().toLocaleDateString()
-            const queryString = "INSERT INTO leaves VALUES(DEFAULT, $1, $2, $3)"
+            const queryString =
+              "INSERT INTO leaves(lid, slackid, date, reason) VALUES(DEFAULT, $1, $2, $3)"
             const values = [cur, date, "placeholder"]
             client.query(queryString, values, (err, res) => {
-              if (err) console.log(err)
-              else console.log("success")
+              if (err) {
+                console.log(err)
+              } else {
+                console.log("success")
+              }
             })
           }
         })

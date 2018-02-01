@@ -1,8 +1,7 @@
 const fetch = require("node-fetch")
-const { token } = require("./config")
-
 const { Client } = require("pg")
-const { postgres } = require("./config")
+
+const { postgres, token } = require("../config")
 
 const client = new Client({
   user: postgres.USER,
@@ -13,28 +12,43 @@ const client = new Client({
 })
 
 client.connect()
-function getUsersInChannel(cb) {
-  fetch(`https://slack.com/api/channels.info?token=${token}&channel=C048L0JR2`)
-    .then(res => res.text())
-    .then(body => {
-      const members = JSON.parse(body).channel.members
-      cb(members)
-    })
+
+async function getUsersInChannel(cb) {
+  try {
+    const arr = await fetch(
+      `https://slack.com/api/channels.info?token=${token}&channel=C048L0JR2`
+    )
+    const res = await arr.json()
+    const members = res.channel.members
+    return members
+  } catch (err) {
+    console.log(err)
+    return []
+  }
 }
 
-function addStudents() {
-  getUsersInChannel(arr => {
-    arr.map(cur => {
-      const queryString = "INSERT INTO students VALUES(DEFAULT, $1, $2, $3, $4)"
-      const values = [cur.name, false, cur.id, cur.name]
-      client.query(queryString, values, (err, response) => {
-        if (err) {
-          console.log("fail")
-        } else {
-          console.log("success")
+async function addStudents() {
+  const arr = await getUsersInChannel()
+  arr.forEach(async cur => {
+    const data = await fetch(
+      `https://slack.com/api/users.info?token=${token}&user=${cur}`
+    )
+    const res = await data.json()
+    const { id, name } = res.user
+    const userCheckQuery = "SELECT slackid from students where slackid = $1"
+    const userCheckQueryValues = [cur]
+    const users = await client.query(userCheckQuery, userCheckQueryValues)
+    if (users.rows.length === 0) {
+      const queryString =
+        "INSERT INTO students(uid, name, slackid, status) VALUES(DEFAULT, $1, $2, $3)"
+      const values = [name, id, false]
+
+      client.query(queryString, values, err2 => {
+        if (err2) {
+          console.log("fail", err)
         }
       })
-    })
+    }
   })
 }
 
