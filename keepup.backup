@@ -1,0 +1,334 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 11.1
+-- Dumped by pg_dump version 11.1
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: demos; Type: TABLE; Schema: public; Owner: anirudhbs
+--
+
+CREATE TABLE public.demos (
+    did integer NOT NULL,
+    date date,
+    uid integer,
+    pid integer,
+    rating integer
+);
+
+
+ALTER TABLE public.demos OWNER TO anirudhbs;
+
+--
+-- Name: demos_did_seq; Type: SEQUENCE; Schema: public; Owner: anirudhbs
+--
+
+CREATE SEQUENCE public.demos_did_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.demos_did_seq OWNER TO anirudhbs;
+
+--
+-- Name: demos_did_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: anirudhbs
+--
+
+ALTER SEQUENCE public.demos_did_seq OWNED BY public.demos.did;
+
+
+--
+-- Name: leaves; Type: TABLE; Schema: public; Owner: anirudhbs
+--
+
+CREATE TABLE public.leaves (
+    lid integer NOT NULL,
+    slackid character varying(50) NOT NULL,
+    date date,
+    reason character varying(50)
+);
+
+
+ALTER TABLE public.leaves OWNER TO anirudhbs;
+
+--
+-- Name: leaves_lid_seq; Type: SEQUENCE; Schema: public; Owner: anirudhbs
+--
+
+CREATE SEQUENCE public.leaves_lid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.leaves_lid_seq OWNER TO anirudhbs;
+
+--
+-- Name: leaves_lid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: anirudhbs
+--
+
+ALTER SEQUENCE public.leaves_lid_seq OWNED BY public.leaves.lid;
+
+
+--
+-- Name: projects; Type: TABLE; Schema: public; Owner: anirudhbs
+--
+
+CREATE TABLE public.projects (
+    pid integer NOT NULL,
+    projectname character varying(50),
+    repo character varying(50),
+    uid integer
+);
+
+
+ALTER TABLE public.projects OWNER TO anirudhbs;
+
+--
+-- Name: projects_pid_seq; Type: SEQUENCE; Schema: public; Owner: anirudhbs
+--
+
+CREATE SEQUENCE public.projects_pid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.projects_pid_seq OWNER TO anirudhbs;
+
+--
+-- Name: projects_pid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: anirudhbs
+--
+
+ALTER SEQUENCE public.projects_pid_seq OWNED BY public.projects.pid;
+
+
+--
+-- Name: students; Type: TABLE; Schema: public; Owner: anirudhbs
+--
+
+CREATE TABLE public.students (
+    name character varying(50) NOT NULL,
+    slackid character varying(50),
+    uid integer NOT NULL,
+    status boolean DEFAULT true
+);
+
+
+ALTER TABLE public.students OWNER TO anirudhbs;
+
+--
+-- Name: students_uid_seq; Type: SEQUENCE; Schema: public; Owner: anirudhbs
+--
+
+CREATE SEQUENCE public.students_uid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.students_uid_seq OWNER TO anirudhbs;
+
+--
+-- Name: students_uid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: anirudhbs
+--
+
+ALTER SEQUENCE public.students_uid_seq OWNED BY public.students.uid;
+
+
+--
+-- Name: demos did; Type: DEFAULT; Schema: public; Owner: anirudhbs
+--
+
+ALTER TABLE ONLY public.demos ALTER COLUMN did SET DEFAULT nextval('public.demos_did_seq'::regclass);
+
+
+--
+-- Name: leaves lid; Type: DEFAULT; Schema: public; Owner: anirudhbs
+--
+
+ALTER TABLE ONLY public.leaves ALTER COLUMN lid SET DEFAULT nextval('public.leaves_lid_seq'::regclass);
+
+
+--
+-- Name: projects pid; Type: DEFAULT; Schema: public; Owner: anirudhbs
+--
+
+ALTER TABLE ONLY public.projects ALTER COLUMN pid SET DEFAULT nextval('public.projects_pid_seq'::regclass);
+
+
+--
+-- Name: students uid; Type: DEFAULT; Schema: public; Owner: anirudhbs
+--
+
+ALTER TABLE ONLY public.students ALTER COLUMN uid SET DEFAULT nextval('public.students_uid_seq'::regclass);
+
+
+--
+-- Data for Name: demos; Type: TABLE DATA; Schema: public; Owner: anirudhbs
+--
+
+COPY public.demos (did, date, uid, pid, rating) FROM stdin;
+1	2019-01-19	1	1	4
+\.
+
+
+--
+-- Data for Name: leaves; Type: TABLE DATA; Schema: public; Owner: anirudhbs
+--
+
+COPY public.leaves (lid, slackid, date, reason) FROM stdin;
+1	undefined	2019-01-19	dabbing
+\.
+
+
+--
+-- Data for Name: projects; Type: TABLE DATA; Schema: public; Owner: anirudhbs
+--
+
+COPY public.projects (pid, projectname, repo, uid) FROM stdin;
+1	json-parser	github.com/anirudhbs/json-parser	1
+\.
+
+
+--
+-- Data for Name: students; Type: TABLE DATA; Schema: public; Owner: anirudhbs
+--
+
+COPY public.students (name, slackid, uid, status) FROM stdin;
+anirudh	undefined	1	t
+\.
+
+
+--
+-- Name: demos_did_seq; Type: SEQUENCE SET; Schema: public; Owner: anirudhbs
+--
+
+SELECT pg_catalog.setval('public.demos_did_seq', 1, true);
+
+
+--
+-- Name: leaves_lid_seq; Type: SEQUENCE SET; Schema: public; Owner: anirudhbs
+--
+
+SELECT pg_catalog.setval('public.leaves_lid_seq', 1, true);
+
+
+--
+-- Name: projects_pid_seq; Type: SEQUENCE SET; Schema: public; Owner: anirudhbs
+--
+
+SELECT pg_catalog.setval('public.projects_pid_seq', 1, true);
+
+
+--
+-- Name: students_uid_seq; Type: SEQUENCE SET; Schema: public; Owner: anirudhbs
+--
+
+SELECT pg_catalog.setval('public.students_uid_seq', 1, true);
+
+
+--
+-- Name: demos demos_pkey; Type: CONSTRAINT; Schema: public; Owner: anirudhbs
+--
+
+ALTER TABLE ONLY public.demos
+    ADD CONSTRAINT demos_pkey PRIMARY KEY (did);
+
+
+--
+-- Name: leaves leaves_pkey; Type: CONSTRAINT; Schema: public; Owner: anirudhbs
+--
+
+ALTER TABLE ONLY public.leaves
+    ADD CONSTRAINT leaves_pkey PRIMARY KEY (lid);
+
+
+--
+-- Name: projects projects_pkey; Type: CONSTRAINT; Schema: public; Owner: anirudhbs
+--
+
+ALTER TABLE ONLY public.projects
+    ADD CONSTRAINT projects_pkey PRIMARY KEY (pid);
+
+
+--
+-- Name: students students_pkey; Type: CONSTRAINT; Schema: public; Owner: anirudhbs
+--
+
+ALTER TABLE ONLY public.students
+    ADD CONSTRAINT students_pkey PRIMARY KEY (uid);
+
+
+--
+-- Name: students students_slackid_key; Type: CONSTRAINT; Schema: public; Owner: anirudhbs
+--
+
+ALTER TABLE ONLY public.students
+    ADD CONSTRAINT students_slackid_key UNIQUE (slackid);
+
+
+--
+-- Name: demos demos_pid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: anirudhbs
+--
+
+ALTER TABLE ONLY public.demos
+    ADD CONSTRAINT demos_pid_fkey FOREIGN KEY (pid) REFERENCES public.projects(pid);
+
+
+--
+-- Name: demos demos_uid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: anirudhbs
+--
+
+ALTER TABLE ONLY public.demos
+    ADD CONSTRAINT demos_uid_fkey FOREIGN KEY (uid) REFERENCES public.students(uid);
+
+
+--
+-- Name: leaves leaves_slackid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: anirudhbs
+--
+
+ALTER TABLE ONLY public.leaves
+    ADD CONSTRAINT leaves_slackid_fkey FOREIGN KEY (slackid) REFERENCES public.students(slackid);
+
+
+--
+-- Name: projects projects_uid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: anirudhbs
+--
+
+ALTER TABLE ONLY public.projects
+    ADD CONSTRAINT projects_uid_fkey FOREIGN KEY (uid) REFERENCES public.students(uid);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
