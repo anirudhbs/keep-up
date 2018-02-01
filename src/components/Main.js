@@ -121,22 +121,21 @@ class Main extends Component {
           />
           <Route
             exact
+            path="/students/:sid/projects/add"
+            render={(props, history) => (
+              <AddProjectPage
+                history={props.history}
+                currentProjectId={this.state.currentProjectId}
+              />
+            )}
+          />
+          <Route
             path="/students/:sid/projects/:pid"
             render={(props, history) => (
               <ProjectPage
                 match={props.match}
                 history={props.history}
                 setCurrentProject={this.setCurrentProject.bind(this)}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/students/:sid/projects/add"
-            render={(props, history) => (
-              <AddProjectPage
-                history={props.history}
-                currentProjectId={this.state.currentProjectId}
               />
             )}
           />

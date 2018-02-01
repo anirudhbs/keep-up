@@ -54,7 +54,7 @@ class AddProjectPage extends Component {
   }
 
   onCancel() {
-    this.props.history.push("/student/" + this.state.uid)
+    this.props.history.push("/students/" + this.state.uid)
   }
 
   render() {
